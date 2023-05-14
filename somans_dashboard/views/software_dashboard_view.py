@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 
 
 class SoftwareDashboardView(TemplateView):
-    template_name = f"somans_dashboard/bootstrap/base.html"
+    template_name = f"somans_dashboard/bootstrap/software.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
