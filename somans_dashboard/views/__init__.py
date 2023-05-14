@@ -1,1 +1,3 @@
 from .software_dashboard_view import SoftwareDashboardView
+from .server_dashboard_view import SoftwareListboardView
+from .workstation_dashboard_view import WorkstationDashboardView
