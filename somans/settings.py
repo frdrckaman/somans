@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'somans_dashboard.apps.AppConfig',
+    'somans_software.apps.AppConfig',
 ]
 
 MIDDLEWARE = [

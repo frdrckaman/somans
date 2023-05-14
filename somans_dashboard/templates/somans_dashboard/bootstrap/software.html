@@ -1,4 +1,5 @@
 {% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load somans_extra %}
 {% load static %}
 {% block content %}
     <div class="content content--top-nav">
@@ -23,7 +24,7 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Servers"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">4710</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_server }}</div>
                                         <div class="text-base text-slate-500 mt-1">Servers</div>
                                     </div>
                                 </div>
@@ -37,7 +38,7 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Workstations"> TZ <i data-lucide="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">3721</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_workstation }}</div>
                                         <div class="text-base text-slate-500 mt-1">Workstations</div>
                                     </div>
                                 </div>
@@ -51,7 +52,7 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of all installed software"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">2149</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ total_installed_software }}</div>
                                         <div class="text-base text-slate-500 mt-1">Total Software</div>
                                     </div>
                                 </div>
@@ -65,7 +66,7 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Users logged in on workstations"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">152</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ headcount }}</div>
                                         <div class="text-base text-slate-500 mt-1">Unique Users</div>
                                     </div>
                                 </div>
@@ -120,7 +121,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="font-medium whitespace-nowrap">Unique Server Names</a>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Server</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
                                     <td class="text-center">164</td>
@@ -148,7 +150,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="font-medium whitespace-nowrap">Unique Workstation Names</a>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Workstation</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
                                     <td class="text-center">87</td>
@@ -268,66 +271,22 @@
                                 </h2>
                             </div>
                             <div class="mt-5">
+                                {% for brand in computer_manufacturer %}
                                 <div class="intro-x">
                                     <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                                         <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
                                             <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-3.jpg' %}">
                                         </div>
                                         <div class="ml-4 mr-auto">
-                                            <div class="font-medium">DELL</div>
+                                            <div class="font-medium">{{ brand }}</div>
                                             <div class="text-slate-500 text-xs mt-0.5">30 May 2022</div>
                                         </div>
-                                        <div class="text-success">+$45</div>
+                                        <div class="text-success">
+                                            {% brand_counter forloop.counter %}</div>
                                     </div>
                                 </div>
-                                <div class="intro-x">
-                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-2.jpg' %}">
-                                        </div>
-                                        <div class="ml-4 mr-auto">
-                                            <div class="font-medium">LENOVO</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">9 July 2022</div>
-                                        </div>
-                                        <div class="text-success">+$23</div>
-                                    </div>
-                                </div>
-                                <div class="intro-x">
-                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-10.jpg' %}">
-                                        </div>
-                                        <div class="ml-4 mr-auto">
-                                            <div class="font-medium">HP</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">22 June 2020</div>
-                                        </div>
-                                        <div class="text-success">+$167</div>
-                                    </div>
-                                </div>
-                                <div class="intro-x">
-                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-10.jpg' %}">
-                                        </div>
-                                        <div class="ml-4 mr-auto">
-                                            <div class="font-medium">MACBOOK</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">24 November 2022</div>
-                                        </div>
-                                        <div class="text-danger">-$42</div>
-                                    </div>
-                                </div>
-                                <div class="intro-x">
-                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-10.jpg' %}">
-                                        </div>
-                                        <div class="ml-4 mr-auto">
-                                            <div class="font-medium">VIRTUAL</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">9 April 2022</div>
-                                        </div>
-                                        <div class="text-danger">-$66</div>
-                                    </div>
-                                </div>
+                                {% endfor %}
+
                             </div>
                         </div>
                         <!-- END: Transactions -->

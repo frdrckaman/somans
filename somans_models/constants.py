@@ -1,0 +1,1 @@
+AUDIT_MODEL_UPDATE_FIELDS = ["modified", "user_modified", "hostname_modified"]
