@@ -93,7 +93,7 @@
                                     <th class="whitespace-nowrap">IMAGES</th>
                                     <th class="whitespace-nowrap">PRODUCT NAME</th>
                                     <th class="text-center whitespace-nowrap">COUNT</th>
-                                    <th class="text-center whitespace-nowrap">STATUS</th>
+                                    <th class="text-center whitespace-nowrap">DUPLICATE</th>
                                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                                 </tr>
                                 </thead>
@@ -125,9 +125,11 @@
                                         whitespace-nowrap">List of Server</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">164</td>
+                                    <td class="text-center">{{ server_list }}</td>
                                     <td class="w-40">
-                                        <div class="flex items-center justify-center text-success"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> Active </div>
+                                        <div class="flex items-center justify-center
+                                        text-success"> {{ duplicate_server_name }}
+                                        </div>
                                     </td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
@@ -154,9 +156,10 @@
                                         whitespace-nowrap">List of Workstation</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">87</td>
+                                    <td class="text-center">{{ workstation_list }}</td>
                                     <td class="w-40">
-                                        <div class="flex items-center justify-center text-success"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> Active </div>
+                                        <div class="flex items-center justify-center
+                                        text-success"> {{ duplicate_workstation_name }} </div>
                                     </td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
@@ -164,6 +167,32 @@
                                         </div>
                                     </td>
                                 </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 mt-6">
+                        <div class="intro-y block sm:flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                Comparison Summary Report
+                            </h2>
+                            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                                <button class="btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button>
+                                <button class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
+                            </div>
+                        </div>
+                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                            <table class="table table-report sm:mt-2">
+                                <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">IMAGES</th>
+                                    <th class="whitespace-nowrap">PRODUCT NAME</th>
+                                    <th class="text-center whitespace-nowrap">DIFFERENCE</th>
+                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 <tr class="intro-x">
                                     <td class="w-40">
                                         <div class="flex">
@@ -179,13 +208,12 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="font-medium whitespace-nowrap">Duplicate Server Names</a>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Servers Vs List of
+                                            Server from installed software</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">94</td>
-                                    <td class="w-40">
-                                        <div class="flex items-center justify-center text-success"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> Active </div>
-                                    </td>
+                                    <td class="text-center">{{ server_difference }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
                                             <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
@@ -207,13 +235,12 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="" class="font-medium whitespace-nowrap">Duplicate Workstation Names</a>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Workstation Vs List of
+                                            Workstation from installed software</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">50</td>
-                                    <td class="w-40">
-                                        <div class="flex items-center justify-center text-success"> <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> Active </div>
-                                    </td>
+                                    <td class="text-center">{{ workstation_difference }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
                                             <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>

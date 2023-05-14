@@ -15,7 +15,17 @@ class SoftwareListboardView:
             headcount=self.get_data_headcount,
             computer_manufacturer=self.get_computer_manufacturer,
             count_brand=self.get_count_brand,
-            # s_id=site_profile.id
+            workstation_list=self.get_data_workstation_list,
+            workstation_list_unique=self.get_data_workstation_list_unique,
+            server_list=self.get_data_server_list,
+            server_list_unique=self.get_data_server_list_unique,
+            duplicate_server_name=self.get_data_server_list - self.get_data_server_list_unique,
+            duplicate_workstation_name=self.get_data_workstation_list -
+                                       self.get_data_workstation_list_unique,
+            server_difference=abs(self.get_server_installed_software -
+                                  self.get_data_server_list_unique),
+            workstation_difference=abs(self.get_workstation_installed_software -
+                                       self.get_data_workstation_list_unique),
         )
         return context
 
@@ -35,6 +45,28 @@ class SoftwareListboardView:
     def get_data_headcount(self):
         df2 = pd.read_sql('select * from headcount', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['personnel_number'])
+        return len(df22.index)
+
+    @property
+    def get_data_workstation_list(self):
+        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        return len(df1.index)
+
+    @property
+    def get_data_workstation_list_unique(self):
+        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['computer_name'])
+        return len(df11.index)
+
+    @property
+    def get_data_server_list(self):
+        df2 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        return len(df2.index)
+
+    @property
+    def get_data_server_list_unique(self):
+        df2 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        df22 = df2.drop_duplicates(['computer_name'])
         return len(df22.index)
 
     @property
