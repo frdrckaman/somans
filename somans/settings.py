@@ -1,17 +1,33 @@
+import os
 from pathlib import Path
+import environ
+import sqlalchemy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_DIR = str(Path(os.path.join(BASE_DIR, ".env")))
+
+env = environ.Env(
+    DJANGO_DEBUG=(bool, False),
+    DEBUG_TOOLBAR=(bool, False),
+    DATABASE_SQLITE_ENABLED=(bool, False),
+)
+
+environ.Env.read_env(ENV_DIR)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#!j3xbeu&vm_xtm(=-x6z)8jee6up*oc8h++@7hxfa*x!xe*h$'
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DJANGO_DEBUG")
+
+APP_NAME = env.str("DJANGO_APP_NAME")
+SOMANS_SQLITE = env.str("SOMANS_SQLITE")
+SOMANS_ENGINE = sqlalchemy.create_engine(SOMANS_SQLITE)
 
 ALLOWED_HOSTS = []
 
@@ -63,12 +79,18 @@ WSGI_APPLICATION = 'somans.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if env("DATABASE_SQLITE_ENABLED"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
+
+else:
+    DATABASES = {"default": env.db()}
+# be secure and clear DATABASE_URL since it is no longer needed.
+DATABASE_URL = None
 
 
 # Password validation
