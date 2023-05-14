@@ -4,7 +4,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 
 
-class HomeView(TemplateView):
+class SoftwareDashboardView(TemplateView):
     template_name = f"somans_dashboard/bootstrap/base.html"
 
     def get_context_data(self, **kwargs):
