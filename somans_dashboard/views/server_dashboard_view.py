@@ -1,3 +1,5 @@
+import json
+
 from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
@@ -7,6 +9,10 @@ class ServerDashboardView(SoftwareListboardView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        svr_data = json.dumps(self.server_list)
+        context.update(
+            svr_data=svr_data
+        )
         return context
 
     # @method_decorator(login_required)
