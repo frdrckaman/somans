@@ -1,0 +1,325 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load somans_extra %}
+{% load static %}
+{% block content %}
+    <div class="content content--top-nav">
+        <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-12 2xl:col-span-9">
+                <div class="grid grid-cols-12 gap-6">
+                    <!-- BEGIN: General Report -->
+                    <div class="col-span-12 mt-8">
+                        <div class="intro-y flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                General Report
+                            </h2>
+                            <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
+                        </div>
+                        <div class="grid grid-cols-12 gap-6 mt-5">
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="flex">
+                                            <i data-lucide="cpu" class="report-box__icon text-primary"></i>
+                                            <div class="ml-auto">
+                                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Servers"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_server }}</div>
+                                        <div class="text-base text-slate-500 mt-1">Servers</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="flex">
+                                            <i data-lucide="monitor" class="report-box__icon text-success"></i>
+                                            <div class="ml-auto">
+                                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Workstations"> TZ <i data-lucide="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_workstation }}</div>
+                                        <div class="text-base text-slate-500 mt-1">Workstations</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="flex">
+                                            <i data-lucide="package" class="report-box__icon text-success"></i>
+                                            <div class="ml-auto">
+                                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of all installed software"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ total_installed_software }}</div>
+                                        <div class="text-base text-slate-500 mt-1">Total Software</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                <div class="report-box zoom-in">
+                                    <div class="box p-5">
+                                        <div class="flex">
+                                            <i data-lucide="user" class="report-box__icon text-success"></i>
+                                            <div class="ml-auto">
+                                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Users logged in on workstations"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">{{ headcount }}</div>
+                                        <div class="text-base text-slate-500 mt-1">Unique Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: General Report -->
+
+                    <!-- BEGIN: Weekly Top Products -->
+                    <div class="col-span-12 mt-6">
+                        <div class="intro-y block sm:flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                Weekly Summary Report
+                            </h2>
+                            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                                <button class="btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button>
+                                <button class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
+                            </div>
+                        </div>
+                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                            <table class="table table-report sm:mt-2">
+                                <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">IMAGES</th>
+                                    <th class="whitespace-nowrap">PRODUCT NAME</th>
+                                    <th class="text-center whitespace-nowrap">COUNT</th>
+                                    <th class="text-center whitespace-nowrap">DUPLICATE</th>
+                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-5.jpg' %}"
+                                                     title="Uploaded  at 30 May 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-3.jpg' %}"
+                                                     title="Uploaded
+                                                                at 8 June 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-13.jpg' %}"
+                                                     title="Uploaded
+                                                                at 9 March 2021">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Server</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ server_list }}</td>
+                                    <td class="w-40">
+                                        <div class="flex items-center justify-center
+                                        text-success"> {{ duplicate_server_name }}
+                                        </div>
+                                    </td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-10.jpg' %}" title="Uploaded at 9 July 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-7.jpg' %}" title="Uploaded at 18 January 2021">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-9.jpg' %}" title="Uploaded at 27 February 2022">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Workstation</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ workstation_list }}</td>
+                                    <td class="w-40">
+                                        <div class="flex items-center justify-center
+                                        text-success"> {{ duplicate_workstation_name }} </div>
+                                    </td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 mt-6">
+                        <div class="intro-y block sm:flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                Comparison Summary Report
+                            </h2>
+                            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                                <button class="btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button>
+                                <button class="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300"> <i data-lucide="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
+                            </div>
+                        </div>
+                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                            <table class="table table-report sm:mt-2">
+                                <thead>
+                                <tr>
+                                    <th class="whitespace-nowrap">IMAGES</th>
+                                    <th class="whitespace-nowrap">PRODUCT NAME</th>
+                                    <th class="text-center whitespace-nowrap">DIFFERENCE</th>
+                                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-10.jpg' %}" title="Uploaded at 22 June 2020">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-10.jpg' %}" title="Uploaded at 7 September 2021">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-3.jpg' %}" title="Uploaded at 31 January 2021">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Servers Vs List of
+                                            Server from installed software</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ server_difference }}</td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-14.jpg' %}" title="Uploaded at 24 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-4.jpg' %}" title="Uploaded at 13 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-11.jpg' %}" title="Uploaded at 2 August 2020">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">List of Workstation Vs List of
+                                            Workstation from installed software</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ workstation_difference }}</td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END: Weekly Top Products -->
+                </div>
+            </div>
+            <div class="col-span-12 2xl:col-span-3">
+                <div class="2xl:border-l -mb-10 pb-10">
+                    <div class="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
+                        <!-- BEGIN: Transactions -->
+                        <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                            <div class="intro-x flex items-center h-10">
+                                <h2 class="text-lg font-medium truncate mr-5">
+                                    New Installed Software
+                                </h2>
+                            </div>
+                            <div class="mt-5">
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-3.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium">Servers</div>
+                                            <div class="text-slate-500 text-xs mt-0.5">30 May 2022</div>
+                                        </div>
+                                        {% new_server_app %}
+                                    </div>
+                                </div>
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-2.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium">Workstations</div>
+                                            <div class="text-slate-500 text-xs mt-0.5">9 July 2022</div>
+                                        </div>
+                                        {% new_workstation_app %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                            <div class="intro-x flex items-center h-10">
+                                <h2 class="text-lg font-medium truncate mr-5">
+                                    Brands
+                                </h2>
+                            </div>
+                            <div class="mt-5">
+                                {% for brand in computer_manufacturer %}
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="Midone - HTML Admin Template" src="{% static 'dist/images/profile-3.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium">{{ brand }}</div>
+                                            <div class="text-slate-500 text-xs mt-0.5">30 May 2022</div>
+                                        </div>
+                                        <div class="text-success">
+                                            {% brand_counter forloop.counter %}</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <!-- END: Transactions -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
