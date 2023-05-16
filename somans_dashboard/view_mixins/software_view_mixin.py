@@ -80,6 +80,18 @@ class SoftwareListboardView:
         return df_all_2.to_dict('records')
 
     @property
+    def new_server_software_list(self):
+        df2 = self.get_new_server_app
+        df22 = self.get_server_list_data
+        df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
+                           how='left', indicator=True)
+        df_all_1 = df_all[
+            ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
+             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+        df_all_2 = df_all_1.fillna('')
+        return df_all_2.to_dict('records')
+
+    @property
     def get_data_workstation_installed_software(self):
         df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
@@ -196,6 +208,12 @@ class SoftwareListboardView:
         return pd.concat([df111, df222]).drop_duplicates(keep=False)
 
     @property
+    def get_new_server_app(self):
+        df444 = self.get_total_installed_software_server
+        df555 = self.get_total_update_installed_software_server
+        return pd.concat([df444, df555]).drop_duplicates().reset_index(drop=True)
+
+    @property
     def get_total_workstation_installed_software(self):
         df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
@@ -239,9 +257,9 @@ class SoftwareListboardView:
 
     @property
     def get_total_update_installed_software_server(self):
-        df2 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
-        df22 = df2.drop_duplicates(['product_name'])
-        return df22
+        df6 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
+        df66 = df6.drop_duplicates(['product_name'])
+        return df66
 
     @property
     def get_total_installed_software(self):
