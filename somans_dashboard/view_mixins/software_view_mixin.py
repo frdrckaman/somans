@@ -37,6 +37,12 @@ class SoftwareListboardView:
         )
         return context
 
+    @property
+    def get_server_all(self):
+        df1 = pd.read_sql("select * from list_of_servers", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['computer_name'])
+        return df11.to_dict('records')
+
     def get_server(self, name):
         df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'", settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
