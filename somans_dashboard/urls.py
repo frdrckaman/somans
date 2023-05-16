@@ -6,6 +6,7 @@ from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftw
     ListOfWorkstationView, ServerListVsInstalledView
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
+from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
 
 app_name = "somans_dashboard"
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path("list-server/", ListOfServerView.as_view(), name="list-server"),
     path("list-workstation/", ListOfWorkstationView.as_view(), name="list-workstation"),
     path("svr-ls-inst/", ServerListVsInstalledView.as_view(), name="svr-ls-inst"),
+    path("wks-ls-inst/", WorkstationListVsInstalledView.as_view(), name="wks-ls-inst"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]

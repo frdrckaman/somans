@@ -359,4 +359,4 @@ class SoftwareListboardView:
         df11 = df1[['computer_name']].drop_duplicates()
         df22 = df2[['computer_name']].drop_duplicates()
         df = pd.concat([df11, df22]).drop_duplicates(keep=False)
-        return df
+        return df.to_dict('records')
