@@ -42,14 +42,29 @@ class SoftwareListboardView:
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
+    def get_workstation(self, name):
+        df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['computer_name'])
+        return df11.to_dict('records')
+
     def get_server_app(self, name):
         df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'", settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
+
+    def get_workstation_app(self, name):
+        df1 = pd.read_sql(f"select * from software_workstation_new where computer_name='{name}'", settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
 
     def get_server_new(self, name):
         df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['product_name'])
+        return df11.to_dict('records')
+
+    def get_workstation_new(self, name):
+        df1 = pd.read_sql(f"select * from software_workstation_new where computer_name='{name}'", settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return df11.to_dict('records')
 

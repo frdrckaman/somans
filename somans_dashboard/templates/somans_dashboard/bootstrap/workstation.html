@@ -98,7 +98,7 @@
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Computer Name", field:"computer_name"},
+                {title:"Computer Name", field:"computer_name", formatter:"link", formatterParams:{labelField:"computer_name", urlPrefix:""}},
                 {title:"Computer Manufacturer", field:"computer_manufacturer"},
                 {title:"Computer Model", field:"computer_model"},
                 {title:"User Name", field:"user_name"},
