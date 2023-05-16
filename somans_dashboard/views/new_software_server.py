@@ -1,5 +1,6 @@
 import json
 
+import pandas as pd
 from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
@@ -9,7 +10,6 @@ class NewServerSoftwareView(SoftwareListboardView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.get_new_server_app)
         nw_svr_sft_data = json.dumps(self.new_server_software_list)
         context.update(
             nw_svr_sft_data=nw_svr_sft_data
