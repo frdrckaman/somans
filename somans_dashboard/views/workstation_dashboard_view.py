@@ -9,6 +9,7 @@ class WorkstationDashboardView(SoftwareListboardView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(self.new_workstation_software_list)
         wks_data = json.dumps(self.workstation_list)
         context.update(
             wks_data=wks_data
