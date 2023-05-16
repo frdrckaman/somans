@@ -37,7 +37,29 @@ class SoftwareListboardView:
         )
         return context
 
-    @property
+    def get_server(self, name):
+        df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['computer_name'])
+        return df11.to_dict('records')
+
+    def get_server_app(self, name):
+        df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'", settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
+
+
+    def get_server_new(self, name):
+        df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['product_name'])
+        return df11.to_dict('records')
+
+
+    def get_server_old(self, name):
+        df1 = pd.read_sql(f"select * from software_server where computer_name='{name}'", settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1
+
+
     def frd(self):
         df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
@@ -90,6 +112,17 @@ class SoftwareListboardView:
              'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
+
+
+    def new_app_server(self, name):
+        df4 = self.get_server_new(name)
+        df5 = self.get_server_new(name)
+        df44 = df4[['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
+        df55 = df5[['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
+        print(len(df44))
+        print(len(df55))
+        df555 = pd.concat([df44, df55]).drop_duplicates(keep=False)
+        return df555.to_dict('records')
 
     @property
     def get_data_workstation_installed_software(self):
@@ -267,6 +300,7 @@ class SoftwareListboardView:
     def get_total_installed_software(self):
         total = self.get_total_workstation_installed_software + self.get_total_server_installed_software
         return total
+
     @property
     def get_server_installed_software(self):
         return len(self.get_data_server_installed_software.index)
@@ -282,4 +316,3 @@ class SoftwareListboardView:
     @property
     def get_workstation_update_installed_software(self):
         return len(self.get_update_data_workstation_installed_software.index)
-
