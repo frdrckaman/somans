@@ -4,15 +4,14 @@ from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
 
-class WorkstationDashboardView(SoftwareListboardView, TemplateView):
-    template_name = f"somans_dashboard/bootstrap/workstation.html"
+class NewWorkstationSoftwareView(SoftwareListboardView, TemplateView):
+    template_name = f"somans_dashboard/bootstrap/new-software-workstation.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(self.new_workstation_software_list)
-        wks_data = json.dumps(self.workstation_list)
+        nw_wks_sft_data = json.dumps(self.new_workstation_software_list)
         context.update(
-            wks_data=wks_data
+            nw_wks_sft_data=nw_wks_sft_data
         )
         return context
 
