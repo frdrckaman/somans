@@ -29,8 +29,7 @@ class SoftwareListboardView:
                                        self.get_data_workstation_list_unique,
             server_difference=abs(self.get_server_installed_software -
                                   self.get_data_server_list_unique),
-            workstation_difference=abs(self.get_workstation_installed_software -
-                                       self.get_data_workstation_list_unique),
+            workstation_difference=len(self.get_list_vs_workstation_installed_software),
             new_workstation_software=self.get_update_data_workstation_software,
             new_server_software=self.get_update_data_server_software,
             new_workstation_app=self.get_new_workstation_app,
@@ -343,3 +342,21 @@ class SoftwareListboardView:
     @property
     def get_workstation_update_installed_software(self):
         return len(self.get_update_data_workstation_installed_software.index)
+
+    @property
+    def get_list_vs_server_installed_software(self):
+        df1 = self.get_server_list_data
+        df2 = self.get_data_server_installed_software
+        df11 = df1[['computer_name']]
+        df22 = df2[['computer_name']]
+        df = pd.concat([df11, df22]).drop_duplicates(keep=False)
+        return df.to_dict('records')
+
+    @property
+    def get_list_vs_workstation_installed_software(self):
+        df1 = self.get_workstation_list_data
+        df2 = self.get_data_workstation_installed_software
+        df11 = df1[['computer_name']].drop_duplicates()
+        df22 = df2[['computer_name']].drop_duplicates()
+        df = pd.concat([df11, df22]).drop_duplicates(keep=False)
+        return df

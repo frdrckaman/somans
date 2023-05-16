@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 
 from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftwareView, \
-    NewServerSoftwareView, ServerDetailsView, WorkstationDetailsView, ListOfServerView, ListOfWorkstationView
+    NewServerSoftwareView, ServerDetailsView, WorkstationDetailsView, ListOfServerView, \
+    ListOfWorkstationView, ServerListVsInstalledView
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 
@@ -18,5 +19,6 @@ urlpatterns = [
     path("workstation/<server_name>", WorkstationDetailsView.as_view(), name="workstation-details"),
     path("list-server/", ListOfServerView.as_view(), name="list-server"),
     path("list-workstation/", ListOfWorkstationView.as_view(), name="list-workstation"),
+    path("svr-ls-inst/", ServerListVsInstalledView.as_view(), name="svr-ls-inst"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
