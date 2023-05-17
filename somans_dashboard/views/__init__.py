@@ -9,6 +9,7 @@ from .list_of_server import ListOfServerView
 from .list_of_workstation import ListOfWorkstationView
 from .server_list_vs_installed import ServerListVsInstalledView
 from .workstation_list_vs_installed import WorkstationListVsInstalledView
+from .list_workstation_duplicate import ListOfWorkstationDuplicateView
 
 
 
