@@ -4,7 +4,7 @@ from django.urls import path
 from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftwareView, \
     NewServerSoftwareView, ServerDetailsView, WorkstationDetailsView, ListOfServerView, \
     ListOfWorkstationView, ServerListVsInstalledView, ListOfWorkstationDuplicateView, \
-    ListOfServerDuplicateView, ListWorkstationDuplicateDetailsView
+    ListOfServerDuplicateView, ListWorkstationDuplicateDetailsView, ListServerDuplicateDetailsView
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
@@ -26,5 +26,6 @@ urlpatterns = [
     path("wks-ls-dup/", ListOfWorkstationDuplicateView.as_view(), name="wks-ls-dup"),
     path("svr-ls-dup/", ListOfServerDuplicateView.as_view(), name="svr-ls-dup"),
     path("wks-ls-dup/<server_name>", ListWorkstationDuplicateDetailsView.as_view(), name="wks-ls-dup-dtl"),
+    path("svr-ls-dup/<server_name>", ListServerDuplicateDetailsView.as_view(), name="svr-ls-dup-dtl"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
