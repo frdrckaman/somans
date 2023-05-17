@@ -76,7 +76,7 @@
     </div>
         <script>
 
-        tabledata = {{ ls_wks_dup|safe }}
+        tabledata = {{ ls_wks_dup_dtl|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,
@@ -95,10 +95,16 @@
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Computer Name", field:"computer_name", formatter:"link", formatterParams:{labelField:"computer_name", urlPrefix:""}},
+                {title:"Computer Name", field:"computer_name"},
+                {title:"operating System", field:"operating_system"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version", field:"os_build_version"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Last Hardware Inventory", field:"last_hardware_inventory"},
+                {title:"Days Computer Last Comms", field:"days_computer_last_comms"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
-                {title:"Occurrence", field:"occurrence"},
             ],
         });
     </script>
@@ -154,9 +160,15 @@
             layout:"fitColumns",
             columns:[                 //define the table columns
                 {title:"Computer Name", field:"computer_name"},
+                {title:"operating System", field:"operating_system"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version", field:"os_build_version"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Last Hardware Inventory", field:"last_hardware_inventory"},
+                {title:"Days Computer Last Comms", field:"days_computer_last_comms"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
-                {title:"Occurrence", field:"occurrence"},
             ],
         });
     </script>

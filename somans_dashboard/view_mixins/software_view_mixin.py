@@ -395,3 +395,7 @@ class SoftwareListboardView:
                           'list_of_servers group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
                           settings.SOMANS_ENGINE)
         return df2.to_dict('records')
+
+    def get_workstation_duplicate(self, name):
+        df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'", settings.SOMANS_ENGINE)
+        return df1.to_dict('records')
