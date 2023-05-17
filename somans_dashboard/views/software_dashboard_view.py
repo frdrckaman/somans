@@ -10,7 +10,11 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
     template_name = f"somans_dashboard/bootstrap/software.html"
 
     def get_context_data(self, **kwargs):
+        menu_category = 'software'
         context = super().get_context_data(**kwargs)
+        context.update(
+            menu_category=menu_category,
+        )
         return context
 
     # @method_decorator(login_required)

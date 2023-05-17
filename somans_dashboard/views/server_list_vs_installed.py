@@ -8,9 +8,11 @@ class ServerListVsInstalledView(SoftwareListboardView, TemplateView):
     template_name = f"somans_dashboard/bootstrap/server_list_vs_installed.html"
 
     def get_context_data(self, **kwargs):
+        menu_category = 'servers'
         context = super().get_context_data(**kwargs)
         svr_ls_inst = json.dumps(self.get_list_vs_server_installed_software)
         context.update(
+            menu_category=menu_category,
             svr_ls_inst=svr_ls_inst
         )
         return context

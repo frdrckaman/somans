@@ -8,10 +8,12 @@ class WorkstationListVsInstalledView(SoftwareListboardView, TemplateView):
     template_name = f"somans_dashboard/bootstrap/workstation_list_vs_installed.html"
 
     def get_context_data(self, **kwargs):
+        menu_category = 'workstations'
         context = super().get_context_data(**kwargs)
         wks_ls_inst = json.dumps(self.get_list_vs_workstation_installed_software)
         context.update(
-            wks_ls_inst=wks_ls_inst
+            menu_category=menu_category,
+            wks_ls_inst=wks_ls_inst,
         )
         return context
 
