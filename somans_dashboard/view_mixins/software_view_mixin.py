@@ -219,6 +219,11 @@ class SoftwareListboardView:
         return df1
 
     @property
+    def get_server_list_all(self):
+        df1 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        return df1
+
+    @property
     def get_data_workstation_list_unique(self):
         df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
@@ -376,5 +381,17 @@ class SoftwareListboardView:
         df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
                           'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
                           'list_of_workstations group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+                          settings.SOMANS_ENGINE)
+        return df2.to_dict('records')
+
+    @property
+    def get_duplicate_server_list(self):
+        df = self.get_server_list_all
+        df1 = df[['computer_name']]
+        df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
+
+        df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
+                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
+                          'list_of_servers group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
                           settings.SOMANS_ENGINE)
         return df2.to_dict('records')
