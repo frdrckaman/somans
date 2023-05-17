@@ -10,7 +10,9 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="LEFT4CODE">
-        <title>SOMANS | DASHBOARD</title>
+        {% block title %}
+            <title> SOMANS | DASHBOARD </title>
+        {% endblock title %}
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{% static 'dist/css/app.css' %}" />
         <!-- frdrck -->
@@ -27,9 +29,7 @@
         {% endblock mobile-menu %}
         <!-- END: Mobile Menu -->
         <!-- BEGIN: Top Bar -->
-        {% block top-bar-menu %}
-            {% top_bar_menu %}
-        {% endblock top-bar-menu %}
+        {% top_bar_menu %}
         <!-- END: Top Bar -->
         <!-- BEGIN: Top Menu -->
         {% block main-menu %}

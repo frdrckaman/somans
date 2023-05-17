@@ -134,7 +134,7 @@
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
                                             <a class="flex items-center mr-3" href="{% url 'somans_dashboard:list-server' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> List </a>
-                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Duplicate</a>
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:svr-ls-dup' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i>Duplicate</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -164,8 +164,8 @@
                                     </td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> List </a>
-                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Duplicate</a>
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:list-workstation' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> List </a>
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:wks-ls-dup' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Duplicate</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -218,7 +218,8 @@
                                     <td class="text-center">{{ server_difference }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:svr-ls-inst' %}"> <i
+                                                    data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -245,7 +246,8 @@
                                     <td class="text-center">{{ workstation_difference }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href=""> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:wks-ls-inst' %}"> <i
+                                                    data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
                                         </div>
                                     </td>
                                 </tr>

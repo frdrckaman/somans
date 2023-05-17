@@ -29,8 +29,7 @@ class SoftwareListboardView:
                                        self.get_data_workstation_list_unique,
             server_difference=abs(self.get_server_installed_software -
                                   self.get_data_server_list_unique),
-            workstation_difference=abs(self.get_workstation_installed_software -
-                                       self.get_data_workstation_list_unique),
+            workstation_difference=len(self.get_list_vs_workstation_installed_software),
             new_workstation_software=self.get_update_data_workstation_software,
             new_server_software=self.get_update_data_server_software,
             new_workstation_app=self.get_new_workstation_app,
@@ -40,6 +39,12 @@ class SoftwareListboardView:
     @property
     def get_server_all(self):
         df1 = pd.read_sql("select * from list_of_servers", settings.SOMANS_ENGINE)
+        df11 = df1.drop_duplicates(['computer_name'])
+        return df11.to_dict('records')
+
+    @property
+    def get_workstation_all(self):
+        df1 = pd.read_sql("select * from list_of_workstations", settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
@@ -209,10 +214,21 @@ class SoftwareListboardView:
         return len(df1.index)
 
     @property
+    def get_workstation_list_all(self):
+        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        return df1
+
+    @property
+    def get_server_list_all(self):
+        df1 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        return df1
+
+    @property
     def get_data_workstation_list_unique(self):
         df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return len(df11.index)
+
 
     @property
     def get_data_server_list(self):
@@ -337,3 +353,45 @@ class SoftwareListboardView:
     @property
     def get_workstation_update_installed_software(self):
         return len(self.get_update_data_workstation_installed_software.index)
+
+    @property
+    def get_list_vs_server_installed_software(self):
+        df1 = self.get_server_list_data
+        df2 = self.get_data_server_installed_software
+        df11 = df1[['computer_name']]
+        df22 = df2[['computer_name']]
+        df = pd.concat([df11, df22]).drop_duplicates(keep=False)
+        return df.to_dict('records')
+
+    @property
+    def get_list_vs_workstation_installed_software(self):
+        df1 = self.get_workstation_list_data
+        df2 = self.get_data_workstation_installed_software
+        df11 = df1[['computer_name']].drop_duplicates()
+        df22 = df2[['computer_name']].drop_duplicates()
+        df = pd.concat([df11, df22]).drop_duplicates(keep=False)
+        return df.to_dict('records')
+
+    @property
+    def get_duplicate_workstation_list(self):
+        df = self.get_workstation_list_all
+        df1 = df[['computer_name']]
+        df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
+
+        df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
+                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
+                          'list_of_workstations group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+                          settings.SOMANS_ENGINE)
+        return df2.to_dict('records')
+
+    @property
+    def get_duplicate_server_list(self):
+        df = self.get_server_list_all
+        df1 = df[['computer_name']]
+        df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
+
+        df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
+                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
+                          'list_of_servers group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+                          settings.SOMANS_ENGINE)
+        return df2.to_dict('records')
