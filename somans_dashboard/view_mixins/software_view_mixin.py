@@ -275,7 +275,9 @@ class SoftwareListboardView:
     def get_new_workstation_app(self):
         df111 = self.get_total_installed_software_workstation
         df222 = self.get_total_update_installed_software_workstation
-        return pd.concat([df111, df222]).drop_duplicates(keep=False)
+        df44 = df111[['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
+        df55 = df222[['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
+        return pd.concat([df44, df55]).drop_duplicates(keep=False)
 
     @property
     def get_new_server_app(self):
