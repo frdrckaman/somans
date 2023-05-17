@@ -209,6 +209,12 @@ class SoftwareListboardView:
         return len(df22.index)
 
     @property
+    def headcount_data(self):
+        df2 = pd.read_sql('select * from headcount', settings.SOMANS_ENGINE)
+        df22 = df2.drop_duplicates(['personnel_number'])
+        return df22.to_dict('records')
+
+    @property
     def get_data_workstation_list(self):
         df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
         return len(df1.index)
