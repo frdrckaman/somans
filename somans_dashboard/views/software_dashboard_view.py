@@ -14,6 +14,7 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
         context = super().get_context_data(**kwargs)
         context.update(
             menu_category=menu_category,
+            no_rm_sft_svr=self.no_removed_sft_server,
         )
         return context
 

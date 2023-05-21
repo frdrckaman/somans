@@ -411,3 +411,42 @@ class SoftwareListboardView:
     def get_server_duplicate(self, name):
         df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'", settings.SOMANS_ENGINE)
         return df1.to_dict('records')
+
+    @property
+    def removed_software_server(self):
+        df = pd.read_sql("select a.* from  software_server a left join software_server_new b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def removed_sft_server(self):
+        df2 = self.removed_software_server
+        df22 = self.get_server_list_data
+        df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
+                           how='left', indicator=True)
+        df_all_1 = df_all[
+            ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
+             'product_name',
+             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+        df_all_2 = df_all_1.fillna('')
+        return df_all_2.to_dict('records')
+
+    @property
+    def no_removed_sft_server(self):
+        df2 = self.removed_software_server
+        df22 = df2.drop_duplicates('product_name')
+        return len(df22)
+
+    @property
+    def new_software_server(self):
+        df = pd.read_sql("select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def removed_software_workstation(self):
+        df = pd.read_sql("select a.* from  software_workstation a left join software_workstation_new b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def new_software_workstation(self):
+        df = pd.read_sql("select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        return df
