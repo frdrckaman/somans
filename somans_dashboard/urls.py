@@ -33,5 +33,6 @@ urlpatterns = [
     path("rm-sft-svr/", RemovedSoftwareServerView.as_view(), name="rm-sft-svr"),
     path("rm-sft-wks/", RemovedSoftwareWorkstationView.as_view(), name="rm-sft-wks"),
     path("nw-app-ls-svr/", NewAppListServerView.as_view(), name="nw-app-ls-svr"),
+    path("nw-app-ls-svr/<app_name>", NewServerSoftwareView.as_view(), name="nw-app-dtls-svr"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]

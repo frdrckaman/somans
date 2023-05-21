@@ -87,13 +87,14 @@
             paginationCounter:"rows",
             movableColumns:true,
             initialSort:[
-                {column:"computer_name", dir:"asc"},
+                {column:"product_name", dir:"asc"},
             ],
             columnDefaults:{
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Product Name", field:"product_name"},
+                {title:"Product Name", field:"product_name", formatter:"link",
+                    formatterParams:{labelField:"product_name", urlPrefix:""}},
             ],
         });
     </script>
