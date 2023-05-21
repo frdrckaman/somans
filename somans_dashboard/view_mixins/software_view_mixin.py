@@ -440,6 +440,13 @@ class SoftwareListboardView:
     def new_software_server(self):
         df = pd.read_sql("select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
         return df
+
+    @property
+    def new_software_server_app(self):
+        df = pd.read_sql("select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        df2 = df.drop_duplicates('product_name')
+        return df2.to_dict('records')
+
     @property
     def new_sft_server(self):
         df2 = self.new_software_server
@@ -487,6 +494,12 @@ class SoftwareListboardView:
     def new_software_workstation(self):
         df = pd.read_sql("select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
         return df
+
+    @property
+    def new_software_workstation_app(self):
+        df = pd.read_sql("select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
+        df2 = df.drop_duplicates('product_name')
+        return df2.to_dict('records')
 
     @property
     def new_sft_workstation(self):
