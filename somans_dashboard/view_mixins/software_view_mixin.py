@@ -487,3 +487,22 @@ class SoftwareListboardView:
     def new_software_workstation(self):
         df = pd.read_sql("select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null", settings.SOMANS_ENGINE)
         return df
+
+    @property
+    def new_sft_workstation(self):
+        df2 = self.new_software_workstation
+        df22 = self.get_workstation_list_data
+        df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
+                           how='left', indicator=True)
+        df_all_1 = df_all[
+            ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
+             'product_name',
+             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+        df_all_2 = df_all_1.fillna('')
+        return df_all_2.to_dict('records')
+
+    @property
+    def no_new_sft_workstation(self):
+        df2 = self.new_software_workstation
+        df22 = df2.drop_duplicates('product_name')
+        return len(df22)

@@ -28,6 +28,24 @@ def new_vs_old_workstation_app(context):
 
 
 @register.inclusion_tag(
+    f"somans_dashboard/bootstrap/buttons/new-workstation-app-button.html",
+    takes_context=True,
+)
+def new_workstation_app(context):
+    title = None
+    wks_alert = 'bg-success'
+    wks_value = context.get("no_nw_sft_wks")
+    if wks_value > 0:
+        wks_alert = 'bg-danger'
+
+    return dict(
+        title=title,
+        wks_alert=wks_alert,
+        wks_value=wks_value,
+    )
+
+
+@register.inclusion_tag(
     f"somans_dashboard/bootstrap/buttons/new-server-app-button.html",
     takes_context=True,
 )
