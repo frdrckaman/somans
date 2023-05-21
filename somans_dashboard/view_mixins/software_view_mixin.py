@@ -549,9 +549,26 @@ class SoftwareListboardView:
         df2 = df.drop_duplicates('product_name')
         return df2.to_dict('records')
 
-    @property
-    def new_sft_workstation(self):
-        df2 = self.new_software_workstation
+    def get_new_software_workstation_app(self, name):
+        df = pd.read_sql(f"select a.* from  software_workstation_new a where a.product_name = '{name}'", settings.SOMANS_ENGINE)
+        df2 = df.drop_duplicates('product_name')
+        return df2
+
+    # @property
+    # def new_sft_workstation(self):
+    #     df2 = self.new_software_workstation
+    #     df22 = self.get_workstation_list_data
+    #     df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
+    #                        how='left', indicator=True)
+    #     df_all_1 = df_all[
+    #         ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
+    #          'product_name',
+    #          'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+    #     df_all_2 = df_all_1.fillna('')
+    #     return df_all_2.to_dict('records')
+
+    def new_sft_workstation(self, name):
+        df2 = self.get_new_software_workstation_app(name)
         df22 = self.get_workstation_list_data
         df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
                            how='left', indicator=True)

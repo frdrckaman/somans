@@ -17,6 +17,7 @@ from .headcount_view import HeadcountView
 from .removed_sft_svr import RemovedSoftwareServerView
 from .removed_sft_wks import RemovedSoftwareWorkstationView
 from .nw_app_ls_svr import NewAppListServerView
+from .nw_app_ls_wks import NewAppListWorkstationView
 
 
 
