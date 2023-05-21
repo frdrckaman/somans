@@ -17,6 +17,7 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
             menu_category=menu_category,
             no_rm_sft_svr=self.no_removed_sft_server,
             no_nw_sft_svr=self.no_new_sft_server,
+            no_removed_sft_wks=self.no_removed_sft_workstation
         )
         return context
 
