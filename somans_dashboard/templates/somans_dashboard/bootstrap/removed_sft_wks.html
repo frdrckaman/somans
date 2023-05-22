@@ -1,12 +1,12 @@
 {% extends 'somans_dashboard/bootstrap/base.html' %}
 {% block title %}
-    <title> SOMANS | WORKSTATIONS </title>
+    <title> SOMANS | SERVERS </title>
 {% endblock %}
 {% block content %}
     <div class="content content--top-nav">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Duplicate Workstation Computer Name
+                Uninstalled Software Workstation
             </h2>
         </div>
 
@@ -18,8 +18,14 @@
                         <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Field</label>
                         <select id="tabulator-html-filter-field" class="form-select w-full sm:w-32 2xl:w-full mt-2 sm:mt-0 sm:w-auto">
                             <option value="computer_name">Computer Name</option>
+                            <option value="computer_manufacturer">Computer Manufacturer</option>
+                            <option value="computer_model">Computer Model</option>
+                            <option value="product_name">Product Name</option>
+                            <option value="user_name">User Name</option>
+                            <option value="user_email">User Email</option>
+                            <option value="os_version">OS version</option>
                             <option value="computer_ip_address">Computer IP Address</option>
-                            <option value="occurrence">Occurrence</option>
+                            <option value="os_version">OS version</option>
                             <option value="managed_in_sccm">Managed in SCCM</option>
                         </select>
                     </div>
@@ -39,7 +45,10 @@
                         <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Value</label>
                         <input id="tabulator-html-filter-value" type="text" class="form-control sm:w-40 2xl:w-full mt-2 sm:mt-0" placeholder="Search...">
                     </div>
-
+{#                    <div class="mt-2 xl:mt-0">#}
+{#                        <button id="tabulator-html-filter-go" type="button" class="btn btn-primary w-full sm:w-16" >Go</button>#}
+{#                        <input type="reset" id="tabulator-html-filter-reset" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" onclick="clearFunction()" value="Reset">#}
+{#                    </div>#}
                 </form>
                 <div class="flex mt-5 sm:mt-0">
                     <button id="tabulator-print" class="btn btn-outline-secondary w-1/2 sm:w-auto mr-2"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </button>
@@ -63,17 +72,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><br>
             <div class="overflow-x-auto scrollbar-hidden">
-                <div id="tabulator1" class="mt-5 table-report table-report--tabulator"></div>
+                <div id="tabulator1" class="mt-5 table-report table-report--tabulator">
             </div>
         </div>
         <!-- END: HTML Table Data -->
         <!-- END: Content -->
+        </div>
     </div>
-        <script>
+    <script>
 
-        tabledata = {{ ls_wks_dup|safe }}
+        tabledata = {{ rm_sft_wks|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,
@@ -92,10 +102,17 @@
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Computer Name", field:"computer_name", formatter:"link", formatterParams:{labelField:"computer_name", urlPrefix:""}},
+                {title:"Computer Name", field:"computer_name"},
+                {title:"Computer Manufacturer", field:"computer_manufacturer"},
+                {title:"Computer Model", field:"computer_model"},
+                {title:"Product Name", field:"product_name"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Operating System", field:"operating_system"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
-                {title:"Occurrence", field:"occurrence"},
             ],
         });
     </script>
@@ -151,10 +168,18 @@
             layout:"fitColumns",
             columns:[                 //define the table columns
                 {title:"Computer Name", field:"computer_name"},
+                {title:"Computer Manufacturer", field:"computer_manufacturer"},
+                {title:"Computer Model", field:"computer_model"},
+                {title:"Product Name", field:"product_name"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Operating System", field:"operating_system"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
-                {title:"Occurrence", field:"occurrence"},
             ],
         });
     </script>
+
 {% endblock %}

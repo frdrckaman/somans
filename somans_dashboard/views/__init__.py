@@ -14,6 +14,10 @@ from .list_server_duplicate import ListOfServerDuplicateView
 from .ls_wks_dup_details import ListWorkstationDuplicateDetailsView
 from .ls_svr_dup_details import ListServerDuplicateDetailsView
 from .headcount_view import HeadcountView
+from .removed_sft_svr import RemovedSoftwareServerView
+from .removed_sft_wks import RemovedSoftwareWorkstationView
+from .nw_app_ls_svr import NewAppListServerView
+from .nw_app_ls_wks import NewAppListWorkstationView
 
 
 

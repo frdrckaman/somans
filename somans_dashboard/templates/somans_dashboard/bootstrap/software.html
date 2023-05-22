@@ -214,6 +214,93 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                            <table class="table table-report sm:mt-2">
+                                <tbody>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-5.jpg' %}"
+                                                     title="Uploaded  at 30 May 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-3.jpg' %}"
+                                                     title="Uploaded
+                                                                at 8 June 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-13.jpg' %}"
+                                                     title="Uploaded
+                                                                at 9 March 2021">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">Uninstalled Software (Server)</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ no_rm_sft_svr }}</td>
+
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:rm-sft-svr' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                            <table class="table table-report sm:mt-2">
+                                <tbody>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-5.jpg' %}"
+                                                     title="Uploaded  at 30 May 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-3.jpg' %}"
+                                                     title="Uploaded
+                                                                at 8 June 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon"
+                                                     class="tooltip rounded-full" src="{% static 'dist/images/preview-13.jpg' %}"
+                                                     title="Uploaded
+                                                                at 9 March 2021">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">Uninstalled Software (Workstation)
+                                        </a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ no_removed_sft_wks }}</td>
+
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:rm-sft-wks' %}"> <i data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="col-span-12 mt-6">
@@ -307,6 +394,40 @@
                         <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
                             <div class="intro-x flex items-center h-10">
                                 <h2 class="text-lg font-medium truncate mr-5">
+                                    Benchmark Vs New Scan
+                                </h2>
+                            </div>
+                            <div class="mt-5">
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-3.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium"><a href="#"> Servers </a></div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
+                                        </div>
+                                        {% new_vs_old_server_app %}
+                                    </div>
+                                </div>
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-2.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium"><a href="#"> Workstations</a></div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
+                                        </div>
+                                        {% new_vs_old_workstation_app %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                            <div class="intro-x flex items-center h-10">
+                                <h2 class="text-lg font-medium truncate mr-5">
                                     New Installed Software
                                 </h2>
                             </div>
@@ -317,8 +438,8 @@
                                             <img alt="SOMANS Icon" src="{% static 'dist/images/profile-3.jpg' %}">
                                         </div>
                                         <div class="ml-4 mr-auto">
-                                            <div class="font-medium"><a href="{% url 'somans_dashboard:new-server-app' %}"> Servers </a></div>
-                                            <div class="text-slate-500 text-xs mt-0.5">30 May 2022</div>
+                                            <div class="font-medium"><a href="{% url 'somans_dashboard:nw-app-ls-svr' %}"> Servers </a></div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
                                         </div>
                                         {% new_server_app %}
                                     </div>
@@ -329,14 +450,15 @@
                                             <img alt="SOMANS Icon" src="{% static 'dist/images/profile-2.jpg' %}">
                                         </div>
                                         <div class="ml-4 mr-auto">
-                                            <div class="font-medium"><a href="{% url 'somans_dashboard:new-workstation-app' %}"> Workstations</a></div>
-                                            <div class="text-slate-500 text-xs mt-0.5">9 July 2022</div>
+                                            <div class="font-medium"><a href="{% url 'somans_dashboard:nw-app-ls-wks' %}"> Workstations</a></div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
                                         </div>
                                         {% new_workstation_app %}
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
                             <div class="intro-x flex items-center h-10">
                                 <h2 class="text-lg font-medium truncate mr-5">
@@ -352,7 +474,7 @@
                                         </div>
                                         <div class="ml-4 mr-auto">
                                             <div class="font-medium">{{ brand }}</div>
-                                            <div class="text-slate-500 text-xs mt-0.5">30 May 2022</div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
                                         </div>
                                         <div class="text-success">
                                             {% brand_counter forloop.counter %}</div>
