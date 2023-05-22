@@ -12,7 +12,6 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
     def get_context_data(self, **kwargs):
         menu_category = 'software'
         context = super().get_context_data(**kwargs)
-        print(self.no_new_sft_server)
         context.update(
             menu_category=menu_category,
             no_rm_sft_svr=self.no_removed_sft_server,
