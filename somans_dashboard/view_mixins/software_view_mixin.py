@@ -414,8 +414,7 @@ class SoftwareListboardView:
         df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
 
         df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
-                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
-                          'list_of_servers group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+                          'count(*) as occurrence from list_of_servers group by computer_name having count(*) > 1;',
                           settings.SOMANS_ENGINE)
         return df2.to_dict('records')
 
