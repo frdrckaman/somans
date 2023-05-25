@@ -73,7 +73,9 @@
     </div>
         <script>
 
-        tabledata = {{ wks_ls_inst|safe }}
+        {#tabledata = {{ wks_ls_inst|safe }}#}
+
+        tabledata = {{ wks_ls_nt_inst|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,

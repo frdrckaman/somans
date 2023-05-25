@@ -18,6 +18,6 @@ from .removed_sft_svr import RemovedSoftwareServerView
 from .removed_sft_wks import RemovedSoftwareWorkstationView
 from .nw_app_ls_svr import NewAppListServerView
 from .nw_app_ls_wks import NewAppListWorkstationView
-
+from .server_installed_vs_list import ServerInstalledVsListView
 
 

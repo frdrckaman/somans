@@ -18,6 +18,10 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
             no_nw_sft_svr=self.no_new_sft_server,
             no_removed_sft_wks=self.no_removed_sft_workstation,
             no_nw_sft_wks=self.no_new_sft_workstation,
+            software_ls_nt_inst_server=len(self.software_ls_nt_inst_server_dt),
+            software_ls_nt_inst_workstation=len(self.software_ls_nt_inst_workstation_dt),
+            software_inst_ls_nt_ls_server=len(self.software_inst_ls_nt_ls_server_dt),
+            software_inst_ls_nt_ls_workstation=len(self.software_inst_ls_nt_ls_workstation_dt),
         )
         return context
 

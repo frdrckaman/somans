@@ -340,11 +340,10 @@
                                     </td>
                                     <td>
                                         <a href="" class="font-medium
-                                        whitespace-nowrap">List of Servers Vs List of
-                                            Server from installed software</a>
+                                        whitespace-nowrap">Servers in List of Server but not in the Installed Software List</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">{{ server_difference }}</td>
+                                    <td class="text-center">{{ software_ls_nt_inst_server }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
                                             <a class="flex items-center mr-3" href="{% url 'somans_dashboard:svr-ls-inst' %}"> <i
@@ -368,11 +367,64 @@
                                     </td>
                                     <td>
                                         <a href="" class="font-medium
-                                        whitespace-nowrap">List of Workstation Vs List of
-                                            Workstation from installed software</a>
+                                        whitespace-nowrap">Workstation in List of Workstation but not in the Installed Software List</a>
                                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
                                     </td>
-                                    <td class="text-center">{{ workstation_difference }}</td>
+                                    <td class="text-center">{{ software_ls_nt_inst_workstation }}</td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:wks-ls-inst' %}"> <i
+                                                    data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-10.jpg' %}" title="Uploaded at 22 June 2020">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-10.jpg' %}" title="Uploaded at 7 September 2021">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-3.jpg' %}" title="Uploaded at 31 January 2021">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">Servers in Installed Software List but not in List of Server</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ software_inst_ls_nt_ls_server }}</td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:svr-inst-ls' %}"> <i
+                                                    data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-14.jpg' %}" title="Uploaded at 24 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-4.jpg' %}" title="Uploaded at 13 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-11.jpg' %}" title="Uploaded at 2 August 2020">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium
+                                        whitespace-nowrap">Workstation in the Installed Software List but not in List of Workstation</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ software_inst_ls_nt_ls_workstation }}</td>
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
                                             <a class="flex items-center mr-3" href="{% url 'somans_dashboard:wks-ls-inst' %}"> <i

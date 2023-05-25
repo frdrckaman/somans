@@ -4,18 +4,16 @@ from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
 
-class WorkstationListVsInstalledView(SoftwareListboardView, TemplateView):
-    template_name = f"somans_dashboard/bootstrap/workstation_list_vs_installed.html"
+class ServerInstalledVsListView(SoftwareListboardView, TemplateView):
+    template_name = f"somans_dashboard/bootstrap/server_installed_vs_list.html"
 
     def get_context_data(self, **kwargs):
-        menu_category = 'workstations'
+        menu_category = 'servers'
         context = super().get_context_data(**kwargs)
-        wks_ls_inst = json.dumps(self.get_list_vs_workstation_installed_software)
-        wks_ls_nt_inst = json.dumps(self.software_ls_nt_inst_workstation_dt)
+        svr_inst_ls = json.dumps(self.software_inst_ls_nt_ls_server_dt)
         context.update(
             menu_category=menu_category,
-            wks_ls_inst=wks_ls_inst,
-            wks_ls_nt_inst=wks_ls_nt_inst,
+            svr_inst_ls=svr_inst_ls,
         )
         return context
 
