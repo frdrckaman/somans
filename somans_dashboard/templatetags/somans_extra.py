@@ -97,3 +97,20 @@ def svr_inc_dtls_tag(context):
         svr_alert=svr_alert,
         svr_value=svr_value,
     )
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/buttons/new-server-app-button.html",
+    takes_context=True,
+)
+def wks_inc_dtls_tag(context):
+    title = None
+    svr_alert = 'bg-success'
+    svr_value = context.get("no_wks_inc_dtls")
+
+    if svr_value > 0:
+        svr_alert = 'bg-danger'
+    return dict(
+        title=title,
+        svr_alert=svr_alert,
+        svr_value=svr_value,
+    )

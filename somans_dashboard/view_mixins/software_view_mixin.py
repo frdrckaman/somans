@@ -661,3 +661,15 @@ class SoftwareListboardView:
     def get_svr_incomplete_details(self):
         df = self.svr_incomplete_details
         return df.to_dict('records')
+
+    @property
+    def wks_incomplete_details(self):
+        df = pd.read_sql(
+            "select * from list_of_workstations where operating_system is null or os_version is null  or days_computer_last_comms is null or managed_in_sccm is null or user_name is null or user_email is null or  user_last_logon_time_stamp is null or last_hardware_inventory is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_wks_incomplete_details(self):
+        df = self.wks_incomplete_details
+        return df.to_dict('records')
