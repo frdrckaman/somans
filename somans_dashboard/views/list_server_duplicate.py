@@ -11,6 +11,7 @@ class ListOfServerDuplicateView(SoftwareListboardView, TemplateView):
         menu_category = 'servers'
         context = super().get_context_data(**kwargs)
         ls_svr_dup = json.dumps(self.get_duplicate_server_list)
+        print(ls_svr_dup)
         context.update(
             menu_category=menu_category,
             ls_svr_dup=ls_svr_dup

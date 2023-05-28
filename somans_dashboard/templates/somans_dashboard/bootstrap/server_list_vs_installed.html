@@ -73,7 +73,9 @@
     </div>
         <script>
 
-        tabledata = {{ svr_ls_inst|safe }}
+        {#tabledata = {{ svr_ls_inst|safe }}#}
+
+        tabledata = {{ svr_ls_nt_inst|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,

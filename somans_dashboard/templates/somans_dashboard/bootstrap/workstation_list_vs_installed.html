@@ -6,7 +6,7 @@
     <div class="content content--top-nav">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Workstation in Installed Software and not in List of Workstation
+                Workstation in List of Workstation but not in the Installed Software
             </h2>
         </div>
 
@@ -73,7 +73,9 @@
     </div>
         <script>
 
-        tabledata = {{ wks_ls_inst|safe }}
+        {#tabledata = {{ wks_ls_inst|safe }}#}
+
+        tabledata = {{ wks_ls_nt_inst|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,

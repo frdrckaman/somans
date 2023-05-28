@@ -414,8 +414,7 @@ class SoftwareListboardView:
         df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
 
         df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
-                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
-                          'list_of_servers group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+                          'count(*) as occurrence from list_of_servers group by computer_name having count(*) > 1;',
                           settings.SOMANS_ENGINE)
         return df2.to_dict('records')
 
@@ -584,3 +583,55 @@ class SoftwareListboardView:
         df2 = self.new_software_workstation
         df22 = df2.drop_duplicates('product_name')
         return len(df22)
+
+    @property
+    def software_ls_nt_inst_server(self):
+        df = pd.read_sql(
+            "select a.* from  list_of_servers a left join software_server_new b on a.computer_name = b.computer_name where b.computer_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def software_ls_nt_inst_server_dt(self):
+        df2 = self.software_ls_nt_inst_server
+        df22 = df2.drop_duplicates('computer_name')
+        return df22.to_dict('records')
+
+    @property
+    def software_inst_ls_nt_ls_server(self):
+        df = pd.read_sql(
+            "select a.* from  software_server_new a left join list_of_servers b on a.computer_name = b.computer_name where b.computer_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def software_inst_ls_nt_ls_server_dt(self):
+        df2 = self.software_inst_ls_nt_ls_server
+        df22 = df2.drop_duplicates('computer_name')
+        return df22.to_dict('records')
+
+    @property
+    def software_ls_nt_inst_workstation(self):
+        df = pd.read_sql(
+            "select a.* from  list_of_workstations a left join software_workstation_new b on a.computer_name = b.computer_name where b.computer_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def software_ls_nt_inst_workstation_dt(self):
+        df2 = self.software_ls_nt_inst_workstation
+        df22 = df2.drop_duplicates('computer_name')
+        return df22.to_dict('records')
+
+    @property
+    def software_inst_ls_nt_ls_workstation(self):
+        df = pd.read_sql(
+            "select a.* from  software_workstation_new a left join list_of_workstations b on a.computer_name = b.computer_name where b.computer_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def software_inst_ls_nt_ls_workstation_dt(self):
+        df2 = self.software_inst_ls_nt_ls_workstation
+        df22 = df2.drop_duplicates('computer_name')
+        return df22.to_dict('records')
