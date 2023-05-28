@@ -16,7 +16,7 @@ class SoftwareListboardView:
             no_workstation=self.get_workstation_installed_software,
             total_server_server=self.get_total_server_installed_software,
             total_software_server=self.get_total_workstation_installed_software,
-            total_installed_software=self.get_total_installed_software,
+            total_installed_software=len(self.software_inst_svr_wks),
             headcount=self.get_data_headcount,
             computer_manufacturer=self.get_computer_manufacturer,
             count_brand=self.get_count_brand,
@@ -635,3 +635,16 @@ class SoftwareListboardView:
         df2 = self.software_inst_ls_nt_ls_workstation
         df22 = df2.drop_duplicates('computer_name')
         return df22.to_dict('records')
+
+    @property
+    def software_inst_svr_wks(self):
+        df = pd.read_sql(
+            "select distinct (product_name) from software_server_new union select distinct ("
+            "product_name) from software_workstation_new",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_software_inst_svr_wks(self):
+        df = self.software_inst_svr_wks
+        return df.to_dict('records')

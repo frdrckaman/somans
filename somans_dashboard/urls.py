@@ -6,8 +6,9 @@ from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftw
     ListOfWorkstationView, ServerListVsInstalledView, ListOfWorkstationDuplicateView, \
     ListOfServerDuplicateView, ListWorkstationDuplicateDetailsView, \
     ListServerDuplicateDetailsView, HeadcountView, RemovedSoftwareServerView, \
-    RemovedSoftwareWorkstationView, NewAppListServerView, NewAppListWorkstationView, ServerInstalledVsListView, \
-    WorkstationInstalledVsListView
+    RemovedSoftwareWorkstationView, NewAppListServerView, NewAppListWorkstationView, \
+    ServerInstalledVsListView, \
+    WorkstationInstalledVsListView, InstalledSoftwareView
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
@@ -39,5 +40,6 @@ urlpatterns = [
     path("nw-app-ls-svr/<app_name>", NewServerSoftwareView.as_view(), name="nw-app-dtls-svr"),
     path("nw-app-ls-wks/", NewAppListWorkstationView.as_view(), name="nw-app-ls-wks"),
     path("nw-app-ls-wks/<app_name>", NewWorkstationSoftwareView.as_view(), name="nw-app-dtls-wks"),
+    path("app-svr-wks/", InstalledSoftwareView.as_view(), name="app-svr-wks"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
