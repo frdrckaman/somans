@@ -6,7 +6,7 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def brand_counter(context, num):
     brand = context.get("count_brand")
-    return brand[num-1]
+    return brand[num - 1]
 
 
 @register.inclusion_tag(
@@ -98,6 +98,7 @@ def svr_inc_dtls_tag(context):
         svr_value=svr_value,
     )
 
+
 @register.inclusion_tag(
     f"somans_dashboard/bootstrap/buttons/new-server-app-button.html",
     takes_context=True,
@@ -113,4 +114,15 @@ def wks_inc_dtls_tag(context):
         title=title,
         svr_alert=svr_alert,
         svr_value=svr_value,
+    )
+
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/scripts.html",
+    takes_context=True,
+)
+def js_scripts(context):
+    title = None
+    return dict(
+        title=title,
     )
