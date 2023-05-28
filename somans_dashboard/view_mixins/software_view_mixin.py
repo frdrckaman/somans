@@ -648,3 +648,16 @@ class SoftwareListboardView:
     def get_software_inst_svr_wks(self):
         df = self.software_inst_svr_wks
         return df.to_dict('records')
+
+    @property
+    def svr_incomplete_details(self):
+        df = pd.read_sql(
+            "select * from list_of_servers where operating_system is null or os_version is "
+            "null or days_computer_last_comms is null or managed_in_sccm is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_svr_incomplete_details(self):
+        df = self.svr_incomplete_details
+        return df.to_dict('records')
