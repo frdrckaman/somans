@@ -4,17 +4,18 @@ from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
 
-class NewServerSoftwareView(SoftwareListboardView, TemplateView):
-    template_name = f"somans_dashboard/bootstrap/new-software-server.html"
+class ServerSoftwareAppView(SoftwareListboardView, TemplateView):
+    template_name = f"somans_dashboard/bootstrap/svr_wks_app_data.html"
 
     def get_context_data(self, **kwargs):
-        menu_category = 'servers'
+        menu_category = 'software'
         context = super().get_context_data(**kwargs)
-        nw_svr_sft_data_ = json.dumps(self.new_sft_server(context.get("app_name")))
-        nw_svr_sft_data = json.dumps(nw_svr_sft_data_)
+        svr_wks_sft_data_ = json.dumps(self.svr_wks_list_data(context.get("app_name")))
+        svr_wks_sft_data = json.dumps(svr_wks_sft_data_)
+        # print(svr_wks_sft_data)
         context.update(
             menu_category=menu_category,
-            nw_svr_sft_data=nw_svr_sft_data
+            svr_wks_sft_data=svr_wks_sft_data
         )
         return context
 

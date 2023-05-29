@@ -673,3 +673,25 @@ class SoftwareListboardView:
     def get_wks_incomplete_details(self):
         df = self.wks_incomplete_details
         return df.to_dict('records')
+
+
+    def svr_wks_app_data(self, app):
+        df = pd.read_sql(
+            f"select * from software_server_new where product_name = '{app}' union select * from software_workstation_new where product_name = '{app}'",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def svr_wks_list(self):
+        df = pd.read_sql(
+            f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from list_of_servers union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from list_of_workstations", settings.SOMANS_ENGINE)
+        return df
+
+
+    def svr_wks_list_data(self, app):
+        df1 = self.svr_wks_app_data(app)
+        df2 = self.svr_wks_list
+
+        df = df1.merge(df2.drop_duplicates(), on=['computer_name', 'computer_name'], how='left', indicator=True)
+
+        return df.to_dict('records')
