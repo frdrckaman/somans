@@ -6,7 +6,7 @@
     <div class="content content--top-nav">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                List of Server
+                List of Server with Incomplete Details
             </h2>
         </div>
 
@@ -85,7 +85,7 @@
     </div>
         <script>
 
-        tabledata = {{ svr_data|safe }}
+        tabledata = {{ svr_inc_dtls|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,
@@ -177,7 +177,4 @@
             ],
         });
     </script>
-
-
-
 {% endblock %}

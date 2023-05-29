@@ -1,12 +1,12 @@
 {% extends 'somans_dashboard/bootstrap/base.html' %}
 {% block title %}
-    <title> SOMANS | SERVERS </title>
+    <title> SOMANS | SOFTWARE </title>
 {% endblock %}
 {% block content %}
     <div class="content content--top-nav">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                List of Server
+                Installed Software
             </h2>
         </div>
 
@@ -17,15 +17,7 @@
                     <div class="sm:flex items-center sm:mr-4">
                         <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Field</label>
                         <select id="tabulator-html-filter-field" class="form-select w-full sm:w-32 2xl:w-full mt-2 sm:mt-0 sm:w-auto">
-                            <option value="computer_name">Computer Name</option>
-                            <option value="computer_manufacturer">Computer Manufacturer</option>
-                            <option value="computer_model">Computer Model</option>
-                            <option value="user_name">User Name</option>
-                            <option value="user_email">User Email</option>
-                            <option value="os_version">OS version</option>
-                            <option value="computer_ip_address">Computer IP Address</option>
-                            <option value="os_version">OS version</option>
-                            <option value="managed_in_sccm">Managed in SCCM</option>
+                            <option value="product_name">Product Name</option>
                         </select>
                     </div>
                     <div class="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
@@ -46,7 +38,7 @@
                     </div>
 {#                    <div class="mt-2 xl:mt-0">#}
 {#                        <button id="tabulator-html-filter-go" type="button" class="btn btn-primary w-full sm:w-16" >Go</button>#}
-{#                        <button id="tabulator-html-filter-reset" type="button" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" >Reset</button>#}
+{#                        <input type="reset" id="tabulator-html-filter-reset" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" onclick="clearFunction()" value="Reset">#}
 {#                    </div>#}
                 </form>
                 <div class="flex mt-5 sm:mt-0">
@@ -75,17 +67,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><br>
             <div class="overflow-x-auto scrollbar-hidden">
-                <div id="tabulator1" class="mt-5 table-report table-report--tabulator"></div>
+                <div id="tabulator1" class="mt-5 table-report table-report--tabulator">
             </div>
         </div>
         <!-- END: HTML Table Data -->
         <!-- END: Content -->
+        </div>
     </div>
-        <script>
+    <script>
 
-        tabledata = {{ svr_data|safe }}
+        tabledata = {{ app_svr_wks_ls|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,
@@ -98,20 +91,14 @@
             paginationCounter:"rows",
             movableColumns:true,
             initialSort:[
-                {column:"computer_name", dir:"asc"},
+                {column:"product_name", dir:"asc"},
             ],
             columnDefaults:{
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Computer Name", field:"computer_name", formatter:"link", formatterParams:{labelField:"computer_name", urlPrefix:""}},
-                {title:"Computer Manufacturer", field:"computer_manufacturer"},
-                {title:"Computer Model", field:"computer_model"},
-                {title:"User Name", field:"user_name"},
-                {title:"Operating System", field:"operating_system"},
-                {title:"OS Version", field:"os_version"},
-                {title:"Computer IP Address", field:"computer_ip_address"},
-                {title:"Managed in SCCM", field:"managed_in_sccm"},
+                {title:"Product Name", field:"product_name", formatter:"link",
+                    formatterParams:{labelField:"product_name", urlPrefix:""}},
             ],
         });
     </script>
@@ -166,18 +153,9 @@
             height:"311px",
             layout:"fitColumns",
             columns:[                 //define the table columns
-                {title:"Computer Name", field:"computer_name"},
-                {title:"Computer Manufacturer", field:"computer_manufacturer"},
-                {title:"Computer Model", field:"computer_model"},
-                {title:"User Name", field:"user_name"},
-                {title:"Operating System", field:"operating_system"},
-                {title:"OS Version", field:"os_version"},
-                {title:"Computer IP Address", field:"computer_ip_address"},
-                {title:"Managed in SCCM", field:"managed_in_sccm"},
+                {title:"Product Name", field:"product_name"},
             ],
         });
     </script>
-
-
 
 {% endblock %}

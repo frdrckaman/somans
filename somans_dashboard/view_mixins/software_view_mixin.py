@@ -16,7 +16,7 @@ class SoftwareListboardView:
             no_workstation=self.get_workstation_installed_software,
             total_server_server=self.get_total_server_installed_software,
             total_software_server=self.get_total_workstation_installed_software,
-            total_installed_software=self.get_total_installed_software,
+            total_installed_software=len(self.software_inst_svr_wks),
             headcount=self.get_data_headcount,
             computer_manufacturer=self.get_computer_manufacturer,
             count_brand=self.get_count_brand,
@@ -635,3 +635,41 @@ class SoftwareListboardView:
         df2 = self.software_inst_ls_nt_ls_workstation
         df22 = df2.drop_duplicates('computer_name')
         return df22.to_dict('records')
+
+    @property
+    def software_inst_svr_wks(self):
+        df = pd.read_sql(
+            "select distinct (product_name) from software_server_new union select distinct ("
+            "product_name) from software_workstation_new",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_software_inst_svr_wks(self):
+        df = self.software_inst_svr_wks
+        return df.to_dict('records')
+
+    @property
+    def svr_incomplete_details(self):
+        df = pd.read_sql(
+            "select * from list_of_servers where operating_system is null or os_version is "
+            "null or days_computer_last_comms is null or managed_in_sccm is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_svr_incomplete_details(self):
+        df = self.svr_incomplete_details
+        return df.to_dict('records')
+
+    @property
+    def wks_incomplete_details(self):
+        df = pd.read_sql(
+            "select * from list_of_workstations where operating_system is null or os_version is null  or days_computer_last_comms is null or managed_in_sccm is null or user_name is null or user_email is null or  user_last_logon_time_stamp is null or last_hardware_inventory is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def get_wks_incomplete_details(self):
+        df = self.wks_incomplete_details
+        return df.to_dict('records')

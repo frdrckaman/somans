@@ -1,12 +1,12 @@
 {% extends 'somans_dashboard/bootstrap/base.html' %}
 {% block title %}
-    <title> SOMANS | SERVERS </title>
+    <title> SOMANS | WORKSTATIONS </title>
 {% endblock %}
 {% block content %}
     <div class="content content--top-nav">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                List of Server
+                List of Workstations with Incomplete Details
             </h2>
         </div>
 
@@ -46,7 +46,7 @@
                     </div>
 {#                    <div class="mt-2 xl:mt-0">#}
 {#                        <button id="tabulator-html-filter-go" type="button" class="btn btn-primary w-full sm:w-16" >Go</button>#}
-{#                        <button id="tabulator-html-filter-reset" type="button" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" >Reset</button>#}
+{#                        <input type="reset" id="tabulator-html-filter-reset" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" onclick="clearFunction()" value="Reset">#}
 {#                    </div>#}
                 </form>
                 <div class="flex mt-5 sm:mt-0">
@@ -75,17 +75,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><br>
             <div class="overflow-x-auto scrollbar-hidden">
-                <div id="tabulator1" class="mt-5 table-report table-report--tabulator"></div>
+                <div id="tabulator1" class="mt-5 table-report table-report--tabulator">
             </div>
         </div>
         <!-- END: HTML Table Data -->
         <!-- END: Content -->
+        </div>
     </div>
-        <script>
+    <script>
 
-        tabledata = {{ svr_data|safe }}
+        tabledata = {{ wks_inc_dtls|safe }}
 
         var table = new Tabulator("#tabulator1", {
             data:tabledata,
@@ -108,8 +109,10 @@
                 {title:"Computer Manufacturer", field:"computer_manufacturer"},
                 {title:"Computer Model", field:"computer_model"},
                 {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
                 {title:"Operating System", field:"operating_system"},
                 {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
             ],
@@ -170,14 +173,14 @@
                 {title:"Computer Manufacturer", field:"computer_manufacturer"},
                 {title:"Computer Model", field:"computer_model"},
                 {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
                 {title:"Operating System", field:"operating_system"},
                 {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
                 {title:"Computer IP Address", field:"computer_ip_address"},
                 {title:"Managed in SCCM", field:"managed_in_sccm"},
             ],
         });
     </script>
-
-
 
 {% endblock %}

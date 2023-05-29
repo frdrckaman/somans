@@ -18,6 +18,9 @@
         <!-- frdrck -->
         <link href="{% static 'dist/js/tabulator/css/tabulator.min.css' %}" rel="stylesheet">
         <script type="text/javascript" src="{% static 'dist/js/tabulator/js/tabulator.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'dist/js/tabulator/xlsx.full.min.js' %}"></script>
+        <script src="{% static 'dist/js/tabulator/jspdf.umd.min.js' %}"></script>
+        <script src="{% static 'dist/js/tabulator/jspdf.plugin.autotable.min.js' %}"></script>
         <!-- frdrck -->
         <!-- END: CSS Assets-->
     </head>
@@ -386,5 +389,35 @@
         <!-- BEGIN: JS Assets-->
         <script src="{% static 'dist/js/app.js' %}"></script>
         <!-- END: JS Assets-->
+
+        <script>
+            //trigger download of data.csv file
+            document.getElementById("tabulator-export-csv").addEventListener("click", function(){
+                table.download("csv", "data.csv");
+            });
+
+            //trigger download of data.json file
+            document.getElementById("tabulator-export-json").addEventListener("click", function(){
+                table.download("json", "data.json");
+            });
+
+            //trigger download of data.xlsx file
+            document.getElementById("tabulator-export-xlsx").addEventListener("click", function(){
+                table.download("xlsx", "data.xlsx", {sheetName:"My Data"});
+            });
+
+            //trigger download of data.pdf file
+            document.getElementById("tabulator-export-pdf").addEventListener("click", function(){
+                table.download("pdf", "data.pdf", {
+                    orientation:"portrait", //set page orientation to portrait
+                    title:"Example Report", //add title to report
+                });
+            });
+
+            //trigger download of data.html file
+            document.getElementById("tabulator-export-html").addEventListener("click", function(){
+                table.download("html", "data.html", {style:true});
+            });
+        </script>
     </body>
 </html>

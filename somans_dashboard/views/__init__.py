@@ -20,5 +20,8 @@ from .nw_app_ls_svr import NewAppListServerView
 from .nw_app_ls_wks import NewAppListWorkstationView
 from .server_installed_vs_list import ServerInstalledVsListView
 from .workstation_installed_vs_list import WorkstationInstalledVsListView
+from .software_list import InstalledSoftwareView
+from .svr_incomplete_dtls import IncompleteServerDetailsView
+from .wks_incomplete_dtls import IncompleteWorkstationDetailsView
 
 

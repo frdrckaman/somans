@@ -24,7 +24,9 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Servers"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_server }}</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">
+                                            <a href="{% url 'somans_dashboard:server' %}">{{ no_server }}</a>
+                                        </div>
                                         <div class="text-base text-slate-500 mt-1">Servers</div>
                                     </div>
                                 </div>
@@ -38,7 +40,9 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Workstations"> TZ <i data-lucide="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">{{ no_workstation }}</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">
+                                            <a href="{% url 'somans_dashboard:workstation' %}">{{ no_workstation }}</a>
+                                        </div>
                                         <div class="text-base text-slate-500 mt-1">Workstations</div>
                                     </div>
                                 </div>
@@ -52,7 +56,9 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of all installed software"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">{{ total_installed_software }}</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">
+                                            <a href="{% url 'somans_dashboard:app-svr-wks' %}">{{ total_installed_software }}</a>
+                                        </div>
                                         <div class="text-base text-slate-500 mt-1">Total Software</div>
                                     </div>
                                 </div>
@@ -66,7 +72,9 @@
                                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total No of Users logged in on workstations"> TZ <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                             </div>
                                         </div>
-                                        <div class="text-3xl font-medium leading-8 mt-6">{{ headcount }}</div>
+                                        <div class="text-3xl font-medium leading-8 mt-6">
+                                            <a href="{% url 'somans_dashboard:headcount' %}">{{ headcount }}</a>
+                                        </div>
                                         <div class="text-base text-slate-500 mt-1">Unique Users</div>
                                     </div>
                                 </div>
@@ -517,6 +525,44 @@
                                 </div>
                                 {% endfor %}
 
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                            <div class="intro-x flex items-center h-10">
+                                <h2 class="text-lg font-medium truncate mr-5">
+                                    Incomplete Details
+                                </h2>
+                            </div>
+                            <div class="mt-5">
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-3.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium">
+                                                <a href="{% url 'somans_dashboard:svr-inc-dtls' %}"> Servers </a>
+                                            </div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
+                                        </div>
+                                        {% svr_inc_dtls_tag %}
+                                    </div>
+                                </div>
+                                <div class="intro-x">
+                                    <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <img alt="SOMANS Icon" src="{% static 'dist/images/profile-2.jpg' %}">
+                                        </div>
+                                        <div class="ml-4 mr-auto">
+                                            <div class="font-medium">
+                                                <a href="{% url 'somans_dashboard:wks-inc-dtls' %}"> Workstations</a>
+                                            </div>
+                                            <div class="text-slate-500 text-xs mt-0.5">Stanbic Tz</div>
+                                        </div>
+                                        {% wks_inc_dtls_tag %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- END: Transactions -->
