@@ -24,5 +24,6 @@ from .software_list import InstalledSoftwareView
 from .svr_incomplete_dtls import IncompleteServerDetailsView
 from .wks_incomplete_dtls import IncompleteWorkstationDetailsView
 from .svr_wks_app_data import ServerSoftwareAppView
+from .new_sft_dtls_svr import NewSoftwareServerDetailsView
 
 

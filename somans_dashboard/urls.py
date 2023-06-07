@@ -9,7 +9,7 @@ from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftw
     RemovedSoftwareWorkstationView, NewAppListServerView, NewAppListWorkstationView, \
     ServerInstalledVsListView, \
     WorkstationInstalledVsListView, InstalledSoftwareView, IncompleteServerDetailsView, \
-    IncompleteWorkstationDetailsView, ServerSoftwareAppView
+    IncompleteWorkstationDetailsView, ServerSoftwareAppView, NewSoftwareServerDetailsView
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
@@ -45,5 +45,6 @@ urlpatterns = [
     path("svr-inc-dtls/", IncompleteServerDetailsView.as_view(), name="svr-inc-dtls"),
     path("wks-inc-dtls/", IncompleteWorkstationDetailsView.as_view(), name="wks-inc-dtls"),
     path("app-svr-wks/<app_name>", ServerSoftwareAppView.as_view(), name="svr-wks-app-data"),
+    path("new_sft_dtls_svr/", NewSoftwareServerDetailsView.as_view(), name="new_sft_dtls_svr"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
