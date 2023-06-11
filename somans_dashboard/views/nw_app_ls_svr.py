@@ -11,10 +11,12 @@ class NewAppListServerView(SoftwareListboardView, TemplateView):
     def get_context_data(self, **kwargs):
         menu_category = 'servers'
         context = super().get_context_data(**kwargs)
+        nw_app_svr_ls_dtls = json.dumps(self.new_sft_server_dup)
         nw_app_svr_ls = json.dumps(self.new_software_server_app)
         context.update(
             menu_category=menu_category,
-            nw_app_svr_ls=nw_app_svr_ls
+            nw_app_svr_ls=nw_app_svr_ls,
+            nw_app_svr_ls_dtls=nw_app_svr_ls_dtls,
         )
         return context
 

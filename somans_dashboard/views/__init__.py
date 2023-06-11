@@ -23,5 +23,8 @@ from .workstation_installed_vs_list import WorkstationInstalledVsListView
 from .software_list import InstalledSoftwareView
 from .svr_incomplete_dtls import IncompleteServerDetailsView
 from .wks_incomplete_dtls import IncompleteWorkstationDetailsView
+from .svr_wks_app_data import ServerSoftwareAppView
+from .new_sft_dtls_svr import NewSoftwareServerDetailsView
+from .new_sft_dtls_wks import NewSoftwareWorkstationDetailsView
 
 
