@@ -26,5 +26,6 @@ from .wks_incomplete_dtls import IncompleteWorkstationDetailsView
 from .svr_wks_app_data import ServerSoftwareAppView
 from .new_sft_dtls_svr import NewSoftwareServerDetailsView
 from .new_sft_dtls_wks import NewSoftwareWorkstationDetailsView
+from .svr_not_manage_sccm import ServerNotManageSccm
 
 

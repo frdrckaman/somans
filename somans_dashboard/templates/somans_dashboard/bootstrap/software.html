@@ -423,6 +423,32 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr class="intro-x">
+                                    <td class="w-40">
+                                        <div class="flex">
+                                            <div class="w-10 h-10 image-fit zoom-in">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-14.jpg' %}" title="Uploaded at 24 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-4.jpg' %}" title="Uploaded at 13 November 2022">
+                                            </div>
+                                            <div class="w-10 h-10 image-fit zoom-in -ml-5">
+                                                <img alt="SOMANS Icon" class="tooltip rounded-full" src="{% static 'dist/images/preview-11.jpg' %}" title="Uploaded at 2 August 2020">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="" class="font-medium whitespace-nowrap">List of server not managed by SCCM</a>
+                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                    </td>
+                                    <td class="text-center">{{ no_svr_not_manage_sccm }}</td>
+                                    <td class="table-report__action w-56">
+                                        <div class="flex justify-center items-center">
+                                            <a class="flex items-center mr-3" href="{% url 'somans_dashboard:svr-not-manage-sccm' %}"> <i
+                                                    data-lucide="eye" class="w-4 h-4 mr-1"></i> View </a>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
