@@ -33,7 +33,8 @@ class SoftwareListboardView:
             new_workstation_software=self.get_update_data_workstation_software,
             new_server_software=self.get_update_data_server_software,
             new_workstation_app=self.get_new_workstation_app,
-            no_svr_not_manage_sccm=len(self.svr_not_manage_sccm)
+            no_svr_not_manage_sccm=len(self.svr_not_manage_sccm),
+            no_wks_not_manage_sccm=len(self.wks_not_manage_sccm),
         )
         return context
 
