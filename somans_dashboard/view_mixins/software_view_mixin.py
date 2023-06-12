@@ -598,7 +598,9 @@ class SoftwareListboardView:
 
     @property
     def new_software_workstation_nw(self):
-        df = pd.read_sql("select distinct d.product_name from (select a.product_name from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null", settings.SOMANS_ENGINE)
+        df = pd.read_sql(
+            "select distinct d.product_name from (select a.product_name from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            settings.SOMANS_ENGINE)
         return df
 
     @property
@@ -779,3 +781,9 @@ class SoftwareListboardView:
     def approved_software(self):
         df = pd.read_sql("select * from approved_softwares ", settings.SOMANS_ENGINE)
         return df
+
+    @property
+    def group_software_list(self):
+        df = pd.read_sql("select * from group_software_list", settings.SOMANS_ENGINE)
+        # df.drop_duplicates('product_name')
+        return df.to_dict('records')

@@ -24,6 +24,7 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
             software_inst_ls_nt_ls_workstation=len(self.software_inst_ls_nt_ls_workstation_dt),
             no_svr_inc_dtls=len(self.svr_incomplete_details),
             no_wks_inc_dtls=len(self.wks_incomplete_details),
+            no_group_software_list=len(self.group_software_list),
         )
         return context
 
