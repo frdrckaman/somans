@@ -554,8 +554,9 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'product_name',
+             'product_name', 'installed_on',
              'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -646,7 +647,7 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'product_name',
+             'product_name', 'installed_on',
              'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
