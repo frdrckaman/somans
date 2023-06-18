@@ -33,6 +33,8 @@ class SoftwareListboardView:
             new_workstation_software=self.get_update_data_workstation_software,
             new_server_software=self.get_update_data_server_software,
             new_workstation_app=self.get_new_workstation_app,
+            no_svr_not_manage_sccm=len(self.svr_not_manage_sccm),
+            no_wks_not_manage_sccm=len(self.wks_not_manage_sccm),
         )
         return context
 
@@ -105,9 +107,8 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'user_email',
-             'operating_system', 'os_version', 'os_build_version', 'computer_ip_address',
-             'managed_in_sccm']]
+             'user_email', 'operating_system_x', 'os_version', 'os_build_version',
+             'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -120,7 +121,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'product_name',
              'user_name', 'user_email',
-             'operating_system', 'os_version', 'os_build_version', 'computer_ip_address',
+             'operating_system_x', 'os_version', 'os_build_version', 'computer_ip_address',
              'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
@@ -133,7 +134,7 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -146,7 +147,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -462,11 +463,23 @@ class SoftwareListboardView:
         return df
 
     @property
+    def new_software_server_nw(self):
+        df = pd.read_sql(
+            "select distinct d.product_name from (select a.product_name from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
     def new_software_server_app(self):
         df = pd.read_sql(
             "select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         df2 = df.drop_duplicates('product_name')
+        return df2.to_dict('records')
+
+    @property
+    def new_software_server_app_nw(self):
+        df2 = self.new_software_server_nw
         return df2.to_dict('records')
 
     @property
@@ -478,7 +491,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -507,10 +520,9 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
-
 
     def get_new_software_server_app(self, name):
         df = pd.read_sql(
@@ -531,8 +543,7 @@ class SoftwareListboardView:
     #     df_all_2 = df_all_1.fillna('')
     #     return df_all_2.to_dict('records')
 
-
-    def new_sft_server(self , name):
+    def new_sft_server(self, name):
         df2 = self.get_new_software_server_app(name)
         df22 = self.get_server_list_data
         df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
@@ -540,13 +551,14 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
     @property
     def no_new_sft_server(self):
-        df2 = self.new_software_server
+        # df2 = self.new_software_server
+        df2 = self.new_software_server_nw
         df22 = df2.drop_duplicates('product_name')
         return len(df22)
 
@@ -584,6 +596,13 @@ class SoftwareListboardView:
         return df
 
     @property
+    def new_software_workstation_nw(self):
+        df = pd.read_sql(
+            "select distinct d.product_name from (select a.product_name from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            settings.SOMANS_ENGINE)
+        return df
+
+    @property
     def new_software_workstation_app(self):
         df = pd.read_sql(
             "select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
@@ -591,8 +610,14 @@ class SoftwareListboardView:
         df2 = df.drop_duplicates('product_name')
         return df2.to_dict('records')
 
+    @property
+    def new_software_workstation_app_nw(self):
+        df2 = self.new_software_workstation_nw
+        return df2.to_dict('records')
+
     def get_new_software_workstation_app(self, name):
-        df = pd.read_sql(f"select a.* from  software_workstation_new a where a.product_name = '{name}'", settings.SOMANS_ENGINE)
+        df = pd.read_sql(f"select a.* from  software_workstation_new a where a.product_name = '{name}'",
+                         settings.SOMANS_ENGINE)
         df2 = df.drop_duplicates('product_name')
         return df2
 
@@ -617,13 +642,14 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
     @property
     def no_new_sft_workstation(self):
-        df2 = self.new_software_workstation
+        # df2 = self.new_software_workstation
+        df2 = self.new_software_workstation_nw
         df22 = df2.drop_duplicates('product_name')
         return len(df22)
 
@@ -717,7 +743,6 @@ class SoftwareListboardView:
         df = self.wks_incomplete_details
         return df.to_dict('records')
 
-
     def svr_wks_app_data(self, app):
         df = pd.read_sql(
             f"select * from software_server_new where product_name = '{app}' union select * from software_workstation_new where product_name = '{app}'",
@@ -727,14 +752,37 @@ class SoftwareListboardView:
     @property
     def svr_wks_list(self):
         df = pd.read_sql(
-            f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from list_of_servers union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from list_of_workstations", settings.SOMANS_ENGINE)
+            f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from list_of_servers union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from list_of_workstations",
+            settings.SOMANS_ENGINE)
         return df
-
 
     def svr_wks_list_data(self, app):
         df1 = self.svr_wks_app_data(app)
         df2 = self.svr_wks_list
-
         df = df1.merge(df2.drop_duplicates(), on=['computer_name', 'computer_name'], how='left', indicator=True)
+        return df.to_dict('records')
 
+    @property
+    def svr_not_manage_sccm(self):
+        df = pd.read_sql(
+            "select * from list_of_servers where managed_in_sccm is null or managed_in_sccm = 'No'",
+            settings.SOMANS_ENGINE)
+        return df.to_dict('records')
+
+    @property
+    def wks_not_manage_sccm(self):
+        df = pd.read_sql(
+            "select * from list_of_workstations where managed_in_sccm is null or managed_in_sccm = 'No'",
+            settings.SOMANS_ENGINE)
+        return df.to_dict('records')
+
+    @property
+    def approved_software(self):
+        df = pd.read_sql("select * from approved_softwares ", settings.SOMANS_ENGINE)
+        return df
+
+    @property
+    def group_software_list(self):
+        df = pd.read_sql("select * from group_software_list", settings.SOMANS_ENGINE)
+        # df.drop_duplicates('product_name')
         return df.to_dict('records')
