@@ -465,7 +465,11 @@ class SoftwareListboardView:
     @property
     def new_software_server_nw(self):
         df = pd.read_sql(
-            "select distinct d.product_name from (select a.product_name from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            "select distinct d.product_name from (select a.product_name from  "
+            "software_server_new a left join software_server b on a.product_name = "
+            "b.product_name where b.product_name is null) d left join (select product_name "
+            "from approved_softwares) c on c.product_name = d.product_name where "
+            "c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
 
@@ -598,7 +602,8 @@ class SoftwareListboardView:
     @property
     def new_software_workstation_nw(self):
         df = pd.read_sql(
-            "select distinct d.product_name from (select a.product_name from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            "select distinct d.product_name from (select a.product_name from  "
+            "software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
 
