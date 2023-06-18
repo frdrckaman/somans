@@ -714,8 +714,7 @@ class SoftwareListboardView:
     @property
     def software_inst_svr_wks(self):
         df = pd.read_sql(
-            "select distinct (product_name) from software_server_new union select distinct ("
-            "product_name) from software_workstation_new",
+            "select distinct (product_name) from software_server_new product_name where product_name is not null union select distinct (product_name) from software_workstation_new where product_name is not null",
             settings.SOMANS_ENGINE)
         return df
 
