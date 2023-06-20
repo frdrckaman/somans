@@ -107,9 +107,8 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'user_email',
-             'operating_system', 'os_version', 'os_build_version', 'computer_ip_address',
-             'managed_in_sccm']]
+             'user_email', 'operating_system_x', 'os_version', 'os_build_version',
+             'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -122,7 +121,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'product_name',
              'user_name', 'user_email',
-             'operating_system', 'os_version', 'os_build_version', 'computer_ip_address',
+             'operating_system_x', 'os_version', 'os_build_version', 'computer_ip_address',
              'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
@@ -135,7 +134,7 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -148,7 +147,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -466,7 +465,11 @@ class SoftwareListboardView:
     @property
     def new_software_server_nw(self):
         df = pd.read_sql(
-            "select distinct d.product_name from (select a.product_name from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            "select distinct d.product_name from (select a.product_name from  "
+            "software_server_new a left join software_server b on a.product_name = "
+            "b.product_name where b.product_name is null) d left join (select product_name "
+            "from approved_softwares) c on c.product_name = d.product_name where "
+            "c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
 
@@ -492,7 +495,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -521,7 +524,7 @@ class SoftwareListboardView:
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
              'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -551,8 +554,9 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'product_name', 'installed_on',
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -599,7 +603,8 @@ class SoftwareListboardView:
     @property
     def new_software_workstation_nw(self):
         df = pd.read_sql(
-            "select distinct d.product_name from (select a.product_name from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null",
+            "select distinct d.product_name from (select a.product_name from  "
+            "software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
 
@@ -642,8 +647,8 @@ class SoftwareListboardView:
                            how='left', indicator=True)
         df_all_1 = df_all[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'user_name',
-             'product_name',
-             'operating_system', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
+             'product_name', 'installed_on',
+             'operating_system_x', 'os_version', 'computer_ip_address', 'managed_in_sccm']]
         df_all_2 = df_all_1.fillna('')
         return df_all_2.to_dict('records')
 
@@ -709,8 +714,7 @@ class SoftwareListboardView:
     @property
     def software_inst_svr_wks(self):
         df = pd.read_sql(
-            "select distinct (product_name) from software_server_new union select distinct ("
-            "product_name) from software_workstation_new",
+            "select distinct (product_name) from software_server_new product_name where product_name is not null union select distinct (product_name) from software_workstation_new where product_name is not null",
             settings.SOMANS_ENGINE)
         return df
 
