@@ -488,7 +488,7 @@ class SoftwareListboardView:
 
     @property
     def new_sft_server_dup(self):
-        df2 = self.new_software_server_app_dup
+        df2 = self.new_app_software_server_dup
         df22 = self.get_server_list_data
         df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
                            how='left', indicator=True)
@@ -508,6 +508,14 @@ class SoftwareListboardView:
         return df
 
     @property
+    def new_app_software_server_dup(self):
+        df = pd.read_sql(
+            "select distinct d.* from (select a.* from software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            settings.SOMANS_ENGINE)
+        # df2 = df.drop_duplicates('product_name')
+        return df
+
+    @property
     def new_software_workstation_app_dup(self):
         df = pd.read_sql(
             "select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
@@ -516,8 +524,16 @@ class SoftwareListboardView:
         return df
 
     @property
+    def new_app_software_workstation_dup(self):
+        df = pd.read_sql(
+            "select distinct d.* from (select a.* from software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from approved_softwares) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            settings.SOMANS_ENGINE)
+        # df2 = df.drop_duplicates('product_name')
+        return df
+
+    @property
     def new_sft_workstation_dup(self):
-        df2 = self.new_software_workstation_app_dup
+        df2 = self.new_app_software_workstation_dup
         df22 = self.get_workstation_list_data
         df_all = df2.merge(df22.drop_duplicates(), on=['computer_name', 'computer_name'],
                            how='left', indicator=True)
