@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'somans_auth.apps.AppConfig',
     'somans_dashboard.apps.AppConfig',
     'somans_software.apps.AppConfig',
 ]
@@ -123,6 +124,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_REDIRECT_URL = env.str("DJANGO_LOGIN_REDIRECT_URL")
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
+from somans import settings
 from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftwareView, \
     NewServerSoftwareView, ServerDetailsView, WorkstationDetailsView, ListOfServerView, \
     ListOfWorkstationView, ServerListVsInstalledView, ListOfWorkstationDuplicateView, \
@@ -16,6 +17,8 @@ from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
 
 app_name = "somans_dashboard"
+
+admin.site.site_header = settings.APP_NAME
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -52,4 +55,5 @@ urlpatterns = [
     path("wks-not-manage-sccm/", WorkstationNotManageSccm.as_view(), name="wks-not-manage-sccm"),
     path("grp-software-list/", GroupSoftwareList.as_view(), name="grp-software-list"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
+    # path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
