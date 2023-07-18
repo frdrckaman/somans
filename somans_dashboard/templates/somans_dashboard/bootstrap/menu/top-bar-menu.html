@@ -58,8 +58,8 @@
                     <div class="dropdown-menu w-56">
                         <ul class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                             <li class="p-2">
-                                <div class="font-medium">Fredrick Amani</div>
-                                <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">Data Engineer</div>
+                                <div class="font-medium">Admin</div>
+                                <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">Somans Admin</div>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-white/[0.08]">
@@ -68,7 +68,7 @@
                                 <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
                             </li>
                             <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
+                                <a href="{% url 'admin:index' %}" class="dropdown-item hover:bg-white/5"> <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Administration </a>
                             </li>
                             <li>
                                 <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>

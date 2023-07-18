@@ -1,4 +1,3 @@
-import datetime
 import getpass
 from django.db import models
 from django.utils import timezone
