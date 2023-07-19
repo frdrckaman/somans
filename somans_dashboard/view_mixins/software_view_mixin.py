@@ -35,6 +35,7 @@ class SoftwareListboardView:
             new_workstation_app=self.get_new_workstation_app,
             no_svr_not_manage_sccm=len(self.svr_not_manage_sccm),
             no_wks_not_manage_sccm=len(self.wks_not_manage_sccm),
+            benchmark_no=len(self.get_workstation_benchmark) + len(self.get_server_benchmark)
         )
         return context
 
@@ -807,3 +808,17 @@ class SoftwareListboardView:
         df = pd.read_sql("select * from group_software_list", settings.SOMANS_ENGINE)
         # df.drop_duplicates('product_name')
         return df.to_dict('records')
+
+    @property
+    def get_server_benchmark(self):
+        df1 = pd.read_sql(f"select distinct(product_name) from software_server",
+                          settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
+
+    @property
+    def get_workstation_benchmark(self):
+        df1 = pd.read_sql(f"select distinct(product_name) from software_workstation",
+                          settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
