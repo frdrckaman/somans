@@ -1,3 +1,4 @@
+import getpass
 from django.conf import settings
 import pandas as pd
 
@@ -6,9 +7,15 @@ class SoftwareListboardView:
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        adm_user = False
+        admin_usr = str(settings.SOMANS_ADMIN).split(",")
+        usr = str(getpass.getuser())
+        if usr in admin_usr:
+            adm_user = True
         context.update(
             data_workstation_installed_software=self.frd,
             frd=self.frd,
+            adm_user=adm_user,
             list_workstation=self.workstation_list,
             list_server=self.server_list,
             data_server_installed_software=self.get_data_server_installed_software,

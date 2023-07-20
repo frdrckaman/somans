@@ -16,7 +16,7 @@ class ApproveSoftwareView(SoftwareListboardView, TemplateView):
         approval_list = json.dumps(list(queryset), cls=DjangoJSONEncoder)
         context.update(
             menu_category=menu_category,
-            approval_list=approval_list
+            approval_list=approval_list,
         )
         return context
 

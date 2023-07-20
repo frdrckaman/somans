@@ -1,4 +1,8 @@
+import getpass
 from django import template
+from django.conf import settings
+
+from somans_dashboard.models import ApproveSoftware
 
 register = template.Library()
 
@@ -29,10 +33,16 @@ def mobile_menu(context):
     f"somans_dashboard/bootstrap/menu/top-bar-menu.html",
     takes_context=True,
 )
-def top_bar_menu(context):
+def top_bar_menu(context, no_approve=None, adm=False):
     title = None
+    admin_usr = str(settings.SOMANS_ADMIN).split(",")
+    usr = str(getpass.getuser())
+    if usr in admin_usr:
+        no_approve = ApproveSoftware.objects.filter(status=0).count()
     return dict(
         title=title,
+        frdrck=adm,
+        no_approve=no_approve,
     )
 
 

@@ -57,7 +57,7 @@ urlpatterns = [
     path("wks-not-manage-sccm/", WorkstationNotManageSccm.as_view(), name="wks-not-manage-sccm"),
     path("grp-software-list/", GroupSoftwareList.as_view(), name="grp-software-list"),
     path("ap-nw-app-ls-svr/", send_approval_request, name="ap-nw-app-ls-svr"),
-    path("approve-sft-req", ApproveSoftwareView.as_view(), name="approve-sft-req"),
+    path("approve-sft-req/", ApproveSoftwareView.as_view(), name="approve-sft-req"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
     # path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
