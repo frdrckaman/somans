@@ -99,7 +99,8 @@
                 tooltip:true,         //show tool tips on cells
             },
             columns:[                 //define the table columns
-                {title:"Product Name", field:"product_name"},
+                {title:"Product Name", field:"product_name", formatter:"link",
+                    formatterParams:{labelField:"product_name", urlPrefix:""}},
                 {title:"Requested By", field:"requester"},
                 {title:"Request Date", field:"requester_datetime"},
                 {title:"Devices Permitted", field:"devices_permitted"},

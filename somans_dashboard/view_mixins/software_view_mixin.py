@@ -8,14 +8,19 @@ class SoftwareListboardView:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         adm_user = False
+        opr_usr = False
         admin_usr = str(settings.SOMANS_ADMIN).split(",")
+        operator_usr = str(settings.SOMANS_OPERATOR).split(",")
         usr = str(getpass.getuser())
         if usr in admin_usr:
             adm_user = True
+        if usr in operator_usr:
+            opr_usr = True
         context.update(
             data_workstation_installed_software=self.frd,
             frd=self.frd,
             adm_user=adm_user,
+            opr_usr=opr_usr,
             list_workstation=self.workstation_list,
             list_server=self.server_list,
             data_server_installed_software=self.get_data_server_installed_software,
