@@ -13,6 +13,7 @@ class ApproveSoftwareView(SoftwareListboardView, TemplateView):
         menu_category = 'Approval'
         queryset = ApproveSoftware.objects.filter(status=0).values()
         context = super().get_context_data(**kwargs)
+        print(list(queryset))
         approval_list = json.dumps(list(queryset), cls=DjangoJSONEncoder)
         context.update(
             menu_category=menu_category,

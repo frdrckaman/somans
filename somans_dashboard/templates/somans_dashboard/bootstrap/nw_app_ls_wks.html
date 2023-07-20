@@ -9,6 +9,11 @@
                 Newly Installed Software Workstation
             </h2>
         </div>
+        {% if request.GET.response == 'success' %}
+            <div class="alert alert-success-soft show flex items-center mb-2" role="alert"> <i data-lucide="thumbs-up" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% elif request.GET.response == 'error' %}
+            <div class="alert alert-danger-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% endif %}
 
         <!-- BEGIN: HTML Table Data -->
         <div class="intro-y box p-5 mt-5">

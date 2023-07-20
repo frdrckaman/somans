@@ -67,3 +67,9 @@ def main_menu(context):
         servers_active=servers_active,
         workstations_active=workstations_active,
     )
+
+
+@register.simple_tag(takes_context=True)
+def get_url_name(context, url):
+    url_name = url.split('/')
+    return url_name[-2]

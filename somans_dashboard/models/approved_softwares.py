@@ -12,7 +12,7 @@ class ApproveSoftware(BaseUuidModel):
     )
     requester = models.CharField(
         verbose_name="Requester",
-        max_length=20,
+        max_length=10,
         default=getpass.getuser(),
     )
     requester_date = models.DateField(
@@ -25,7 +25,7 @@ class ApproveSoftware(BaseUuidModel):
     )
     approve = models.CharField(
         verbose_name="Approve",
-        max_length=4,
+        max_length=10,
         blank=True,
         null=True,
     )
@@ -63,6 +63,12 @@ class ApproveSoftware(BaseUuidModel):
     )
     comment = models.TextField(
         verbose_name="Additional Comments",
+        blank=True,
+        null=True,
+    )
+    next_url_name = models.CharField(
+        verbose_name="Redirect to?",
+        max_length=100,
         blank=True,
         null=True,
     )
