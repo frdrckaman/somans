@@ -44,7 +44,8 @@ class ApproveSoftware(BaseUuidModel):
         default=0
     )
     devices_permitted = models.CharField(
-        verbose_name="Have you review all devices which this software is installed and ensure that they have permission to use this product?",
+        verbose_name="Have you review all devices which this software is installed and ensure that "
+                     "they have permission to use this product?",
         max_length=4,
         blank=True,
         null=True,

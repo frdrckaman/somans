@@ -28,6 +28,7 @@ DEBUG = env("DJANGO_DEBUG")
 APP_NAME = env.str("DJANGO_APP_NAME")
 SOMANS_SQLITE = env.str("SOMANS_SQLITE")
 SOMANS_ENGINE = sqlalchemy.create_engine(SOMANS_SQLITE)
+SOMANS_ADMIN = env.str("SOMANS_ADMIN")
 
 ALLOWED_HOSTS = []
 

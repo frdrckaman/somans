@@ -11,8 +11,9 @@ from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftw
     ServerInstalledVsListView, \
     WorkstationInstalledVsListView, InstalledSoftwareView, IncompleteServerDetailsView, \
     IncompleteWorkstationDetailsView, ServerSoftwareAppView, NewSoftwareServerDetailsView, \
-    NewSoftwareWorkstationDetailsView, ServerNotManageSccm, WorkstationNotManageSccm, GroupSoftwareList
-from somans_dashboard.views.approve_software_request import send_approval_request
+    NewSoftwareWorkstationDetailsView, ServerNotManageSccm, WorkstationNotManageSccm, GroupSoftwareList, \
+    ApproveSoftwareView
+from somans_dashboard.views.request_software_approval import send_approval_request
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
 from somans_dashboard.views.workstation_list_vs_installed import WorkstationListVsInstalledView
@@ -56,6 +57,7 @@ urlpatterns = [
     path("wks-not-manage-sccm/", WorkstationNotManageSccm.as_view(), name="wks-not-manage-sccm"),
     path("grp-software-list/", GroupSoftwareList.as_view(), name="grp-software-list"),
     path("ap-nw-app-ls-svr/", send_approval_request, name="ap-nw-app-ls-svr"),
+    path("approve-sft-req", ApproveSoftwareView.as_view(), name="approve-sft-req"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
     # path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]
