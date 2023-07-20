@@ -39,10 +39,6 @@ class ApproveSoftware(BaseUuidModel):
         blank=True,
         null=True,
     )
-    status = models.IntegerField(
-        verbose_name="Status",
-        default=0
-    )
     devices_permitted = models.CharField(
         verbose_name="Have you review all devices which this software is installed and ensure that "
                      "they have permission to use this product?",
@@ -50,9 +46,23 @@ class ApproveSoftware(BaseUuidModel):
         blank=True,
         null=True,
     )
-
+    approve_review = models.CharField(
+        verbose_name="Did you briefly review this request?",
+        max_length=4,
+        blank=True,
+        null=True,
+    )
+    status = models.IntegerField(
+        verbose_name="Status",
+        default=0
+    )
     reasons = models.TextField(
         verbose_name="Reasons for this request",
+        blank=True,
+        null=True,
+    )
+    comment = models.TextField(
+        verbose_name="Additional Comments",
         blank=True,
         null=True,
     )

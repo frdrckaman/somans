@@ -59,7 +59,7 @@
 {#                         {% csrf_token %}#}
 {#                        <input type="hidden" name="app_name" value="{{ app_name }}">#}
                         {% if opr_usr %}
-                            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-2">Request for Approval</a>
+                            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-1">Request for Approval</a>
                             <div id="request-approval" class="modal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
@@ -95,6 +95,63 @@
                                                         </div><br>
                                                         <div>
                                                             <input type="submit" value="Send the Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if adm_user %}
+                            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#approve-request" class="btn btn-primary mr-1 mb-1"> Approve Request</a>
+                            <div id="approve-request" class="modal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="intro-y box mt-5">
+                                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                                <h2 class="font-medium text-base mr-auto">
+                                                    APPROVE SOFTWARE REQUEST
+                                                </h2>
+                                            </div>
+                                            <div id="input-groups" class="p-5">
+                                                <div class="preview">
+                                                    <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Software Name</label>
+                                                            <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
+                                                            <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
+                                                        </div><br>
+                                                        <div>
+                                                            <label>Did you briefly review this request?</label>
+                                                            <div class="form-check mt-2">
+                                                                <input id="radio-switch-1" class="form-check-input" type="radio" name="approve_review" value="yes" required>
+                                                                <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                                            </div>
+                                                            <div class="form-check mt-2">
+                                                                <input id="radio-switch-2" class="form-check-input" type="radio" name="approve_review" value="no" required>
+                                                                <label class="form-check-label" for="radio-switch-2">No</label>
+                                                            </div>
+                                                        </div><br>
+                                                        <div>
+                                                            <label>Approve this product?</label>
+                                                            <div class="form-check mt-2">
+                                                                <input id="radio-switch-1" class="form-check-input" type="radio" name="approve" value="1" required>
+                                                                <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                                            </div>
+                                                            <div class="form-check mt-2">
+                                                                <input id="radio-switch-2" class="form-check-input" type="radio" name="approve" value="2" required>
+                                                                <label class="form-check-label" for="radio-switch-2">No</label>
+                                                            </div>
+                                                        </div><br>
+                                                        <div>
+                                                            <label for="regular-form-1" class="form-label">Comments</label>
+                                                            <textarea id="regular-form-1" name="comment" type="text" class="form-control" placeholder="Additional comments"></textarea>
+                                                        </div><br>
+                                                        <div>
+                                                            <input type="submit" value="Approve Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
                                                         </div>
                                                     </form>
                                                 </div>
