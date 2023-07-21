@@ -21,7 +21,7 @@ def send_approval_request(request, url=None):
             res = 'error'
             message = 'Error occurred while your request,please check your inputs and try again'
         notification = res + '&message=' + message
-        url = "?response=".join([reverse(request.POST.get("nxt_request")), notification])
+        url = "?response=".join([reverse('somans_dashboard:approve-sft-req'), notification])
     return redirect(url)
 
 
@@ -42,5 +42,5 @@ def approve_request(request, url=None):
             res = 'error'
             message = 'Error occurred while approving this request,please check your inputs and try again'
         notification = res + '&message=' + message
-        url = "?response=".join([reverse(request.POST.get("nxt_approval")), notification])
+        url = "?response=".join([reverse('somans_dashboard:approve-sft-req'), notification])
     return redirect(url)

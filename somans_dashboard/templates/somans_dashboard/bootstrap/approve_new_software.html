@@ -1,0 +1,297 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load somans_menu %}
+{% block title %}
+    <title> SOMANS | SOFTWARE </title>
+{% endblock %}
+{% block content %}
+    <div class="content content--top-nav">
+        <div class="intro-y flex items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">
+                Software Approval Request
+            </h2>
+        </div>
+
+        <!-- BEGIN: HTML Table Data -->
+        <div class="intro-y box p-5 mt-5">
+            <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
+                <form id="tabulator-html-filter-form" class="xl:flex sm:mr-auto" >
+                    <div class="sm:flex items-center sm:mr-4">
+                        <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Field</label>
+                        <select id="tabulator-html-filter-field" class="form-select w-full sm:w-32 2xl:w-full mt-2 sm:mt-0 sm:w-auto">
+                            <option value="computer_name">Computer Name</option>
+                            <option value="computer_manufacturer">Computer Manufacturer</option>
+                            <option value="computer_model">Computer Model</option>
+                            <option value="product_name">Product Name</option>
+                            <option value="user_name">User Name</option>
+                            <option value="user_email">User Email</option>
+                            <option value="os_version">OS version</option>
+                            <option value="computer_ip_address">Computer IP Address</option>
+                            <option value="os_version">OS version</option>
+                            <option value="managed_in_sccm">Managed in SCCM</option>
+                        </select>
+                    </div>
+                    <div class="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
+                        <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Type</label>
+                        <select id="tabulator-html-filter-type" class="form-select w-full mt-2 sm:mt-0 sm:w-auto" >
+                            <option value="like" selected>like</option>
+                            <option value="=">=</option>
+                            <option value="<">&lt;</option>
+                            <option value="<=">&lt;=</option>
+                            <option value=">">></option>
+                            <option value=">=">>=</option>
+                            <option value="!=">!=</option>
+                        </select>
+                    </div>
+                    <div class="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
+                        <label class="w-12 flex-none xl:w-auto xl:flex-initial mr-2">Value</label>
+                        <input id="tabulator-html-filter-value" type="text" class="form-control sm:w-40 2xl:w-full mt-2 sm:mt-0" placeholder="Search...">
+                    </div>
+{#                    <div class="mt-2 xl:mt-0">#}
+{#                        <button id="tabulator-html-filter-go" type="button" class="btn btn-primary w-full sm:w-16" >Go</button>#}
+{#                        <input type="reset" id="tabulator-html-filter-reset" class="btn btn-secondary w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" onclick="clearFunction()" value="Reset">#}
+{#                    </div>#}
+                </form>
+                <div class="flex mt-5 sm:mt-0">
+                    {% if opr_usr %}
+                        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-1">Request for Approval</a>
+                        <div id="request-approval" class="modal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="intro-y box mt-5">
+                                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                            <h2 class="font-medium text-base mr-auto">
+                                                SOFTWARE APPROVAL REQUEST
+                                            </h2>
+                                        </div>
+                                        <div id="input-groups" class="p-5">
+                                            <div class="preview">
+                                                <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <label for="regular-form-1" class="form-label">Software Name</label>
+                                                        <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
+                                                        <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
+                                                        <input type="hidden" name="nxt_request" value="somans_dashboard:nw-app-ls-svr">
+                                                        <input type="hidden" name="next_url_name" value="/{% get_url_name request.path %}/">
+                                                    </div><br>
+                                                    <div>
+                                                        <label>Have you review all devices which this software is installed and ensure that they have permission to use this product?</label>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-1" class="form-check-input" type="radio" name="devices_permitted" value="yes" required>
+                                                            <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                                        </div>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-2" class="form-check-input" type="radio" name="devices_permitted" value="no" required>
+                                                            <label class="form-check-label" for="radio-switch-2">No</label>
+                                                        </div>
+                                                    </div><br>
+                                                    <div>
+                                                        <label for="regular-form-1" class="form-label">Reasons for this request</label>
+                                                        <textarea id="regular-form-1" name="reasons" type="text" class="form-control" placeholder="Provide more details why this product should be permitted" required></textarea>
+                                                    </div><br>
+                                                    <div>
+                                                        <input type="submit" value="Send the Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if adm_user %}
+                        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#approve-request" class="btn btn-primary mr-1 mb-1"> Approve Request</a>
+                        <div id="approve-request" class="modal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="intro-y box mt-5">
+                                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                            <h2 class="font-medium text-base mr-auto">
+                                                APPROVE SOFTWARE REQUEST
+                                            </h2>
+                                        </div>
+                                        <div id="input-groups" class="p-5">
+                                            <div class="preview">
+                                                <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <label for="regular-form-1" class="form-label">Software Name</label>
+                                                        <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
+                                                        <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
+                                                        <input type="hidden" name="nxt_approval" value="somans_dashboard:nw-app-ls-svr">
+                                                    </div><br>
+                                                    <div>
+                                                        <label>Did you briefly review this request?</label>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-1" class="form-check-input" type="radio" name="approve_review" value="yes" required>
+                                                            <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                                        </div>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-2" class="form-check-input" type="radio" name="approve_review" value="no" required>
+                                                            <label class="form-check-label" for="radio-switch-2">No</label>
+                                                        </div>
+                                                    </div><br>
+                                                    <div>
+                                                        <label>Approve this product?</label>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-1" class="form-check-input" type="radio" name="approve" value="1" required>
+                                                            <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                                        </div>
+                                                        <div class="form-check mt-2">
+                                                            <input id="radio-switch-2" class="form-check-input" type="radio" name="approve" value="2" required>
+                                                            <label class="form-check-label" for="radio-switch-2">No</label>
+                                                        </div>
+                                                    </div><br>
+                                                    <div>
+                                                        <label for="regular-form-1" class="form-label">Comments</label>
+                                                        <textarea id="regular-form-1" name="comment" type="text" class="form-control" placeholder="Additional comments"></textarea>
+                                                    </div><br>
+                                                    <div>
+                                                        <input type="submit" value="Approve Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <button id="tabulator-print" class="btn btn-outline-secondary w-1/2 sm:w-auto mr-2"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </button>
+                    <div class="dropdown w-1/2 sm:w-auto">
+                        <button class="dropdown-toggle btn btn-outline-secondary w-full sm:w-auto" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export <i data-lucide="chevron-down" class="w-4 h-4 ml-auto sm:ml-2"></i> </button>
+                        <div class="dropdown-menu w-40">
+                            <ul class="dropdown-content">
+                                <li>
+                                    <a id="tabulator-export-csv" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export CSV </a>
+                                </li>
+                                <li>
+                                    <a id="tabulator-export-json" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export JSON </a>
+                                </li>
+                                <li>
+                                    <a id="tabulator-export-xlsx" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export XLSX </a>
+                                </li>
+                                <li>
+                                    <a id="tabulator-export-pdf" href="javascript:;"
+                                       class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export PDF </a>
+                                </li>
+                                <li>
+                                    <a id="tabulator-export-html" href="javascript:;" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export HTML </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="overflow-x-auto scrollbar-hidden">
+                <div id="tabulator1" class="mt-5 table-report table-report--tabulator">
+            </div>
+        </div>
+        <!-- END: HTML Table Data -->
+        <!-- END: Content -->
+        </div>
+    </div>
+    <script>
+
+        tabledata = {{ svr_wks_sft_app|safe }}
+
+        var table = new Tabulator("#tabulator1", {
+            data:tabledata,
+            layout:"fitColumns",
+            responsiveLayout:"hide",
+            addRowPos:"top",
+            history:true,
+            pagination:"local",
+            paginationSize:20,
+            paginationCounter:"rows",
+            movableColumns:true,
+            initialSort:[
+                {column:"computer_name", dir:"asc"},
+            ],
+            columnDefaults:{
+                tooltip:true,         //show tool tips on cells
+            },
+            columns:[                 //define the table columns
+                {title:"Computer Name", field:"computer_name", formatter:"link",
+                    formatterParams:{labelField:"computer_name", urlPrefix:""}},
+                {title:"Computer Manufacturer", field:"computer_manufacturer"},
+                {title:"Computer Model", field:"computer_model"},
+                {title:"Product Name", field:"product_name"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Operating System", field:"operating_system_x"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
+                {title:"Computer IP Address", field:"computer_ip_address"},
+                {title:"Managed in SCCM", field:"managed_in_sccm"},
+            ],
+        });
+    </script>
+
+    <script>
+        //Define variables for input elements
+        var fieldEl = document.getElementById("tabulator-html-filter-field");
+        var typeEl = document.getElementById("tabulator-html-filter-type");
+        var valueEl = document.getElementById("tabulator-html-filter-value");
+
+        //Custom filter example
+        function customFilter(data){
+            return data.car && data.rating < 3;
+        }
+
+        //Trigger setFilter function with correct parameters
+        function updateFilter(){
+          var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+          var typeVal = typeEl.options[typeEl.selectedIndex].value;
+
+          var filter = filterVal == "function" ? customFilter : filterVal;
+
+          if(filterVal == "function" ){
+            typeEl.disabled = true;
+            valueEl.disabled = true;
+          }else{
+            typeEl.disabled = false;
+            valueEl.disabled = false;
+          }
+
+          if(filterVal){
+            table.setFilter(filter,typeVal, valueEl.value);
+          }
+        }
+
+        //Update filters on value change
+        document.getElementById("tabulator-html-filter-field").addEventListener("change", updateFilter);
+        document.getElementById("tabulator-html-filter-type").addEventListener("change", updateFilter);
+        document.getElementById("tabulator-html-filter-value").addEventListener("keyup", updateFilter);
+
+        //Clear filters on "Clear Filters" button click
+        document.getElementById("filter-clear").addEventListener("click", function(){
+          fieldEl.value = "";
+          typeEl.value = "=";
+          valueEl.value = "";
+
+          table.clearFilter();
+        });
+
+        //Build Tabulator
+        var table = new Tabulator("#tabulator1", {
+            height:"311px",
+            layout:"fitColumns",
+            columns:[                 //define the table columns
+                {title:"Computer Name", field:"computer_name"},
+                {title:"Computer Manufacturer", field:"computer_manufacturer"},
+                {title:"Computer Model", field:"computer_model"},
+                {title:"Product Name", field:"product_name"},
+                {title:"User Name", field:"user_name"},
+                {title:"User Email", field:"user_email"},
+                {title:"Operating System", field:"operating_system_x"},
+                {title:"OS Version", field:"os_version"},
+                {title:"OS Build Version ", field:"os_build_version"},
+                {title:"Computer IP Address", field:"computer_ip_address"},
+                {title:"Managed in SCCM", field:"managed_in_sccm"},
+            ],
+        });
+    </script>
+
+{% endblock %}

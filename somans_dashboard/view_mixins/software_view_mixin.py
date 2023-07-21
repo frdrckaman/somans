@@ -834,3 +834,12 @@ class SoftwareListboardView:
                           settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
+
+
+    def get_server_workstation_app(self, name):
+        df1 = pd.read_sql(f"select * from (select * from software_server_new  union select * from software_workstation_new) a "
+                          f"left join (select * from list_of_workstations union select a.*, null os_build_version, null user_email from list_of_servers a) b "
+                          f"on a.computer_name = b.computer_name where a.product_name = '{name}'",
+                          settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
