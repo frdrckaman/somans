@@ -10,6 +10,11 @@
                 Software Approval Request
             </h2>
         </div>
+        {% if request.GET.response == 'success' %}
+            <div class="alert alert-success-soft show flex items-center mb-2" role="alert"> <i data-lucide="thumbs-up" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% elif request.GET.response == 'error' %}
+            <div class="alert alert-danger-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% endif %}
 
         <!-- BEGIN: HTML Table Data -->
         <div class="intro-y box p-5 mt-5">
@@ -65,7 +70,7 @@
                                         </div>
                                         <div id="input-groups" class="p-5">
                                             <div class="preview">
-                                                <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                                <form action="{% url 'somans_dashboard:apprv-rqst-sft' %}" method="post">
                                                     {% csrf_token %}
                                                     <div>
                                                         <label for="regular-form-1" class="form-label">Software Name</label>
@@ -73,6 +78,7 @@
                                                         <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
                                                         <input type="hidden" name="nxt_request" value="somans_dashboard:nw-app-ls-svr">
                                                         <input type="hidden" name="next_url_name" value="/{% get_url_name request.path %}/">
+
                                                     </div><br>
                                                     <div>
                                                         <label>Have you review all devices which this software is installed and ensure that they have permission to use this product?</label>
@@ -113,13 +119,14 @@
                                         </div>
                                         <div id="input-groups" class="p-5">
                                             <div class="preview">
-                                                <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                                <form action="{% url 'somans_dashboard:apprv-rqst-sft' %}" method="post">
                                                     {% csrf_token %}
                                                     <div>
                                                         <label for="regular-form-1" class="form-label">Software Name</label>
                                                         <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
                                                         <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
                                                         <input type="hidden" name="nxt_approval" value="somans_dashboard:nw-app-ls-svr">
+                                                        <input type="hidden" name="id" value="{{ uuid }}">
                                                     </div><br>
                                                     <div>
                                                         <label>Did you briefly review this request?</label>
