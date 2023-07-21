@@ -10,11 +10,7 @@
                 Newly Installed Software Server
             </h2>
         </div>
-
         <!-- BEGIN: HTML Table Data -->
-{#        <div class="alert alert-pending-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-triangle" class="w-6 h-6 mr-2"></i> {{ request.GET.frd }}Alert Awesome alert with icon </div>#}
-{#        <div class="alert alert-danger-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> Error Awesome alert with icon </div>#}
-{#        <div class="alert alert-success-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-triangle" class="w-6 h-6 mr-2"></i> Success Awesome alert with icon </div>#}
         <div class="intro-y box p-5 mt-5">
             <div class="flex flex-col sm:flex-row sm:items-end xl:items-start">
                 <form id="tabulator-html-filter-form" class="xl:flex sm:mr-auto" >
@@ -56,9 +52,6 @@
 {#                    </div>#}
                 </form>
                 <div class="flex mt-5 sm:mt-0">
-{#                    <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">#}
-{#                         {% csrf_token %}#}
-{#                        <input type="hidden" name="app_name" value="{{ app_name }}">#}
                         {% if opr_usr %}
                             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-1">Request for Approval</a>
                             <div id="request-approval" class="modal" tabindex="-1" aria-hidden="true">
@@ -107,66 +100,6 @@
                                 </div>
                             </div>
                         {% endif %}
-                        {% if adm_user %}
-                            <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#approve-request" class="btn btn-primary mr-1 mb-1"> Approve Request</a>
-                            <div id="approve-request" class="modal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="intro-y box mt-5">
-                                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                                                <h2 class="font-medium text-base mr-auto">
-                                                    APPROVE SOFTWARE REQUEST
-                                                </h2>
-                                            </div>
-                                            <div id="input-groups" class="p-5">
-                                                <div class="preview">
-                                                    <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
-                                                        {% csrf_token %}
-                                                        <div>
-                                                            <label for="regular-form-1" class="form-label">Software Name</label>
-                                                            <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
-                                                            <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
-                                                            <input type="hidden" name="nxt_approval" value="somans_dashboard:nw-app-ls-svr">
-                                                        </div><br>
-                                                        <div>
-                                                            <label>Did you briefly review this request?</label>
-                                                            <div class="form-check mt-2">
-                                                                <input id="radio-switch-1" class="form-check-input" type="radio" name="approve_review" value="yes" required>
-                                                                <label class="form-check-label" for="radio-switch-1">Yes</label>
-                                                            </div>
-                                                            <div class="form-check mt-2">
-                                                                <input id="radio-switch-2" class="form-check-input" type="radio" name="approve_review" value="no" required>
-                                                                <label class="form-check-label" for="radio-switch-2">No</label>
-                                                            </div>
-                                                        </div><br>
-                                                        <div>
-                                                            <label>Approve this product?</label>
-                                                            <div class="form-check mt-2">
-                                                                <input id="radio-switch-1" class="form-check-input" type="radio" name="approve" value="1" required>
-                                                                <label class="form-check-label" for="radio-switch-1">Yes</label>
-                                                            </div>
-                                                            <div class="form-check mt-2">
-                                                                <input id="radio-switch-2" class="form-check-input" type="radio" name="approve" value="2" required>
-                                                                <label class="form-check-label" for="radio-switch-2">No</label>
-                                                            </div>
-                                                        </div><br>
-                                                        <div>
-                                                            <label for="regular-form-1" class="form-label">Comments</label>
-                                                            <textarea id="regular-form-1" name="comment" type="text" class="form-control" placeholder="Additional comments"></textarea>
-                                                        </div><br>
-                                                        <div>
-                                                            <input type="submit" value="Approve Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-{#                    <input type="submit" value="Approval Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2">#}
-{#                    <a href="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2"> <i data-lucide="pencil" class="w-4 h-4 mr-2"></i> Approval Request </a>#}
                     <button id="tabulator-print" class="btn btn-outline-secondary w-1/2 sm:w-auto mr-2"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Print </button>
                     <div class="dropdown w-1/2 sm:w-auto">
                         <button class="dropdown-toggle btn btn-outline-secondary w-full sm:w-auto" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export <i data-lucide="chevron-down" class="w-4 h-4 ml-auto sm:ml-2"></i> </button>
