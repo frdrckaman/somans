@@ -1,6 +1,8 @@
 import getpass
 from django.conf import settings
 import pandas as pd
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class SoftwareListboardView:
@@ -50,6 +52,10 @@ class SoftwareListboardView:
             benchmark_no=len(self.get_workstation_benchmark) + len(self.get_server_benchmark)
         )
         return context
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     @property
     def get_server_all(self):

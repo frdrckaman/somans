@@ -1,4 +1,8 @@
 from django import template
+from django.urls import reverse
+
+from somans_dashboard.constants import DARK, DARK_THEME, LIGHT_THEME, LIGHT
+from somans_dashboard.models import AppTheme
 
 register = template.Library()
 
@@ -126,3 +130,46 @@ def js_scripts(context):
     return dict(
         title=title,
     )
+
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/buttons/theme_button.html",
+    takes_context=True,
+)
+def theme_mode(context, url=None):
+    title = None
+    theme_mode = DARK
+    theme_name = DARK_THEME
+    current_usr = context.get('user')
+    current_theme = AppTheme.objects.filter(theme_user=current_usr)
+    if current_theme is None:
+        theme_name = DARK_THEME
+        theme_mode = theme_mode
+    elif current_theme:
+        thm = list(current_theme.values())[0]
+        if thm['theme_mode'] == LIGHT:
+            theme_name = DARK_THEME
+            theme_mode = DARK
+        else:
+            theme_name = LIGHT_THEME
+            theme_mode = LIGHT
+    next = url_name(url)
+    uri = f'?name={theme_name}&mode={theme_mode}&next={next}'
+    return dict(
+        title=title,
+        theme_name=theme_name,
+        theme_url=uri,
+    )
+
+
+def url_name(url):
+    url_name = url.split('/')
+    return url_name[-2]
+
+
+@register.simple_tag(takes_context=True)
+def get_theme(context):
+    current_usr = context.get('user')
+    current_theme = AppTheme.objects.filter(theme_user=current_usr)
+    theme = list(current_theme.values())[0]['theme_mode']
+    return theme
