@@ -31,7 +31,7 @@ SOMANS_ENGINE = sqlalchemy.create_engine(SOMANS_SQLITE)
 SOMANS_ADMIN = env.str("SOMANS_ADMIN")
 SOMANS_OPERATOR = env.str("SOMANS_OPERATOR")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
