@@ -173,3 +173,20 @@ def get_theme(context):
     current_theme = AppTheme.objects.filter(theme_user=current_usr)
     theme = list(current_theme.values())[0]['theme_mode']
     return theme
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/header/user_theme.html",
+    takes_context=True,
+)
+def theme_user_mode(context):
+    current_usr = context.get('user')
+    current_theme = AppTheme.objects.filter(theme_user=current_usr)
+    if current_theme:
+        theme = list(current_theme.values())[0]['theme_mode']
+        usr_theme = theme
+    else:
+        usr_theme = LIGHT
+
+    return dict(
+        usr_theme=usr_theme,
+    )

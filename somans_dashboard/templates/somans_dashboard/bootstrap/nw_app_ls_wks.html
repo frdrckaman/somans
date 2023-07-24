@@ -105,6 +105,10 @@
             columns:[                 //define the table columns
                 {title:"Product Name", field:"product_name", formatter:"link",
                     formatterParams:{labelField:"product_name", urlPrefix:""}},
+                {title:"Status", field:"status", formatter:function(cell, formatterParams){var value = cell.getValue();
+                    if(value != null){return "<span style='color:orangered; font-weight:bold;'>" + value + "</span>";
+                    }else{return value;}
+                }},
             ],
         });
     </script>

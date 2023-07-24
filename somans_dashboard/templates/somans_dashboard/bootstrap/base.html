@@ -17,7 +17,8 @@
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{% static 'dist/css/app.css' %}" />
         <!-- frdrck -->
-        <link href="{% static 'dist/js/tabulator/css/tabulator.min.css' %}" rel="stylesheet">
+        {% theme_user_mode %}
+
         <script type="text/javascript" src="{% static 'dist/js/tabulator/js/tabulator.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'dist/js/tabulator/xlsx.full.min.js' %}"></script>
         <script src="{% static 'dist/js/tabulator/jspdf.umd.min.js' %}"></script>
