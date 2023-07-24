@@ -481,7 +481,7 @@ class SoftwareListboardView:
             "select distinct d.product_name from (select a.product_name from  "
             "software_server_new a left join software_server b on a.product_name = "
             "b.product_name where b.product_name is null) d left join (select product_name "
-            "from somans_dashboard_approvesoftware) c on c.product_name = d.product_name where "
+            "from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where "
             "c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
@@ -523,7 +523,7 @@ class SoftwareListboardView:
     @property
     def new_app_software_server_dup(self):
         df = pd.read_sql(
-            "select distinct d.* from (select a.* from software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            "select distinct d.* from (select a.* from software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
@@ -539,7 +539,7 @@ class SoftwareListboardView:
     @property
     def new_app_software_workstation_dup(self):
         df = pd.read_sql(
-            "select distinct d.* from (select a.* from software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            "select distinct d.* from (select a.* from software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
@@ -633,7 +633,7 @@ class SoftwareListboardView:
     def new_software_workstation_nw(self):
         df = pd.read_sql(
             "select distinct d.product_name from (select a.product_name from  "
-            "software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null ",
+            "software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null ",
             settings.SOMANS_ENGINE)
         return df
 
@@ -812,7 +812,7 @@ class SoftwareListboardView:
 
     @property
     def approved_software(self):
-        df = pd.read_sql("select * from somans_dashboard_approvesoftware ", settings.SOMANS_ENGINE)
+        df = pd.read_sql("select * from somans_dashboard_approvesoftware where status = 1", settings.SOMANS_ENGINE)
         return df
 
     @property
