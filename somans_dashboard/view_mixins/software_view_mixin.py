@@ -53,7 +53,7 @@ class SoftwareListboardView:
         )
         return context
 
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='somans_auth:login'))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 

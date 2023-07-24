@@ -1,6 +1,3 @@
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 
 from somans_dashboard.view_mixins import SoftwareListboardView
@@ -27,8 +24,4 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
             no_group_software_list=len(self.group_software_list),
         )
         return context
-
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)
 

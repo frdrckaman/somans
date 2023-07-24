@@ -168,11 +168,13 @@ def url_name(url):
 
 
 @register.simple_tag(takes_context=True)
-def get_theme(context):
+def get_theme(context, theme='light'):
     current_usr = context.get('user')
-    current_theme = AppTheme.objects.filter(theme_user=current_usr)
-    theme = list(current_theme.values())[0]['theme_mode']
+    if current_usr.is_authenticated:
+        current_theme = AppTheme.objects.filter(theme_user=current_usr)
+        theme = list(current_theme.values())[0]['theme_mode']
     return theme
+
 
 @register.inclusion_tag(
     f"somans_dashboard/bootstrap/header/user_theme.html",
