@@ -49,6 +49,9 @@
                     </div>
                 </form>
                 <div class="flex mt-5 sm:mt-0">
+                    {% if app_status == 0 %}
+                        <button data-tw-toggle="modal" class="btn btn-warning-soft mr-1 mb-1" disabled> PENDING APPROVAL </button>
+                    {% endif %}
                     {% if opr_usr %}
                         <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-1">Request for Approval</a>
                         <div id="request-approval" class="modal" tabindex="-1" aria-hidden="true">
