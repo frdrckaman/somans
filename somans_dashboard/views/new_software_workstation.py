@@ -17,7 +17,3 @@ class NewWorkstationSoftwareView(SoftwareListboardView, TemplateView):
             nw_wks_sft_data=nw_wks_sft_data
         )
         return context
-
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)

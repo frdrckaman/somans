@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import handler404, handler500
 
 from somans import settings
 from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftwareView, \
@@ -64,5 +63,4 @@ urlpatterns = [
     path("approve-sft-req/<app_name>", ApproveSoftwareSvrWksView.as_view(), name="approve-sft-req-dtls"),
     path("change-theme", change_theme, name="change-theme"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
-    # path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]

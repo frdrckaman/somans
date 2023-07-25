@@ -17,8 +17,3 @@ class ListOfServerDuplicateView(SoftwareListboardView, TemplateView):
             ls_svr_dup=ls_svr_dup
         )
         return context
-
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)
-

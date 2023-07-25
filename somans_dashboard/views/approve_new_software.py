@@ -23,7 +23,3 @@ class ApproveSoftwareSvrWksView(SoftwareListboardView, TemplateView):
         )
         return context
 
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)
-

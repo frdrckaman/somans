@@ -1,6 +1,5 @@
 import json
 
-import pandas as pd
 from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView
 
@@ -17,8 +16,4 @@ class NewSoftwareWorkstationDetailsView(SoftwareListboardView, TemplateView):
             new_sft_workstation_dup=new_sft_workstation_dup,
         )
         return context
-
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)
 
