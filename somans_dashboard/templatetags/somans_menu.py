@@ -42,6 +42,7 @@ def top_bar_menu(context, no_approve=None, adm=False):
     return dict(
         title=title,
         frdrck=adm,
+        username=context.get('user'),
         no_approve=no_approve,
     )
 
