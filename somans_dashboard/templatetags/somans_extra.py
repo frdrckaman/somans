@@ -172,7 +172,10 @@ def get_theme(context, theme='light'):
     current_usr = context.get('user')
     if current_usr.is_authenticated:
         current_theme = AppTheme.objects.filter(theme_user=current_usr)
-        theme = list(current_theme.values())[0]['theme_mode']
+        if current_theme:
+            theme = list(current_theme.values())[0]['theme_mode']
+        else:
+            theme = LIGHT
     return theme
 
 
