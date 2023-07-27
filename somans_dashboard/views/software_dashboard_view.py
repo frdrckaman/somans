@@ -12,7 +12,6 @@ class SoftwareDashboardView(SoftwareListboardView, TemplateView):
         context = super().get_context_data(**kwargs)
         context.update(
             menu_category=menu_category,
-            aman=getpass.getuser(),
             no_rm_sft_svr=self.no_removed_sft_server,
             no_nw_sft_svr=self.no_new_sft_server,
             no_removed_sft_wks=self.no_removed_sft_workstation,
