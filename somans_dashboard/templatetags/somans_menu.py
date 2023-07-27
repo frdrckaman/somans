@@ -33,12 +33,11 @@ def mobile_menu(context):
     f"somans_dashboard/bootstrap/menu/top-bar-menu.html",
     takes_context=True,
 )
-def top_bar_menu(context, no_approve=None, adm=False):
+def top_bar_menu(context, adm=False):
     title = None
     admin_usr = str(settings.SOMANS_ADMIN).split(",")
     usr = str(getpass.getuser())
-    if usr in admin_usr:
-        no_approve = ApproveSoftware.objects.filter(status=0).count()
+    no_approve = ApproveSoftware.objects.filter(status=0).count() if usr in admin_usr else None
     return dict(
         title=title,
         frdrck=adm,

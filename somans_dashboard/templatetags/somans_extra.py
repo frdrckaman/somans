@@ -19,10 +19,8 @@ def brand_counter(context, num):
 )
 def new_vs_old_workstation_app(context):
     title = None
-    wks_alert = 'bg-success'
     wks_value = context.get("new_workstation_software")
-    if wks_value > 0:
-        wks_alert = 'bg-danger'
+    wks_alert = 'bg-danger' if wks_value > 0 else 'bg-success'
 
     return dict(
         title=title,
@@ -37,10 +35,8 @@ def new_vs_old_workstation_app(context):
 )
 def new_workstation_app(context):
     title = None
-    wks_alert = 'bg-success'
     wks_value = context.get("no_nw_sft_wks")
-    if wks_value > 0:
-        wks_alert = 'bg-danger'
+    wks_alert = 'bg-danger' if wks_value > 0 else 'bg-success'
 
     return dict(
         title=title,
@@ -55,11 +51,8 @@ def new_workstation_app(context):
 )
 def new_server_app(context):
     title = None
-    svr_alert = 'bg-success'
     svr_value = context.get("no_nw_sft_svr")
-
-    if svr_value > 0:
-        svr_alert = 'bg-danger'
+    svr_alert = 'bg-danger' if svr_value > 0 else 'bg-success'
     return dict(
         title=title,
         svr_alert=svr_alert,
@@ -73,11 +66,8 @@ def new_server_app(context):
 )
 def new_vs_old_server_app(context):
     title = None
-    svr_alert = 'bg-success'
     svr_value = context.get("new_server_software")
-
-    if svr_value > 0:
-        svr_alert = 'bg-danger'
+    svr_alert = 'bg-danger' if svr_value > 0 else 'bg-success'
     return dict(
         title=title,
         svr_alert=svr_alert,
@@ -91,11 +81,8 @@ def new_vs_old_server_app(context):
 )
 def svr_inc_dtls_tag(context):
     title = None
-    svr_alert = 'bg-success'
     svr_value = context.get("no_svr_inc_dtls")
-
-    if svr_value > 0:
-        svr_alert = 'bg-danger'
+    svr_alert = 'bg-danger' if svr_value > 0 else 'bg-success'
     return dict(
         title=title,
         svr_alert=svr_alert,
@@ -109,11 +96,8 @@ def svr_inc_dtls_tag(context):
 )
 def wks_inc_dtls_tag(context):
     title = None
-    svr_alert = 'bg-success'
     svr_value = context.get("no_wks_inc_dtls")
-
-    if svr_value > 0:
-        svr_alert = 'bg-danger'
+    svr_alert = 'bg-danger' if svr_value > 0 else 'bg-success'
     return dict(
         title=title,
         svr_alert=svr_alert,
@@ -172,10 +156,7 @@ def get_theme(context, theme='light'):
     current_usr = context.get('user')
     if current_usr.is_authenticated:
         current_theme = AppTheme.objects.filter(theme_user=current_usr)
-        if current_theme:
-            theme = list(current_theme.values())[0]['theme_mode']
-        else:
-            theme = LIGHT
+        theme = list(current_theme.values())[0]['theme_mode'] if current_theme else LIGHT
     return theme
 
 
