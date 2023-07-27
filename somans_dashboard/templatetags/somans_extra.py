@@ -37,7 +37,6 @@ def new_workstation_app(context):
     title = None
     wks_value = context.get("no_nw_sft_wks")
     wks_alert = 'bg-danger' if wks_value > 0 else 'bg-success'
-
     return dict(
         title=title,
         wks_alert=wks_alert,
