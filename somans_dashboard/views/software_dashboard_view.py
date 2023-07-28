@@ -1,4 +1,3 @@
-import getpass
 from django.views.generic.base import TemplateView
 
 from somans_dashboard.view_mixins import SoftwareListboardView

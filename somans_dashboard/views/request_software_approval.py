@@ -14,6 +14,7 @@ def send_approval_request(request, url=None):
             product_name=request.POST.get("app_name"),
             devices_permitted=request.POST.get("devices_permitted"),
             reasons=request.POST.get("reasons"),
+            requester=request.user,
             next_url_name=request.POST.get("next_url_name"),
         )
         if created:
@@ -30,8 +31,8 @@ def send_approval_request(request, url=None):
 def approve_request(request, url=None):
     if request.method == 'POST':
         try:
-            ApproveSoftware.objects.filter(id=request.POST.get("id")).update(
-                approve=getpass.getuser(),
+            ApproveSoftware.objects.filter(pk=request.POST.get("id")).update(
+                approve=str(request.user),
                 approve_date=datetime.today().strftime('%Y-%m-%d'),
                 approve_datetime=timezone.now(),
                 status=request.POST.get("approve"),
@@ -41,7 +42,6 @@ def approve_request(request, url=None):
             message = 'Request Approved successful'
 
         except Exception as e:
-            print(e)
             res = 'error'
             message = 'Error occurred while approving this request,please check your inputs and try again'
 
