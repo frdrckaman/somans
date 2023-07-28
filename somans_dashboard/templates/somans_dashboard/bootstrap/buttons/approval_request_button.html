@@ -1,0 +1,49 @@
+{% load somans_menu %}
+{% if opr_usr  and app_request %}
+    <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#request-approval" class="btn btn-primary mr-1 mb-1">Request for Approval</a>
+    <div id="request-approval" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="intro-y box mt-5">
+                    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                        <h2 class="font-medium text-base mr-auto">
+                            SOFTWARE APPROVAL REQUEST
+                        </h2>
+                    </div>
+                    <div id="input-groups" class="p-5">
+                        <div class="preview">
+                            <form action="{% url 'somans_dashboard:ap-nw-app-ls-svr' %}" method="post">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="regular-form-1" class="form-label">Software Name</label>
+                                    <input type="text" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name" disabled>
+                                    <input type="hidden" name="app_name" value="{{ app_name }}" class="form-control" placeholder="Software Name" aria-label="Software Name">
+                                    <input type="hidden" name="nxt_request" value="nw-app-ls-svr">
+                                    <input type="hidden" name="next_url_name" value="{{ next_url_name }}">
+                                </div><br>
+                                <div>
+                                    <label>Have you review all devices which this software is installed and ensure that they have permission to use this product?</label>
+                                    <div class="form-check mt-2">
+                                        <input id="radio-switch-1" class="form-check-input" type="radio" name="devices_permitted" value="yes" required>
+                                        <label class="form-check-label" for="radio-switch-1">Yes</label>
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input id="radio-switch-2" class="form-check-input" type="radio" name="devices_permitted" value="no" required>
+                                        <label class="form-check-label" for="radio-switch-2">No</label>
+                                    </div>
+                                </div><br>
+                                <div>
+                                    <label for="regular-form-1" class="form-label">Reasons for this request</label>
+                                    <textarea id="regular-form-1" name="reasons" type="text" class="form-control" placeholder="Provide more details why this product should be permitted" required></textarea>
+                                </div><br>
+                                <div>
+                                    <input type="submit" value="Send the Request" class="btn btn-outline-primary w-1/2 sm:w-auto mr-2 pull-right">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

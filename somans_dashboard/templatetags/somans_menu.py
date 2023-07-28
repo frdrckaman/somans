@@ -36,7 +36,7 @@ def mobile_menu(context):
 def top_bar_menu(context, adm=False):
     title = None
     admin_usr = str(settings.SOMANS_ADMIN).split(",")
-    usr = str(getpass.getuser())
+    usr = str(context.get('user'))
     no_approve = ApproveSoftware.objects.filter(status=0).count() if usr in admin_usr else None
     return dict(
         title=title,

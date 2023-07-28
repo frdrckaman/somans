@@ -1,8 +1,8 @@
 from django import template
-from django.urls import reverse
+from django.conf import settings
 
 from somans_dashboard.constants import DARK, DARK_THEME, LIGHT_THEME, LIGHT
-from somans_dashboard.models import AppTheme
+from somans_dashboard.models import AppTheme, ApproveSoftware
 
 register = template.Library()
 
@@ -175,3 +175,42 @@ def theme_user_mode(context):
     return dict(
         usr_theme=usr_theme,
     )
+
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/buttons/approval_request_button.html",
+    takes_context=True,
+)
+def software_approval_request(context):
+    operator_usr = str(settings.SOMANS_OPERATOR).split(",")
+    current_usr = str(context.get('user'))
+    app_name = context.get('app_name')
+    check_app_name = ApproveSoftware.objects.filter(product_name=app_name)
+    app_request = True if not check_app_name else False
+    next_url_name = (str(context.get('request')).split(' ')[2]).split('/')[2]
+    opr_usr = True if current_usr in operator_usr else False
+    return dict(
+        opr_usr=opr_usr,
+        app_name=app_name,
+        app_request=app_request,
+        next_url_name=next_url_name,
+    )
+
+
+@register.inclusion_tag(
+    f"somans_dashboard/bootstrap/buttons/approve_software_request.html",
+    takes_context=True,
+)
+def approve_software_request(context):
+    admin_usr = str(settings.SOMANS_ADMIN).split(",")
+    current_usr = str(context.get('user'))
+    app_name = context.get('app_name')
+    adm_user = True if current_usr in admin_usr else False
+    uid = ApproveSoftware.objects.get(product_name=app_name)
+    uuid = uid.id
+    return dict(
+        uuid=uuid,
+        adm_user=adm_user,
+        app_name=app_name,
+    )
+
