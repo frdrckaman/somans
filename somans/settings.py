@@ -11,6 +11,8 @@ env = environ.Env(
     DJANGO_DEBUG=(bool, False),
     DEBUG_TOOLBAR=(bool, False),
     DATABASE_SQLITE_ENABLED=(bool, False),
+    FIN_START_RANGE=(int, 4),
+    FIN_END_RANGE=(int, 26),
 )
 
 environ.Env.read_env(ENV_DIR)
@@ -33,6 +35,13 @@ SOMANS_OPERATOR = env.str("SOMANS_OPERATOR")
 SOMANS_NEW_APP_SVR = env.str("SOMANS_NEW_APP_SVR")
 SOMANS_NEW_APP_WKS = env.str("SOMANS_NEW_APP_WKS")
 
+FIN_SERVICE_FILE = env.str("FIN_SERVICE_FILE")
+FIN_START_RANGE = env("FIN_START_RANGE")
+FIN_END_RANGE = env("FIN_END_RANGE")
+FIN_SERVICE_NAME = env.str("FIN_SERVICE_NAME")
+FIN_SERVICE_FILE_NODE1 = env.str("FIN_SERVICE_FILE_NODE1")
+FIN_SERVICE_FILE_NODE2 = env.str("FIN_SERVICE_FILE_NODE2")
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -47,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'simple_history',
     # 'defender',
+    'idap_finservices.apps.AppConfig',
     'somans_auth.apps.AppConfig',
     'somans_dashboard.apps.AppConfig',
     'somans_software.apps.AppConfig',
