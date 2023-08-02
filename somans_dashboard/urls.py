@@ -12,7 +12,7 @@ from somans_dashboard.views import WorkstationDashboardView, NewWorkstationSoftw
     WorkstationInstalledVsListView, InstalledSoftwareView, IncompleteServerDetailsView, \
     IncompleteWorkstationDetailsView, ServerSoftwareAppView, NewSoftwareServerDetailsView, \
     NewSoftwareWorkstationDetailsView, ServerNotManageSccm, WorkstationNotManageSccm, GroupSoftwareList, \
-    ApproveSoftwareView, ApproveSoftwareSvrWksView, change_theme
+    ApproveSoftwareView, ApproveSoftwareSvrWksView, change_theme, ReservoirDashboardView
 from somans_dashboard.views.request_software_approval import send_approval_request, approve_request
 from somans_dashboard.views.server_dashboard_view import ServerDashboardView
 from somans_dashboard.views.software_dashboard_view import SoftwareDashboardView
@@ -62,5 +62,6 @@ urlpatterns = [
     path("apprv-rqst-sft/", approve_request, name="apprv-rqst-sft"),
     path("approve-sft-req/<app_name>", ApproveSoftwareSvrWksView.as_view(), name="approve-sft-req-dtls"),
     path("change-theme", change_theme, name="change-theme"),
+    path("reservoir/", ReservoirDashboardView.as_view(), name="reservoir"),
     path("", SoftwareDashboardView.as_view(), name="software-home"),
 ]

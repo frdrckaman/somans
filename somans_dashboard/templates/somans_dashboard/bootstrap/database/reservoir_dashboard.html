@@ -1,0 +1,738 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content content--top-nav">
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 2xl:col-span-9">
+            <div class="grid grid-cols-12 gap-6">
+                <!-- BEGIN: Memory Usage -->
+                <div class="col-span-12 lg:col-span-12 mt-6">
+                    <div class="intro-y flex items-center h-10">
+                        <h2 class="text-lg font-medium truncate mr-5">
+                            Memory Usage Per Database
+                        </h2>
+                    </div>
+                    <div class="report-box-2 intro-y mt-5">
+                        <div class="box grid grid-cols-12">
+                            <div class="col-span-12 lg:col-span-4 px-8 py-12 flex flex-col justify-center">
+                                <i data-lucide="pie-chart" class="w-10 h-10 text-pending"></i>
+                                <div class="justify-start flex items-center text-slate-600 dark:text-slate-300 mt-12"> Total Install Memory <i data-lucide="alert-circle" class="tooltip w-4 h-4 ml-1.5" title="Total value of your sales: $158.409.416"></i> </div>
+                                <div class="flex items-center justify-start mt-4">
+                                    <div class="relative text-2xl font-medium pl-3 ml-0.5"> <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> 1 TB </div>
+                                    <a class="text-slate-500 ml-4" href=""> <i data-lucide="refresh-ccw" class="w-4 h-4"></i> </a>
+                                </div>
+                                <div class="mt-4 text-slate-500 text-xs">Total Memory Used by Database </div>
+                                <div class="flex items-center justify-start mt-4">
+                                    <div class="relative text-2xl font-medium pl-3 ml-0.5"> <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5"></span> 364294 MB</div>
+                                    <a class="text-slate-500 ml-4" href=""> <i data-lucide="refresh-ccw" class="w-4 h-4"></i> </a>
+                                </div>
+                            </div>
+                            <div class="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
+                                <div class="tab-content px-5 pb-5">
+                                    <div class="tab-pane active grid grid-cols-12 gap-y-8 gap-x-10" id="weekly-report" role="tabpanel" aria-labelledby="weekly-report-tab">
+                                        <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3BOL</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">3695 MB</div>
+                                                <div class="text-danger flex text-xs font-medium tooltip cursor-pointer ml-2" title="2% Lower than last month"> 2% <i data-lucide="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3DTR</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">8 MB</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3DTS</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">2 MB</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3ESB</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">43350 MB</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3FAS</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">2 MB</div>
+                                                <div class="text-success flex text-xs font-medium tooltip cursor-pointer ml-2" title="52% Higher than last month"> 52% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3FMB </div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">8380 MB</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRPTZ3TBM</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">12464 MB</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 sm:col-span-6 md:col-span-4">
+                                            <div class="text-slate-500">RSVRRealtimeFinacleTZ</div>
+                                            <div class="mt-1.5 flex items-center">
+                                                <div class="text-base">164294 MB</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Memory Usage -->
+                <!-- BEGIN: Hard Disk Capacity -->
+                <div class="col-span-12 lg:col-span-8 mt-6">
+                    <div class="intro-y block sm:flex items-center h-10">
+                        <h2 class="text-lg font-medium truncate mr-5">
+                            Hard Disk Capacity
+                        </h2>
+                    </div>
+                    <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                        <table class="table table-report sm:mt-2">
+                            <thead>
+                            <tr>
+                                <th class="whitespace-nowrap">Instance Name </th>
+                                <th class="whitespace-nowrap">Drive </th>
+                                <th class="text-center whitespace-nowrap">Total Disk Size (GB) </th>
+                                <th class="text-center whitespace-nowrap">Available Size (GB) </th>
+                                <th class="text-center whitespace-nowrap">Percentage Space Free (%)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">00172TANDRVP1P</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td>
+                                    <a href="" class="font-medium whitespace-nowrap">C:\Storage\Data01\</a>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">Stanbic Tz</div>
+                                </td>
+                                <td class="text-center">2047.94</td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 1934.54
+                                    </div>
+                                </td>
+                                <td class="w-40">
+                                    <div class="flex items-center justify-center text-success">
+                                        <i data-lucide="check-square" class="w-4 h-4 mr-2"></i> 94.46
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END: Hard Disk Capacity -->
+
+                <!-- BEGIN: Hard Disk Capacity -->
+                <div class="col-span-12 xl:col-span-4 mt-6">
+                    <div class="intro-y flex items-center h-10">
+                        <h2 class="text-lg font-medium truncate mr-5">
+                            Synchronization Status between PROD and DR
+                        </h2>
+                    </div>
+                    <div class="mt-5">
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRCuratedInterfaceFinacleTZ</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3BOL</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3CIMS</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3DTR</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3DTS</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3EE</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3ESB</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3FAS</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3FINANCE</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3FMB</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3RSS</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3RTSIS</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRPTZ3TBM</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                        <div class="intro-y">
+                            <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                                <div class="ml-3 mr-auto">
+                                    <div class="font-medium">RSVRRealtimeFinacleTZ</div>
+                                </div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">SYNC</div>
+                                <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">HEALTHY</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Hard Disk Capacity -->
+            </div>
+        </div>
+        <div class="col-span-3 2xl:col-span-3">
+            <div class="2xl:border-l -mb-10 pb-10">
+                <div class="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
+                    <!-- BEGIN: Transactions -->
+                    <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                        <div class="intro-x flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                Database Services
+                            </h2>
+                        </div>
+                        <div class="mt-5">
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">00172TANDRVP1P</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">SQL Server Agent (MSSQLSERVER)</div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">Running</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-2.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">00172TANDRVP1P</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">SQL Server (MSSQLSERVER)</div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">Running</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8">
+                        <div class="intro-x flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-5">
+                                Database Status
+                            </h2>
+                        </div>
+                        <div class="mt-5">
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRCuratedInterfaceFinacleTZ</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3BOL</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3CIMS</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3DTR</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3DTS</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3EE</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3EPO</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3ESB</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3FAS</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3FINANCE</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3FMB</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3RSS</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3RTSIS</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRPTZ3TBM</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                            <div class="intro-x">
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <img alt="IDAP" src="{% static 'dist/images/profile-3.jpg' %}">
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">RSVRRealtimeFinacleTZ</div>
+                                        <div class="text-slate-500 text-xs mt-0.5">Last Backup: Aug 1 2023 8:00PM | Full database </div>
+                                    </div>
+                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">ONLINE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Transactions -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
