@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class FinServicesProd(models.Model):
@@ -84,7 +85,7 @@ class FinServicesProd(models.Model):
     )
     fin_timestamp = models.CharField(
         verbose_name='Timestamp',
-        max_length=45,
+        max_length=45
     )
     node = models.IntegerField(
         verbose_name='Node',
