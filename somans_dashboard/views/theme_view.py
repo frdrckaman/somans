@@ -17,4 +17,5 @@ def change_theme(request):
             theme_mode=request.GET.get("mode"),
             theme_user=request.user,
         )
-    return redirect(reverse(f'somans_dashboard:{request.GET.get("next")}'))
+    app_name = 'idap-finservices' if 'fins' in request.GET.get("next") else 'somans_dashboard'
+    return redirect(reverse(f'{app_name}:{request.GET.get("next")}'))
