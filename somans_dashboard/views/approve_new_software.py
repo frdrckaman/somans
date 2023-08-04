@@ -13,10 +13,8 @@ class ApproveSoftwareSvrWksView(SoftwareListboardView, TemplateView):
         menu_category = 'Approval'
         context = super().get_context_data(**kwargs)
         uid = ApproveSoftware.objects.get(product_name=context.get("app_name"))
-        # uuid = uid.id
         svr_wks_sft_app = json.dumps(self.get_server_workstation_app(context.get("app_name")))
         context.update(
-            # uuid=uuid,
             app_status=uid.status,
             menu_category=menu_category,
             svr_wks_sft_app=svr_wks_sft_app,
