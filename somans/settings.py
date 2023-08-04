@@ -17,7 +17,6 @@ env = environ.Env(
 
 environ.Env.read_env(ENV_DIR)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -44,7 +43,6 @@ FIN_SERVICE_FILE_NODE2 = env.str("FIN_SERVICE_FILE_NODE2")
 FIN_SERVICES = env.str("FIN_SERVICES")
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -95,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'somans.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -108,10 +105,22 @@ if env("DATABASE_SQLITE_ENABLED"):
     }
 
 else:
-    DATABASES = {"default": env.db()}
+    # DATABASES = {"default": env.db()}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mssql',
+            'NAME': 'IDAP',
+            'USER': 'data_user',
+            'PASSWORD': 'Stanbic1*',
+            'HOST': '00172TANSQLU1P',
+            'PORT': '59403',
+            'OPTIONS': {  # Here
+                'driver': 'ODBC Driver 17 for SQL Server',
+            },
+        }
+    }
 # be secure and clear DATABASE_URL since it is no longer needed.
 DATABASE_URL = None
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,7 +140,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -144,7 +152,6 @@ USE_I18N = True
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = env.str("DJANGO_LOGIN_REDIRECT_URL")
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
