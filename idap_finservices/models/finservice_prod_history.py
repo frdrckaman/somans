@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class FinServicesProd(models.Model):
+class FinServicesProdHistory(models.Model):
     ConfigService = models.CharField(
         verbose_name='ConfigService',
         max_length=6

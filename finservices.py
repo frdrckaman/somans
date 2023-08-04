@@ -49,7 +49,9 @@ def update_node1():
     cur.execute(f"DELETE FROM {env_mxin.FIN_SQLITE_TABLE}")
     cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mxin.FIN_SQLITE_TABLE}'")
     sql_insert = f"INSERT INTO {env_mxin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    sql_insert_hist = f"INSERT INTO {env_mxin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
     cur.execute(sql_insert)
+    cur.execute(sql_insert_hist)
     conn.commit()
     conn.close()
 
@@ -63,7 +65,9 @@ def update_node2():
     conn = create_connection()
     cur = conn.cursor()
     sql_insert = f"INSERT INTO {env_mxin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    sql_insert_hist = f"INSERT INTO {env_mxin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
     cur.execute(sql_insert)
+    cur.execute(sql_insert_hist)
     conn.commit()
     conn.close()
 
