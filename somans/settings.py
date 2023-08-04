@@ -116,6 +116,8 @@ else:
             'PORT': '59403',
             'OPTIONS': {  # Here
                 'driver': 'ODBC Driver 17 for SQL Server',
+                "Encrypt": True,
+                "TrustServerCertificate": True,
             },
         }
     }
