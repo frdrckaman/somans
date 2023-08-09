@@ -122,7 +122,7 @@ else:
     #     }
     # }
 # be secure and clear DATABASE_URL since it is no longer needed.
-DATABASE_URL = None
+# DATABASE_URL = None
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
