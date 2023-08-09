@@ -105,7 +105,22 @@ if env("DATABASE_SQLITE_ENABLED"):
     }
 
 else:
-    DATABASES = {"default": env.db()}
+    # DATABASES = {"default": env.db()}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mssql',
+            'NAME': env.str('IDAP_DB'),
+            'USER': env.str('IDAP_USER'),
+            'PASSWORD': env.str('IDAP_PWD'),
+            'HOST': env.str('IDAP_DB_HOST'),
+            'PORT': env.str('IDAP_DB_PORT'),
+            'OPTIONS': {  # Here
+                'driver': 'ODBC Driver 17 for SQL Server',
+                "Encrypt": True,
+                "TrustServerCertificate": True,
+            },
+        }
+    }
 
 # be secure and clear DATABASE_URL since it is no longer needed.
 # DATABASE_URL = None
