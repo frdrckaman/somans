@@ -1,0 +1,1325 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load static %}
+{% block title %}
+    <title> IDAP | DATABASE </title>
+{% endblock title %}
+{% block content %}
+    <div class="content content--top-nav">
+            <div class="intro-y flex items-center mt-8">
+                <h2 class="text-lg font-medium mr-auto">
+                    DB DAILY CHECK REPORT
+                </h2>
+            </div>
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                System Space
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">Filesystem</th>
+                                                <th class="whitespace-nowrap">1K-blocks</th>
+                                                <th class="whitespace-nowrap">Used</th>
+                                                <th class="whitespace-nowrap">Available</th>
+                                                <th class="whitespace-nowrap">Use%</th>
+                                                <th class="whitespace-nowrap">Mounted on</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">197342192</td>
+                                                <td class="whitespace-nowrap">8467560</td>
+                                                <td class="whitespace-nowrap">188874632</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">2%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/dev/shm</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">197342192</td>
+                                                <td class="whitespace-nowrap">4176732</td>
+                                                <td class="whitespace-nowrap">193165460</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">3%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/run</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">197342192</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">197342192</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">0%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/sys/fs/cgroup</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/mapper/VolGroupSys-LogVolRoot</td>
+                                                <td class="whitespace-nowrap">61796140</td>
+                                                <td class="whitespace-nowrap">5893820</td>
+                                                <td class="whitespace-nowrap">53033840</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">11%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/md126p2</td>
+                                                <td class="whitespace-nowrap">487634</td>
+                                                <td class="whitespace-nowrap">123475</td>
+                                                <td class="whitespace-nowrap">334463</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">27%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/boot</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/md126p1</td>
+                                                <td class="whitespace-nowrap">511720</td>
+                                                <td class="whitespace-nowrap">7696</td>
+                                                <td class="whitespace-nowrap">504024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">2%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/boot/efi</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/mapper/VolGroupSys-LogVolOpt</td>
+                                                <td class="whitespace-nowrap">30832548</td>
+                                                <td class="whitespace-nowrap">12820128</td>
+                                                <td class="whitespace-nowrap">16423172</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">44%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/opt</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/mapper/VolGroupSys-LogVolU01</td>
+                                                <td class="whitespace-nowrap">72117368</td>
+                                                <td class="whitespace-nowrap">38885772</td>
+                                                <td class="whitespace-nowrap">29838828</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-warning text-white cursor-pointer font-medium">57%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/u0t</td>
+                                            </tr>
+                                                                                   <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">0%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/run/user/1001</td>
+                                            </tr>
+                                                                                   <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/commonstore-460</td>
+                                                <td class="whitespace-nowrap">5242880</td>
+                                                <td class="whitespace-nowrap">637924</td>
+                                                <td class="whitespace-nowrap">4604956</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">13%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/opt/oracle/dcs/commonstore</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/odabase_n0-460</td>
+                                                <td class="whitespace-nowrap">52428800</td>
+                                                <td class="whitespace-nowrap">15013740</td>
+                                                <td class="whitespace-nowrap">37415060</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">29%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/u01/app/odaorabase0</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/orahome_sh-460</td>
+                                                <td class="whitespace-nowrap">83886080</td>
+                                                <td class="whitespace-nowrap">38642492</td>
+                                                <td class="whitespace-nowrap">45243588</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">47%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/u01/app/odaorahome</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/odabase_n1-460</td>
+                                                <td class="whitespace-nowrap">52428800</td>
+                                                <td class="whitespace-nowrap">12500260</td>
+                                                <td class="whitespace-nowrap">39928540</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">24%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/u01/app/odaorabase1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/acfsclone-460</td>
+                                                <td class="whitespace-nowrap">157286400</td>
+                                                <td class="whitespace-nowrap">923192</td>
+                                                <td class="whitespace-nowrap">156363208</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">1%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/opt/oracle/oak/pkgrepos/orapkgs/clones</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">/dev/asm/volume1-460</td>
+                                                <td class="whitespace-nowrap">1048576000</td>
+                                                <td class="whitespace-nowrap">167937828</td>
+                                                <td class="whitespace-nowrap">880638172</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">17%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/cloudfs</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">0%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/run/user/54323</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">0%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/run/user/1000</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">tmpfs</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">39468440</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">0%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/run/user/54325</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">10.231.128.35:/shares/Oracle_Data</td>
+                                                <td class="whitespace-nowrap">10737418240</td>
+                                                <td class="whitespace-nowrap">6223270912</td>
+                                                <td class="whitespace-nowrap">4478880768</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-warning text-white cursor-pointer font-medium">59%</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">/Oracle_backups</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                DB instances are running
+                            </h2>
+                        </div>
+                        <div class="p-5" id="responsive-table">
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+<!--                                            <tr>-->
+<!--                                                <th class="whitespace-nowrap">First Name</th>-->
+<!--                                                <th class="whitespace-nowrap">Last Name</th>-->
+<!--                                                <th class="whitespace-nowrap">Username</th>-->
+<!--                                                <th class="whitespace-nowrap">Email</th>-->
+<!--                                                <th class="whitespace-nowrap">Address</th>-->
+<!--                                                <th class="whitespace-nowrap">Username</th>-->
+<!--                                                <th class="whitespace-nowrap">Email</th>-->
+<!--                                                <th class="whitespace-nowrap">Address</th>-->
+<!--                                            </tr>-->
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:03:33</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3dsg1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">5673</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun11</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:04:20</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3ods1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">grid</td>
+                                                <td class="whitespace-nowrap">15619</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Feb16</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:14:53</td>
+                                                <td class="whitespace-nowrap">asm_pmon_+ASM1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">17271</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jul23</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:00:53</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3tbm1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">grid</td>
+                                                <td class="whitespace-nowrap">17914</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Feb16</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:09:19</td>
+                                                <td class="whitespace-nowrap">apx_pmon_+APX1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">22944</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jul23</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:00:59</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3och1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">25170</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Apr16</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">000:09:26</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3mob1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">37819</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun10</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:04:19</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3dml1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">49163</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun09</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:05:50</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3fas1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">56957</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:03:55</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3dtr1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">61044</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:04:01</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3cem1</td>
+                                            </tr>                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:04:19</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3ctm1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:01:31</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3cor1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">86417</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:00:00</td>
+                                                <td class="whitespace-nowrap">grep pmon</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:04:33</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3fmb1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">odaadmin</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:10:51</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3test1</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">oracle</td>
+                                                <td class="whitespace-nowrap">2972</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">0</td>
+                                                <td class="whitespace-nowrap">Jun12</td>
+                                                <td class="whitespace-nowrap">?</td>
+                                                <td class="whitespace-nowrap">00:01:41</td>
+                                                <td class="whitespace-nowrap">ora_pmon_ptz3esb1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="source-code hidden">
+                                <button data-target="#copy-responsive-table" class="copy-code btn py-1 px-2 btn-outline-secondary"> <i data-lucide="file" class="w-4 h-4 mr-2"></i> Copy example code </button>
+                                <div class="overflow-y-auto mt-3 rounded-md">
+                                    <pre class="source-preview" id="copy-responsive-table"> <code class="html"> HTMLOpenTagdiv class=&quot;overflow-x-auto&quot;HTMLCloseTag HTMLOpenTagtable class=&quot;table&quot;HTMLCloseTag HTMLOpenTagtheadHTMLCloseTag HTMLOpenTagtrHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTag#HTMLOpenTag/thHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTagFirst NameHTMLOpenTag/thHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTagLast NameHTMLOpenTag/thHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTagUsernameHTMLOpenTag/thHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTagEmailHTMLOpenTag/thHTMLCloseTag HTMLOpenTagth class=&quot;whitespace-nowrap&quot;HTMLCloseTagAddressHTMLOpenTag/thHTMLCloseTag HTMLOpenTag/trHTMLCloseTag HTMLOpenTag/theadHTMLCloseTag HTMLOpenTagtbodyHTMLCloseTag HTMLOpenTagtrHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag1HTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagAngelinaHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagJolieHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag@angelinajolieHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagangelinajolie@gmail.comHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag 260 W. Storm Street New York, NY 10025. HTMLOpenTag/tdHTMLCloseTag HTMLOpenTag/trHTMLCloseTag HTMLOpenTagtrHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag2HTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagBradHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagPittHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag@bradpittHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagbradpitt@gmail.comHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag 47 Division St. Buffalo, NY 14241. HTMLOpenTag/tdHTMLCloseTag HTMLOpenTag/trHTMLCloseTag HTMLOpenTagtrHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag3HTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagCharlieHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagHunnamHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag@charliehunnamHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTagcharliehunnam@gmail.comHTMLOpenTag/tdHTMLCloseTag HTMLOpenTagtd class=&quot;whitespace-nowrap&quot;HTMLCloseTag 8023 Amerige Street Harriman, NY 10926. HTMLOpenTag/tdHTMLCloseTag HTMLOpenTag/trHTMLCloseTag HTMLOpenTag/tbodyHTMLCloseTag HTMLOpenTag/tableHTMLCloseTag HTMLOpenTag/divHTMLCloseTag </code> </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <div class="intro-y col-span-12 lg:col-span-12">
+                    <div class="intro-y box mt-5">
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">DB NAME</th>
+                                                <th class="whitespace-nowrap">OPEN MODE</th>
+                                                <th class="whitespace-nowrap">TRANS COUNT (PRD) MAX(SEQUENCE#)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs btn-primary w-24 text-white cursor-pointer font-medium"> PTZ3MOB</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-24 text-white cursor-pointer font-medium">READ WRITE</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">228</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                System Space (PTZ3MOB)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">Tablespace</th>
+                                                <th class="whitespace-nowrap">Used MB</th>
+                                                <th class="whitespace-nowrap">Free MB</th>
+                                                <th class="whitespace-nowrap">Total MB</th>
+                                                <th class="whitespace-nowrap">Pct. Free</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSTEM</td>
+                                                <td class="whitespace-nowrap">1041</td>
+                                                <td class="whitespace-nowrap">9199</td>
+                                                <td class="whitespace-nowrap">10240</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS2</td>
+                                                <td class="whitespace-nowrap">36</td>
+                                                <td class="whitespace-nowrap">114</td>
+                                                <td class="whitespace-nowrap">150</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">76</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSAUX</td>
+                                                <td class="whitespace-nowrap">2510</td>
+                                                <td class="whitespace-nowrap">23090</td>
+                                                <td class="whitespace-nowrap">25600</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS1</td>
+                                                <td class="whitespace-nowrap">34</td>
+                                                <td class="whitespace-nowrap">121</td>
+                                                <td class="whitespace-nowrap">155</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">78</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">29</td>
+                                                <td class="whitespace-nowrap">995</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">97</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">5</td>
+                                                <td class="whitespace-nowrap">1019</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">268</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">91</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Backups (PTZ3MOB)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">SESSION_KEY INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">STATUS</th>
+                                                <th class="whitespace-nowrap">START_TIME</th>
+                                                <th class="whitespace-nowrap">END_TIME</th>
+                                                <th class="whitespace-nowrap">HRS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1040</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:06</td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:21</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1051</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:02</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1062</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:00</td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1073</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:15</td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:30</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1084</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 06:18</td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 08:53</td>
+                                                <td class="whitespace-nowrap">2.59</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1095</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:04</td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:11</td>
+                                                <td class="whitespace-nowrap">.11</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 08:43</td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 12:23</td>
+                                                <td class="whitespace-nowrap">3.65</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:02</td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:08</td>
+                                                <td class="whitespace-nowrap">.10</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-10">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Flash Recovery Area(archive) Utilization (PTZ3MOB)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">NAME</th>
+                                                <th class="whitespace-nowrap">SIZE_MB</th>
+                                                <th class="whitespace-nowrap">USED_MB</th>
+                                                <th class="whitespace-nowrap">PCT_USED</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">+RECO(FG$FILEGROUP_TEMPLATE_MIRROR)</td>
+                                                <td class="whitespace-nowrap">409,600</td>
+                                                <td class="whitespace-nowrap">27,649</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium"> 7 </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <div class="intro-y col-span-12 lg:col-span-12">
+                    <div class="intro-y box mt-5">
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">DB NAME</th>
+                                                <th class="whitespace-nowrap">OPEN MODE</th>
+                                                <th class="whitespace-nowrap">TRANS COUNT (PRD) MAX(SEQUENCE#)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs btn-primary w-24 text-white cursor-pointer font-medium"> PTZ3TBM </div>
+                                                </td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-24 text-white cursor-pointer font-medium">READ WRITE</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">228</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                System Space (PTZ3TBM)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">Tablespace</th>
+                                                <th class="whitespace-nowrap">Used MB</th>
+                                                <th class="whitespace-nowrap">Free MB</th>
+                                                <th class="whitespace-nowrap">Total MB</th>
+                                                <th class="whitespace-nowrap">Pct. Free</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSTEM</td>
+                                                <td class="whitespace-nowrap">1041</td>
+                                                <td class="whitespace-nowrap">9199</td>
+                                                <td class="whitespace-nowrap">10240</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS2</td>
+                                                <td class="whitespace-nowrap">36</td>
+                                                <td class="whitespace-nowrap">114</td>
+                                                <td class="whitespace-nowrap">150</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">76</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSAUX</td>
+                                                <td class="whitespace-nowrap">2510</td>
+                                                <td class="whitespace-nowrap">23090</td>
+                                                <td class="whitespace-nowrap">25600</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS1</td>
+                                                <td class="whitespace-nowrap">34</td>
+                                                <td class="whitespace-nowrap">121</td>
+                                                <td class="whitespace-nowrap">155</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">78</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">29</td>
+                                                <td class="whitespace-nowrap">995</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">97</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">5</td>
+                                                <td class="whitespace-nowrap">1019</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">268</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">91</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Backups (PTZ3TBM)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">SESSION_KEY INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">STATUS</th>
+                                                <th class="whitespace-nowrap">START_TIME</th>
+                                                <th class="whitespace-nowrap">END_TIME</th>
+                                                <th class="whitespace-nowrap">HRS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1040</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:06</td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:21</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1051</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:02</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1062</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:00</td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1073</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:15</td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:30</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1084</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 06:18</td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 08:53</td>
+                                                <td class="whitespace-nowrap">2.59</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1095</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:04</td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:11</td>
+                                                <td class="whitespace-nowrap">.11</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 08:43</td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 12:23</td>
+                                                <td class="whitespace-nowrap">3.65</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:02</td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:08</td>
+                                                <td class="whitespace-nowrap">.10</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-10">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Flash Recovery Area(archive) Utilization (PTZ3TBM)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">NAME</th>
+                                                <th class="whitespace-nowrap">SIZE_MB</th>
+                                                <th class="whitespace-nowrap">USED_MB</th>
+                                                <th class="whitespace-nowrap">PCT_USED</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">+RECO(FG$FILEGROUP_TEMPLATE_MIRROR)</td>
+                                                <td class="whitespace-nowrap">409,600</td>
+                                                <td class="whitespace-nowrap">27,649</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium"> 7 </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <div class="intro-y col-span-12 lg:col-span-12">
+                    <div class="intro-y box mt-5">
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">DB NAME</th>
+                                                <th class="whitespace-nowrap">OPEN MODE</th>
+                                                <th class="whitespace-nowrap">TRANS COUNT (PRD) MAX(SEQUENCE#)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs btn-primary w-24 text-white cursor-pointer font-medium"> PTZ3OCH </div>
+                                                </td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-24 text-white cursor-pointer font-medium">READ WRITE</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">228</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                System Space (PTZ3OCH)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">Tablespace</th>
+                                                <th class="whitespace-nowrap">Used MB</th>
+                                                <th class="whitespace-nowrap">Free MB</th>
+                                                <th class="whitespace-nowrap">Total MB</th>
+                                                <th class="whitespace-nowrap">Pct. Free</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSTEM</td>
+                                                <td class="whitespace-nowrap">1041</td>
+                                                <td class="whitespace-nowrap">9199</td>
+                                                <td class="whitespace-nowrap">10240</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS2</td>
+                                                <td class="whitespace-nowrap">36</td>
+                                                <td class="whitespace-nowrap">114</td>
+                                                <td class="whitespace-nowrap">150</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">76</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">SYSAUX</td>
+                                                <td class="whitespace-nowrap">2510</td>
+                                                <td class="whitespace-nowrap">23090</td>
+                                                <td class="whitespace-nowrap">25600</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">90</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">UNDOTBS1</td>
+                                                <td class="whitespace-nowrap">34</td>
+                                                <td class="whitespace-nowrap">121</td>
+                                                <td class="whitespace-nowrap">155</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">78</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">29</td>
+                                                <td class="whitespace-nowrap">995</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">97</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">5</td>
+                                                <td class="whitespace-nowrap">1019</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_PARAM</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">IDX_FMT_MASTER</td>
+                                                <td class="whitespace-nowrap">1</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">100</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">FMT_HISTORY</td>
+                                                <td class="whitespace-nowrap">268</td>
+                                                <td class="whitespace-nowrap">1023</td>
+                                                <td class="whitespace-nowrap">1024</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium">91</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-6">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Backups (PTZ3OCH)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">SESSION_KEY INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">INPUT_TYPE</th>
+                                                <th class="whitespace-nowrap">STATUS</th>
+                                                <th class="whitespace-nowrap">START_TIME</th>
+                                                <th class="whitespace-nowrap">END_TIME</th>
+                                                <th class="whitespace-nowrap">HRS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1040</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:06</td>
+                                                <td class="whitespace-nowrap">26-JUL-2023 05:21</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1051</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">27-JUL-2023 05:02</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1062</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:00</td>
+                                                <td class="whitespace-nowrap">28-JUL-2023 05:01</td>
+                                                <td class="whitespace-nowrap">.02</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1073</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:15</td>
+                                                <td class="whitespace-nowrap">29-JUL-2023 05:30</td>
+                                                <td class="whitespace-nowrap">.25</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1084</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 06:18</td>
+                                                <td class="whitespace-nowrap">30-JUL-2023 08:53</td>
+                                                <td class="whitespace-nowrap">2.59</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1095</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:04</td>
+                                                <td class="whitespace-nowrap">31-JUL-2023 05:11</td>
+                                                <td class="whitespace-nowrap">.11</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 08:43</td>
+                                                <td class="whitespace-nowrap">01-AUG-2023 12:23</td>
+                                                <td class="whitespace-nowrap">3.65</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whitespace-nowrap">1106</td>
+                                                <td class="whitespace-nowrap">DB FULL</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">COMPLETED</div>
+                                                </td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:02</td>
+                                                <td class="whitespace-nowrap">02-AUG-2023 05:08</td>
+                                                <td class="whitespace-nowrap">.10</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y col-span-12 lg:col-span-10">
+                    <div class="intro-y box mt-5">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                            <h2 class="font-medium text-base mr-auto">
+                                Flash Recovery Area(archive) Utilization (PTZ3OCH)
+                            </h2>
+                        </div>
+                        <div class="p-4" >
+                            <div class="preview">
+                                <div class="overflow-x-auto">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">NAME</th>
+                                                <th class="whitespace-nowrap">SIZE_MB</th>
+                                                <th class="whitespace-nowrap">USED_MB</th>
+                                                <th class="whitespace-nowrap">PCT_USED</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="whitespace-nowrap">+RECO(FG$FILEGROUP_TEMPLATE_MIRROR)</td>
+                                                <td class="whitespace-nowrap">409,600</td>
+                                                <td class="whitespace-nowrap">27,649</td>
+                                                <td class="whitespace-nowrap">
+                                                    <div class="py-1 px-2 rounded-full text-xs bg-success w-10 text-white cursor-pointer font-medium"> 7 </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
