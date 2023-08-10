@@ -1,0 +1,528 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load static %}
+{% block title %}
+    <title> IDAP | DATABASE </title>
+{% endblock title %}
+{% block content %}
+    <div class="content content--top-nav">
+        <div class="intro-y flex items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">
+                ORACLE DB SYNC REPORT
+            </h2>
+        </div>
+        <div class="grid grid-cols-12 gap-12 mt-5">
+            <div class="intro-y col-span-12 lg:col-span-12">
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3dtr1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:07</td>
+                                        <td class="whitespace-nowrap">5</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3dtr1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:07 </td>
+                                        <td class="whitespace-nowrap">5</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3mob1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3mob1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3cem1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3cem1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3cor2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3cor2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3ctm2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3ctm2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3dml2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3dml2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3esb1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3esb1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3fas1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3fas1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3fmb2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3fmb2 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-y box mt-5">
+                    <div class="p-4" >
+                        <div class="preview">
+                            <div class="overflow-x-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">Instance Name</th>
+                                        <th class="whitespace-nowrap">Host Name (PRD)</th>
+                                        <th class="whitespace-nowrap">Max Prod Seq</th>
+                                        <th class="whitespace-nowrap">THD</th>
+                                        <th class="whitespace-nowrap">Host Name (DR)</th>
+                                        <th class="whitespace-nowrap">Current Date</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Received</th>
+                                        <th class="whitespace-nowrap">Last Sb Seq Applied</th>
+                                        <th class="whitespace-nowrap">Difference</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3ods1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1747</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">228</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="whitespace-nowrap">
+                                            <div class="py-1 px-2 rounded-full text-xs btn-primary w-20 text-white cursor-pointer font-medium"> ptz3ods1 </div>
+                                        </td>
+                                        <td class="whitespace-nowrap">ptzoda801</td>
+                                        <td class="whitespace-nowrap">1739</td>
+                                        <td class="whitespace-nowrap">1</td>
+                                        <td class="whitespace-nowrap">ytzoda801</td>
+                                        <td class="whitespace-nowrap">2023 08 02 - 12:00:02</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">211</td>
+                                        <td class="whitespace-nowrap">0</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
