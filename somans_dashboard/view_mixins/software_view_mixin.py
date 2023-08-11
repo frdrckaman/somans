@@ -55,62 +55,80 @@ class SoftwareListboardView:
 
     @property
     def get_server_all(self):
-        df1 = pd.read_sql(f"select * from list_of_servers", settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_SVRS}", settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
     @property
     def get_workstation_all(self):
-        df1 = pd.read_sql(f"select * from list_of_workstations", settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_WKS}", settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f"select * from list_of_workstations", settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
     def get_server(self, name):
-        df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'",
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_SVRS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
     def get_workstation(self, name):
-        df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'",
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_WKS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
     def get_server_app(self, name):
-        df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'",
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_SFTWR_SVRS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
     def get_workstation_app(self, name):
         df1 = pd.read_sql(
-            f"select * from software_workstation_new where computer_name='{name}'",
+            f"select * from {settings.SOMANS_SFTWR_WKS} where computer_name='{name}'",
             settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(
+        #     f"select * from software_workstation_new where computer_name='{name}'",
+        #     settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
     def get_server_new(self, name):
-        df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'",
+        # df1 = pd.read_sql(f"select * from software_server_new where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_SFTWR_SVRS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return df11.to_dict('records')
 
     def get_workstation_new(self, name):
+        # df1 = pd.read_sql(
+        #     f"select * from software_workstation_new where computer_name='{name}'",
+        #     settings.SOMANS_ENGINE)
         df1 = pd.read_sql(
-            f"select * from software_workstation_new where computer_name='{name}'",
+            f"select * from {settings.SOMANS_SFTWR_WKS} where computer_name='{name}'",
             settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return df11.to_dict('records')
 
     def get_server_old(self, name):
-        df1 = pd.read_sql(f"select * from software_server where computer_name='{name}'",
+        # df1 = pd.read_sql(f"select * from software_server where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_BENCHMARK_SVRS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1
 
     def frd(self):
-        df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11.to_dict('records')
 
@@ -173,20 +191,20 @@ class SoftwareListboardView:
             ['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
         df55 = df5[
             ['computer_name', 'computer_manufacturer', 'computer_model', 'product_name']]
-        print(len(df44))
-        print(len(df55))
         df555 = pd.concat([df44, df55]).drop_duplicates(keep=False)
         return df555.to_dict('records')
 
     @property
     def get_data_workstation_installed_software(self):
-        df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation_new', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11
 
     @property
     def get_update_data_workstation_installed_software(self):
-        df1 = pd.read_sql('select * from software_workstation', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11
 
@@ -197,25 +215,29 @@ class SoftwareListboardView:
 
     @property
     def get_data_server_installed_software(self):
-        df2 = pd.read_sql('select * from software_server_new', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server_new', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['computer_name'])
         return df22
 
     @property
     def get_update_data_server_installed_software(self):
-        df2 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['computer_name'])
         return df22
 
     @property
     def get_workstation_list_data(self):
-        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_workstations', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11
 
     @property
     def get_server_list_data(self):
-        df1 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_servers', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_SVRS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return df11
 
@@ -226,51 +248,60 @@ class SoftwareListboardView:
 
     @property
     def get_update_data_server_installed_software(self):
-        df2 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['computer_name'])
         return df22
 
     @property
     def get_data_headcount(self):
-        df2 = pd.read_sql('select * from headcount', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from headcount', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_HEADCOUNT}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['personnel_number'])
         return len(df22.index)
 
     @property
     def headcount_data(self):
-        df2 = pd.read_sql('select * from headcount', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from headcount', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_HEADCOUNT}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['personnel_number'])
         return df22.to_dict('records')
 
     @property
     def get_data_workstation_list(self):
-        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_workstations', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_WKS}', settings.SOMANS_ENGINE)
         return len(df1.index)
 
     @property
     def get_workstation_list_all(self):
-        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_workstations', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_WKS}', settings.SOMANS_ENGINE)
         return df1
 
     @property
     def get_server_list_all(self):
-        df1 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_servers', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_SVRS}', settings.SOMANS_ENGINE)
         return df1
 
     @property
     def get_data_workstation_list_unique(self):
-        df1 = pd.read_sql('select * from list_of_workstations', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from list_of_workstations', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['computer_name'])
         return len(df11.index)
 
     @property
     def get_data_server_list(self):
-        df2 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from list_of_servers', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_SVRS}', settings.SOMANS_ENGINE)
         return len(df2.index)
 
     @property
     def get_data_server_list_unique(self):
-        df2 = pd.read_sql('select * from list_of_servers', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from list_of_servers', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_LS_OF_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['computer_name'])
         return len(df22.index)
 
@@ -326,49 +357,57 @@ class SoftwareListboardView:
 
     @property
     def get_total_workstation_installed_software(self):
-        df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation_new', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return len(df11.index)
 
     @property
     def get_total_update_workstation_installed_software(self):
-        df1 = pd.read_sql('select * from software_workstation', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return len(df11.index)
 
     @property
     def get_total_installed_software_workstation(self):
-        df1 = pd.read_sql('select * from software_workstation_new', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation_new', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return df11
 
     @property
     def get_total_update_installed_software_workstation(self):
-        df1 = pd.read_sql('select * from software_workstation', settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f'select * from software_workstation', settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_WKS}', settings.SOMANS_ENGINE)
         df11 = df1.drop_duplicates(['product_name'])
         return df11
 
     @property
     def get_total_server_installed_software(self):
-        df2 = pd.read_sql('select * from software_server_new', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server_new', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['product_name'])
         return len(df22.index)
 
     @property
     def get_total_update_server_installed_software(self):
-        df2 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['product_name'])
         return len(df22.index)
 
     @property
     def get_total_installed_software_server(self):
-        df2 = pd.read_sql('select * from software_server_new', settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select * from software_server_new', settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select * from {settings.SOMANS_SFTWR_SVRS}', settings.SOMANS_ENGINE)
         df22 = df2.drop_duplicates(['product_name'])
         return df22
 
     @property
     def get_total_update_installed_software_server(self):
-        df6 = pd.read_sql('select * from software_server', settings.SOMANS_ENGINE)
+        # df6 = pd.read_sql(f'select * from software_server', settings.SOMANS_ENGINE)
+        df6 = pd.read_sql(f'select * from {settings.SOMANS_BENCHMARK_SVRS}', settings.SOMANS_ENGINE)
         df66 = df6.drop_duplicates(['product_name'])
         return df66
 
@@ -417,9 +456,11 @@ class SoftwareListboardView:
         df1 = df[['computer_name']]
         df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
 
-        df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
-                          'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
-                          'list_of_workstations group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+        # df2 = pd.read_sql(f'select computer_name,computer_ip_address,managed_in_sccm, '
+        #                   'user_name, user_last_logon_time_stamp, count(*) as occurrence from '
+        #                   'list_of_workstations group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
+        #                   settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select computer_name,computer_ip_address,managed_in_sccm, user_name, user_last_logon_time_stamp, count(*) as occurrence from {settings.SOMANS_LS_OF_WKS} group by computer_name, computer_ip_address,user_name, managed_in_sccm, user_last_logon_time_stamp having count(*) > 1;',
                           settings.SOMANS_ENGINE)
         return df2.to_dict('records')
 
@@ -429,25 +470,33 @@ class SoftwareListboardView:
         df1 = df[['computer_name']]
         df11 = df1[df1.duplicated(keep=False)].drop_duplicates()
 
-        df2 = pd.read_sql('select computer_name,computer_ip_address,managed_in_sccm, '
-                          'count(*) as occurrence from list_of_servers group by computer_name having count(*) > 1;',
-                          settings.SOMANS_ENGINE)
+        # df2 = pd.read_sql(f'select computer_name,computer_ip_address,managed_in_sccm, '
+        #                   'count(*) as occurrence from list_of_servers group by computer_name having count(*) > 1;',
+        #                   settings.SOMANS_ENGINE)
+        df2 = pd.read_sql(f'select computer_name,computer_ip_address,managed_in_sccm, count(*) as occurrence from {settings.SOMANS_LS_OF_SVRS} group by computer_name having count(*) > 1;', settings.SOMANS_ENGINE)
         return df2.to_dict('records')
 
     def get_workstation_duplicate(self, name):
-        df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'",
+        # df1 = pd.read_sql(f"select * from list_of_workstations where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_WKS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
         return df1.to_dict('records')
 
     def get_server_duplicate(self, name):
-        df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'",
+        # df1 = pd.read_sql(f"select * from list_of_servers where computer_name='{name}'",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select * from {settings.SOMANS_LS_OF_SVRS} where computer_name='{name}'",
                           settings.SOMANS_ENGINE)
         return df1.to_dict('records')
 
     @property
     def removed_software_server(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server a left join software_server_new b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_server a left join software_server_new b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_BENCHMARK_SVRS} a left join {settings.SOMANS_SFTWR_SVRS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -472,8 +521,11 @@ class SoftwareListboardView:
 
     @property
     def new_software_server(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_SVRS} a left join {settings.SOMANS_BENCHMARK_SVRS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -484,8 +536,11 @@ class SoftwareListboardView:
 
     @property
     def new_software_server_app(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_SVRS} a left join {settings.SOMANS_BENCHMARK_SVRS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         df2 = df.drop_duplicates('product_name')
         return df2.to_dict('records')
@@ -510,32 +565,44 @@ class SoftwareListboardView:
 
     @property
     def new_software_server_app_dup(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_SVRS} a left join {settings.SOMANS_BENCHMARK_SVRS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
 
     @property
     def new_app_software_server_dup(self):
+        # df = pd.read_sql(
+        #     f"select distinct d.* from (select a.* from software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select distinct d.* from (select a.* from software_server_new a left join software_server b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            f"select distinct d.* from (select a.* from {settings.SOMANS_SFTWR_SVRS} a left join {settings.SOMANS_BENCHMARK_SVRS} b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from {settings.SOMANS_APPRV_SFTWR} where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
 
     @property
     def new_software_workstation_app_dup(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_WKS} a left join {settings.SOMANS_BENCHMARK_WKS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
 
     @property
     def new_app_software_workstation_dup(self):
+        # df = pd.read_sql(
+        #     f"select distinct d.* from (select a.* from software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select distinct d.* from (select a.* from software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from somans_dashboard_approvesoftware where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
+            f"select distinct d.* from (select a.* from {settings.SOMANS_SFTWR_WKS} a left join {settings.SOMANS_BENCHMARK_WKS} b on a.product_name = b.product_name where b.product_name is null) d left join (select product_name from {settings.SOMANS_APPRV_SFTWR} where status = 1) c on c.product_name = d.product_name where c.product_name is null and d.product_name is not null",
             settings.SOMANS_ENGINE)
         # df2 = df.drop_duplicates('product_name')
         return df
@@ -554,8 +621,11 @@ class SoftwareListboardView:
         return df_all_2.to_dict('records')
 
     def get_new_software_server_app(self, name):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server_new a where a.product_name ='{name}'",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            f"select a.* from  software_server_new a where a.product_name ='{name}'",
+            f"select a.* from  {settings.SOMANS_SFTWR_SVRS} a where a.product_name ='{name}'",
             settings.SOMANS_ENGINE)
         return df
 
@@ -594,8 +664,11 @@ class SoftwareListboardView:
 
     @property
     def removed_software_workstation(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_workstation a left join software_workstation_new b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_workstation a left join software_workstation_new b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_BENCHMARK_WKS} a left join {settings.SOMANS_SFTWR_WKS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -620,8 +693,11 @@ class SoftwareListboardView:
 
     @property
     def new_software_workstation(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_WKS} a left join {settings.SOMANS_BENCHMARK_WKS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -632,8 +708,11 @@ class SoftwareListboardView:
 
     @property
     def new_software_workstation_app(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_workstation_new a left join software_workstation b on a.product_name = b.product_name where b.product_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_WKS} a left join {settings.SOMANS_BENCHMARK_WKS} b on a.product_name = b.product_name where b.product_name is null",
             settings.SOMANS_ENGINE)
         df2 = df.drop_duplicates('product_name')
         return df2.to_dict('records')
@@ -644,7 +723,9 @@ class SoftwareListboardView:
         return df2.to_dict('records')
 
     def get_new_software_workstation_app(self, name):
-        df = pd.read_sql(f"select a.* from  software_workstation_new a where a.product_name = '{name}'",
+        # df = pd.read_sql(f"select a.* from  software_workstation_new a where a.product_name = '{name}'",
+        #                  settings.SOMANS_ENGINE)
+        df = pd.read_sql(f"select a.* from  {settings.SOMANS_SFTWR_WKS} a where a.product_name = '{name}'",
                          settings.SOMANS_ENGINE)
         df2 = df.drop_duplicates('product_name')
         return df2
@@ -683,8 +764,11 @@ class SoftwareListboardView:
 
     @property
     def software_ls_nt_inst_server(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  list_of_servers a left join software_server_new b on a.computer_name = b.computer_name where b.computer_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  list_of_servers a left join software_server_new b on a.computer_name = b.computer_name where b.computer_name is null",
+            f"select a.* from  {settings.SOMANS_LS_OF_SVRS} a left join {settings.SOMANS_SFTWR_SVRS} b on a.computer_name = b.computer_name where b.computer_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -696,8 +780,11 @@ class SoftwareListboardView:
 
     @property
     def software_inst_ls_nt_ls_server(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_server_new a left join list_of_servers b on a.computer_name = b.computer_name where b.computer_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_server_new a left join list_of_servers b on a.computer_name = b.computer_name where b.computer_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_SVRS} a left join {settings.SOMANS_LS_OF_SVRS} b on a.computer_name = b.computer_name where b.computer_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -709,8 +796,11 @@ class SoftwareListboardView:
 
     @property
     def software_ls_nt_inst_workstation(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  list_of_workstations a left join software_workstation_new b on a.computer_name = b.computer_name where b.computer_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  list_of_workstations a left join software_workstation_new b on a.computer_name = b.computer_name where b.computer_name is null",
+            f"select a.* from  {settings.SOMANS_LS_OF_WKS} a left join {settings.SOMANS_SFTWR_WKS} b on a.computer_name = b.computer_name where b.computer_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -722,8 +812,11 @@ class SoftwareListboardView:
 
     @property
     def software_inst_ls_nt_ls_workstation(self):
+        # df = pd.read_sql(
+        #     f"select a.* from  software_workstation_new a left join list_of_workstations b on a.computer_name = b.computer_name where b.computer_name is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select a.* from  software_workstation_new a left join list_of_workstations b on a.computer_name = b.computer_name where b.computer_name is null",
+            f"select a.* from  {settings.SOMANS_SFTWR_WKS} a left join {settings.SOMANS_LS_OF_WKS} b on a.computer_name = b.computer_name where b.computer_name is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -735,8 +828,11 @@ class SoftwareListboardView:
 
     @property
     def software_inst_svr_wks(self):
+        # df = pd.read_sql(
+        #     f"select distinct (product_name) from software_server_new product_name where product_name is not null union select distinct (product_name) from software_workstation_new where product_name is not null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select distinct (product_name) from software_server_new product_name where product_name is not null union select distinct (product_name) from software_workstation_new where product_name is not null",
+            f"select distinct (product_name) from {settings.SOMANS_SFTWR_SVRS} a where product_name is not null union select distinct (product_name) from {settings.SOMANS_SFTWR_WKS} where product_name is not null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -747,9 +843,12 @@ class SoftwareListboardView:
 
     @property
     def svr_incomplete_details(self):
+        # df = pd.read_sql(
+        #     f"select * from list_of_servers where operating_system is null or os_version is "
+        #     "null or days_computer_last_comms is null or managed_in_sccm is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select * from list_of_servers where operating_system is null or os_version is "
-            "null or days_computer_last_comms is null or managed_in_sccm is null",
+            f"select * from {settings.SOMANS_LS_OF_SVRS} where operating_system is null or os_version is null or days_computer_last_comms is null or managed_in_sccm is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -760,8 +859,11 @@ class SoftwareListboardView:
 
     @property
     def wks_incomplete_details(self):
+        # df = pd.read_sql(
+        #     f"select * from list_of_workstations where operating_system is null or os_version is null  or days_computer_last_comms is null or managed_in_sccm is null or user_name is null or user_email is null or  user_last_logon_time_stamp is null or last_hardware_inventory is null",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select * from list_of_workstations where operating_system is null or os_version is null  or days_computer_last_comms is null or managed_in_sccm is null or user_name is null or user_email is null or  user_last_logon_time_stamp is null or last_hardware_inventory is null",
+            f"select * from {settings.SOMANS_LS_OF_WKS} where operating_system is null or os_version is null  or days_computer_last_comms is null or managed_in_sccm is null or user_name is null or user_email is null or  user_last_logon_time_stamp is null or last_hardware_inventory is null",
             settings.SOMANS_ENGINE)
         return df
 
@@ -771,15 +873,21 @@ class SoftwareListboardView:
         return df.to_dict('records')
 
     def svr_wks_app_data(self, app):
+        # df = pd.read_sql(
+        #     f"select * from software_server_new where product_name = '{app}' union select * from software_workstation_new where product_name = '{app}'",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            f"select * from software_server_new where product_name = '{app}' union select * from software_workstation_new where product_name = '{app}'",
+            f"select * from {settings.SOMANS_SFTWR_SVRS} where product_name = '{app}' union select * from {settings.SOMANS_SFTWR_WKS} where product_name = '{app}'",
             settings.SOMANS_ENGINE)
         return df
 
     @property
     def svr_wks_list(self):
+        # df = pd.read_sql(
+        #     f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from list_of_servers union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from list_of_workstations",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from list_of_servers union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from list_of_workstations",
+            f"select computer_name, user_name, operating_system, os_version, computer_ip_address, managed_in_sccm from {settings.SOMANS_LS_OF_SVRS} union select computer_name, user_name, operating_system,os_version, computer_ip_address, managed_in_sccm from {settings.SOMANS_LS_OF_WKS}",
             settings.SOMANS_ENGINE)
         return df
 
@@ -791,48 +899,65 @@ class SoftwareListboardView:
 
     @property
     def svr_not_manage_sccm(self):
+        # df = pd.read_sql(
+        #     f"select * from list_of_servers where managed_in_sccm is null or managed_in_sccm = 'No'",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select * from list_of_servers where managed_in_sccm is null or managed_in_sccm = 'No'",
+            f"select * from {settings.SOMANS_LS_OF_SVRS} where managed_in_sccm is null or managed_in_sccm = 'No'",
             settings.SOMANS_ENGINE)
         return df.to_dict('records')
 
     @property
     def wks_not_manage_sccm(self):
+        # df = pd.read_sql(
+        #     f"select * from list_of_workstations where managed_in_sccm is null or managed_in_sccm = 'No'",
+        #     settings.SOMANS_ENGINE)
         df = pd.read_sql(
-            "select * from list_of_workstations where managed_in_sccm is null or managed_in_sccm = 'No'",
+            f"select * from {settings.SOMANS_LS_OF_WKS} where managed_in_sccm is null or managed_in_sccm = 'No'",
             settings.SOMANS_ENGINE)
         return df.to_dict('records')
 
     @property
     def approved_software(self):
-        df = pd.read_sql("select * from somans_dashboard_approvesoftware where status = 1", settings.SOMANS_ENGINE)
+        # df = pd.read_sql(f"select * from somans_dashboard_approvesoftware where status = 1", settings.SOMANS_ENGINE)
+        df = pd.read_sql(f"select * from {settings.SOMANS_APPRV_SFTWR} where status = 1", settings.SOMANS_ENGINE)
         return df
 
     @property
     def group_software_list(self):
-        df = pd.read_sql("select * from group_software_list", settings.SOMANS_ENGINE)
+        # df = pd.read_sql(f"select * from group_software_list", settings.SOMANS_ENGINE)
+        df = pd.read_sql(f"select * from {settings.SOMANS_GRP_SFTWR}", settings.SOMANS_ENGINE)
         # df.drop_duplicates('product_name')
         return df.to_dict('records')
 
     @property
     def get_server_benchmark(self):
-        df1 = pd.read_sql(f"select distinct(product_name) from software_server",
+        # df1 = pd.read_sql(f"select distinct(product_name) from software_server",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select distinct(product_name) from {settings.SOMANS_BENCHMARK_SVRS}",
                           settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
     @property
     def get_workstation_benchmark(self):
-        df1 = pd.read_sql(f"select distinct(product_name) from software_workstation",
+        # df1 = pd.read_sql(f"select distinct(product_name) from software_workstation",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(f"select distinct(product_name) from {settings.SOMANS_BENCHMARK_WKS}",
                           settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
 
     def get_server_workstation_app(self, name):
-        df1 = pd.read_sql(f"select * from (select * from software_server_new  union select * from software_workstation_new) a "
-                          f"left join (select * from list_of_workstations union select a.*, null os_build_version, null user_email from list_of_servers a) b "
-                          f"on a.computer_name = b.computer_name where a.product_name = '{name}'",
-                          settings.SOMANS_ENGINE)
+        # df1 = pd.read_sql(f"select * from (select * from software_server_new  union select * from software_workstation_new) a "
+        #                   f"left join (select * from list_of_workstations union select a.*, null os_build_version, null user_email from list_of_servers a) b "
+        #                   f"on a.computer_name = b.computer_name where a.product_name = '{name}'",
+        #                   settings.SOMANS_ENGINE)
+        df1 = pd.read_sql(
+            f"select * from (select * from {settings.SOMANS_SFTWR_SVRS}  union select * from {settings.SOMANS_SFTWR_WKS}) a "
+            f"left join (select * from {settings.SOMANS_LS_OF_WKS} union select a.*, null os_build_version, null user_email from {settings.SOMANS_LS_OF_SVRS} a) b "
+            f"on a.computer_name = b.computer_name where a.product_name = '{name}'",
+            settings.SOMANS_ENGINE)
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
