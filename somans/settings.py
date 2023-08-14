@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     # 'defender',
     'idap_finservices.apps.AppConfig',
     'idap_database.apps.AppConfig',
+    'idap_pos.apps.AppConfig',
     'somans_auth.apps.AppConfig',
     'somans_dashboard.apps.AppConfig',
     'somans_software.apps.AppConfig',
