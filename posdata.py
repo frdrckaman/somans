@@ -39,7 +39,7 @@ folder_path = env_mxin.IDAP_POS_DT_DIR
 # Get the current date
 current_date = datetime.now().date()
 current_month = datetime.now().strftime('%Y%m')
-today_date = datetime.now().strftime('%d')
+today_date = datetime.now().strftime('%Y%m%d')
 
 # define the search pattern for the files
 search_pattern = os.path.join(folder_path, f'DA15[48]*{current_month}*.txt')
