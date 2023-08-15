@@ -10,12 +10,14 @@ import warnings
 import env_mxin
 import logservice
 
-
 warnings.filterwarnings('ignore')
+
+pos_status = None
+pos_log_status = 'Error'
 
 if env_mxin.DATABASE_SQLITE_ENABLED:
     # sqlite db for testing
-    engine = sqlalchemy.create_engine('sqlite:///C:/Users/A248080/PycharmProjects/somans/db.sqlite3')
+    engine = sqlalchemy.create_engine(env_mxin.IDAP_SQLITE)
 else:
     # sql server db
     connection_string = 'DRIVER={' + env_mxin.IDAP_DB_DRIVER + '};SERVER=' + env_mxin.IDAP_CLUSTER + ';DATABASE=' + env_mxin.IDAP_DB + ';ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID=' + env_mxin.IDAP_USER + ';PWD=' + env_mxin.IDAP_PWD
@@ -27,7 +29,7 @@ logfile = f'{env_mxin.IDAP_POS_LOGS}pos.log'
 logger = logservice.setup_logger(env_mxin.IDAP_POS_TAG, logfile)
 
 # insert logs to database
-logVar = {'project_name': 'POS', 'report_date': datetime.today().strftime('%Y-%m-%d'), 'report_tag': env_mxin.IDAP_POS_TAG, 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
+logVar = {'project_name': 'POS', 'report_date': datetime.today().strftime('%Y-%m-%d'), 'report_tag': env_mxin.IDAP_POS_TAG, 'status': 'Error', 'job_date': datetime.today().strftime('%Y-%m-%d'),
           'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M:%S')}
 dfLog = pd.DataFrame(logVar, index=[0])
 
@@ -135,21 +137,41 @@ dff1 = pd.DataFrame(dff)
 dff1['job_date'] = datetime.today().strftime('%Y-%m-%d')
 dff1['job_timestamp'] = datetime.today().strftime('%Y-%m-%d  %H:%M:%S')
 df2 = dff1[(dff1['tran_date'] != 'Invalid Date') & (dff1['pos_number'] != '')]
+d_t = df2['date_transferred'].iloc[0]
 
-try:
-    df2.to_sql(env_mxin.IDAP_POS_TBL, engine, if_exists='append', index=False)
-    logger.info("Data inserted successful")
+pos_data = pd.read_sql(f"select * from {env_mxin.IDAP_POS_TBL} where date_transferred = '{d_t}'", engine)
+
+if not pos_data.empty:
+    msg = f"Duplicate records, Date transfer {d_t} already exists"
     try:
-        dfLog['status'] = 'Success'
-        dfLog['job_output'] = 'Data inserted successful'
+        dfLog['status'] = 'Error'
+        dfLog['job_output'] = msg
         dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+        logger.error(msg)
+        raise SystemExit(msg)
     except Exception as e2:
         dfLog['status'] = 'Error'
         dfLog['job_output'] = re.sub('\W+', ' ', str(e2))
         dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+        logger.error(e2)
         raise SystemExit(e2)
-except Exception as e1:
-    dfLog['status'] = 'Error'
-    dfLog['job_output'] = re.sub('\W+', ' ', str(e1))
-    dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
-    raise SystemExit(e1)
+else:
+    try:
+        df2.to_sql(env_mxin.IDAP_POS_TBL, engine, if_exists='append', index=False)
+        logger.info("Data inserted successful")
+        try:
+            dfLog['status'] = 'Success'
+            dfLog['job_output'] = 'Data inserted successful'
+            dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+        except Exception as e2:
+            dfLog['status'] = 'Error'
+            dfLog['job_output'] = re.sub('\W+', ' ', str(e2))
+            dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+            logger.error(e2)
+            raise SystemExit(e2)
+    except Exception as e1:
+        dfLog['status'] = 'Error'
+        dfLog['job_output'] = re.sub('\W+', ' ', str(e1))
+        dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+        logger.error(e1)
+        raise SystemExit(e1)
