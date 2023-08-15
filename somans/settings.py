@@ -51,6 +51,8 @@ FIN_SERVICE_FILE_NODE1 = env.str("FIN_SERVICE_FILE_NODE1")
 FIN_SERVICE_FILE_NODE2 = env.str("FIN_SERVICE_FILE_NODE2")
 FIN_SERVICES = env.str("FIN_SERVICES")
 
+IDAP_POS_DT_DIR = env.str("IDAP_POS_DT_DIR")
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -66,6 +68,7 @@ INSTALLED_APPS = [
     # 'defender',
     'idap_finservices.apps.AppConfig',
     'idap_database.apps.AppConfig',
+    'idap_logs.apps.AppConfig',
     'idap_pos.apps.AppConfig',
     'somans_auth.apps.AppConfig',
     'somans_dashboard.apps.AppConfig',

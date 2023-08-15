@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -44,6 +46,14 @@ class PosStatement(models.Model):
     net_value = models.CharField(
         verbose_name="Net Value",
         max_length=40,
+    )
+    job_date = models.DateField(
+        verbose_name="Job Date",
+        default=datetime.datetime.now()
+    )
+    job_timestamp = models.DateTimeField(
+        verbose_name="Job Timestamp",
+        default=datetime.datetime.now()
     )
 
     def __str__(self):
