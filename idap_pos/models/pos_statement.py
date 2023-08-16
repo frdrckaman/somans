@@ -1,6 +1,5 @@
-import datetime
-
 from django.db import models
+from django.utils import timezone
 
 
 class PosStatement(models.Model):
@@ -49,11 +48,11 @@ class PosStatement(models.Model):
     )
     job_date = models.DateField(
         verbose_name="Job Date",
-        default=datetime.datetime.now()
+        default=timezone.now
     )
     job_timestamp = models.DateTimeField(
         verbose_name="Job Timestamp",
-        default=datetime.datetime.now()
+        default=timezone.now
     )
 
     def __str__(self):

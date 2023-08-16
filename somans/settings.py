@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'simple_history',
+    'import_export',
     # 'defender',
     'idap_finservices.apps.AppConfig',
     'idap_database.apps.AppConfig',
