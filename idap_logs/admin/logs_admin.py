@@ -32,6 +32,14 @@ class LogsAdmin(admin.ModelAdmin):
         "job_output",
     )
 
+    list_filter = (
+        "project_name",
+        "report_tag",
+        "status",
+        "report_date",
+        "job_date",
+    )
+
     search_fields = (
         "project_name",
         "report_tag",
