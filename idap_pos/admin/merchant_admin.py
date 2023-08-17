@@ -14,7 +14,9 @@ class MerchantAdmin(BaseSimpleHistoryAdmin):
                 "fields": (
                     "name",
                     "mid",
+                    "email",
                     "frequency",
+                    "active",
                 ),
             },
         ),

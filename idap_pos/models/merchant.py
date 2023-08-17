@@ -14,15 +14,19 @@ class Merchant(BaseUuidModel):
         verbose_name="Merchant ID",
         max_length=16,
     )
-    email = models.CharField(
+    email = models.TextField(
         verbose_name="Merchant Email",
-        max_length=40,
+        help_text="For multiple emails use this format user1@email.com,user2@email.com,user3@emai.com etc"
     )
     frequency = models.CharField(
         verbose_name="Report Frequency",
         max_length=16,
         choices=REPORT_FREQUENCY,
 
+    )
+    active = models.BooleanField(
+        verbose_name="Activate report schedule",
+        default=False
     )
 
     history = HistoricalRecords()
