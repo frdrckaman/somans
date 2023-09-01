@@ -7,7 +7,7 @@ logfile = f'{env_mixin.IDAP_LOGS_DIR}somans.log'
 logger = env_mixin.logservice.setup_logger('headcount', logfile)
 
 logVar = {'project_name': 'SOMANS', 'report_tag': 'headcount', 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
-          'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M:%S')}
+          'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M')}
 dfLog = pd.DataFrame(logVar, index=[0])
 
 try:
@@ -15,6 +15,7 @@ try:
     df = myQuery
     msg0 = 'Headcount data fetched Successful'
     logger.info(msg0)
+    dfLog['report_date'] = datetime.today().strftime('%Y-%m-%d')
     dfLog['status'] = 'Success'
     dfLog['job_output'] = msg0
     dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
