@@ -6,8 +6,8 @@ import env_mixin
 logfile = f'{env_mixin.IDAP_LOGS_DIR}somans.log'
 logger = env_mixin.logservice.setup_logger('headcount', logfile)
 
-logVar = {'projectName': 'SOMANS', 'reportTag': 'headcount', 'status': 'Success', 'jobDate': datetime.today().strftime('%Y-%m-%d'),
-          'jobTimestamp': datetime.today().strftime('%Y-%m-%d %H:%M:%S')}
+logVar = {'project_name': 'SOMANS', 'report_tag': 'headcount', 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
+          'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M:%S')}
 dfLog = pd.DataFrame(logVar, index=[0])
 
 try:
