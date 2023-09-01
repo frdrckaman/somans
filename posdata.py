@@ -7,7 +7,7 @@ import sqlalchemy
 from sqlalchemy.engine import URL
 from sqlalchemy import create_engine
 import warnings
-import env_mxin
+import env_mixin
 import logservice
 
 warnings.filterwarnings('ignore')
@@ -15,26 +15,26 @@ warnings.filterwarnings('ignore')
 pos_status = None
 pos_log_status = 'Error'
 
-if env_mxin.DATABASE_SQLITE_ENABLED:
+if env_mixin.DATABASE_SQLITE_ENABLED:
     # sqlite db for testing
-    engine = sqlalchemy.create_engine(env_mxin.IDAP_SQLITE)
+    engine = sqlalchemy.create_engine(env_mixin.IDAP_SQLITE)
 else:
     # sql server db
-    connection_string = 'DRIVER={' + env_mxin.IDAP_DB_DRIVER + '};SERVER=' + env_mxin.IDAP_CLUSTER + ';DATABASE=' + env_mxin.IDAP_DB + ';ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID=' + env_mxin.IDAP_USER + ';PWD=' + env_mxin.IDAP_PWD
+    connection_string = 'DRIVER={' + env_mixin.IDAP_DB_DRIVER + '};SERVER=' + env_mixin.IDAP_CLUSTER + ';DATABASE=' + env_mixin.IDAP_DB + ';ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID=' + env_mixin.IDAP_USER + ';PWD=' + env_mixin.IDAP_PWD
     connection_url = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string})
     engine = create_engine(connection_url)
 
 # insert log to a file
-logfile = f'{env_mxin.IDAP_POS_LOGS}pos.log'
-logger = logservice.setup_logger(env_mxin.IDAP_POS_TAG, logfile)
+logfile = f'{env_mixin.IDAP_POS_LOGS}pos.log'
+logger = logservice.setup_logger(env_mixin.IDAP_POS_TAG, logfile)
 
 # insert logs to database
-logVar = {'project_name': 'POS', 'report_date': datetime.today().strftime('%Y-%m-%d'), 'report_tag': env_mxin.IDAP_POS_TAG, 'status': 'Error', 'job_date': datetime.today().strftime('%Y-%m-%d'),
+logVar = {'project_name': 'POS', 'report_date': datetime.today().strftime('%Y-%m-%d'), 'report_tag': env_mixin.IDAP_POS_TAG, 'status': 'Error', 'job_date': datetime.today().strftime('%Y-%m-%d'),
           'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M:%S')}
 dfLog = pd.DataFrame(logVar, index=[0])
 
 # Set the folder path where the files are located
-folder_path = env_mxin.IDAP_POS_DT_DIR
+folder_path = env_mixin.IDAP_POS_DT_DIR
 
 # Get the current date
 current_date = datetime.now().date()
@@ -50,7 +50,7 @@ search_pattern = os.path.join(folder_path, file_name)
 matching_files = glob.glob(search_pattern)
 
 # Output file name
-output_file = f"{env_mxin.IDAP_POS_OUTPUT_DIR}POS Statement as of {current_date}.xlsx"
+output_file = f"{env_mixin.IDAP_POS_OUTPUT_DIR}POS Statement as of {current_date}.xlsx"
 
 # Create an empty dataframe
 df = pd.DataFrame(
@@ -142,53 +142,53 @@ if matching_files:
         df2 = dff1[(dff1['tran_date'] != 'Invalid Date') & (dff1['pos_number'] != '')]
         d_t = df2['date_transferred'].iloc[0]
 
-        pos_data = pd.read_sql(f"select * from {env_mxin.IDAP_POS_TBL} where date_transferred = '{d_t}'", engine)
+        pos_data = pd.read_sql(f"select * from {env_mixin.IDAP_POS_TBL} where date_transferred = '{d_t}'", engine)
 
         if not pos_data.empty:
             msg = f"Duplicate records, Date transfer {d_t} already exists"
             try:
                 dfLog['status'] = 'Error'
                 dfLog['job_output'] = msg
-                dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
                 logger.error(msg)
                 raise SystemExit(msg)
             except Exception as e2:
                 dfLog['status'] = 'Error'
                 dfLog['job_output'] = re.sub('\W+', ' ', str(e2))
-                dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
                 logger.error(e2)
                 raise SystemExit(e2)
         else:
             try:
-                df2.to_sql(env_mxin.IDAP_POS_TBL, engine, if_exists='append', index=False)
+                df2.to_sql(env_mixin.IDAP_POS_TBL, engine, if_exists='append', index=False)
                 logger.info("Data inserted successful")
                 try:
                     dfLog['status'] = 'Success'
                     dfLog['job_output'] = 'Data inserted successful'
-                    dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+                    dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
                 except Exception as e2:
                     dfLog['status'] = 'Error'
                     dfLog['job_output'] = re.sub('\W+', ' ', str(e2))
-                    dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+                    dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
                     logger.error(e2)
                     raise SystemExit(e2)
             except Exception as e1:
                 dfLog['status'] = 'Error'
                 dfLog['job_output'] = re.sub('\W+', ' ', str(e1))
-                dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
                 logger.error(e1)
                 raise SystemExit(e1)
     else:
         msg1 = f'Unable to extract data from the file'
         dfLog['status'] = 'Error'
         dfLog['job_output'] = re.sub('\W+', ' ', str(msg1))
-        dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+        dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
         logger.error(msg1)
         raise SystemExit(msg1)
 else:
     msg3 = f'{file_name} file not found'
     dfLog['status'] = 'Error'
     dfLog['job_output'] = re.sub('\W+', ' ', str(msg3))
-    dfLog.to_sql(env_mxin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
+    dfLog.to_sql(env_mixin.IDAP_LOG_TBL, engine, if_exists='append', index=False)
     logger.error(msg3)
     raise SystemExit(msg3)

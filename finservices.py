@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import Error
-import env_mxin
+import env_mixin
 from glob import iglob
 from os import path
 from datetime import datetime

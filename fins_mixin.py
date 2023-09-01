@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from sqlite3 import Error
-import env_mxin
+import env_mixin
 
 
 def read_log_file():
