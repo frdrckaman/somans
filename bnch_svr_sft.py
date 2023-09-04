@@ -4,7 +4,7 @@ from datetime import datetime
 import env_mixin
 
 logfile = f'{env_mixin.IDAP_LOGS_DIR}somans.log'
-logger = env_mixin.logservice.setup_logger('headcount', logfile)
+logger = env_mixin.logservice.setup_logger('bnch_srv_sft', logfile)
 
 logVar = {'project_name': 'SOMANS', 'report_tag': 'bnch_srv_sft', 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
           'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M')}
