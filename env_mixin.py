@@ -95,6 +95,8 @@ SOMANS_LS_OF_SVRS_DATA = env.str("SOMANS_LS_OF_SVRS_DATA")
 SOMANS_LS_OF_WKS_DATA = env.str("SOMANS_LS_OF_WKS_DATA")
 SOMANS_SFTWR_SVRS_DATA = env.str("SOMANS_SFTWR_SVRS_DATA")
 SOMANS_SFTWR_WKS_DATA = env.str("SOMANS_SFTWR_WKS_DATA")
+SOMANS_ARCHIVE_DIR = env.str("SOMANS_ARCHIVE_DIR")
+SOMANS_SCCM_DIR = env.str("SOMANS_SCCM_DIR")
 
 connection_string_idap = f"DRIVER={IDAP_DB_DRIVER};SERVER={IDAP_CLUSTER},{IDAP_DB_PORT};DATABASE={IDAP_DB};ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID={IDAP_USER};PWD={IDAP_PWD}"
 connection_url_idap = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string_idap})

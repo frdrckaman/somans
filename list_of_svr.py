@@ -1,4 +1,5 @@
 import re
+import shutil
 import pandas as pd
 from datetime import datetime
 import env_mixin
@@ -9,6 +10,8 @@ logger = env_mixin.logservice.setup_logger('ls_srv', logfile)
 logVar = {'project_name': 'SOMANS', 'report_tag': 'ls_srv', 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
           'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M')}
 dfLog = pd.DataFrame(logVar, index=[0])
+
+# shutil.move(f'{path}db_22.sqlite3', 'C:/Users/A248080/PycharmProjects/Data/Somans/db_22.sqlite3')
 
 try:
     myQuery = pd.read_csv(env_mixin.SOMANS_LS_OF_SVRS_DATA)
