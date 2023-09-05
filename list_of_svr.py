@@ -1,4 +1,5 @@
 import re
+import os
 import shutil
 import pandas as pd
 from datetime import datetime
@@ -10,8 +11,6 @@ logger = env_mixin.logservice.setup_logger('ls_srv', logfile)
 logVar = {'project_name': 'SOMANS', 'report_tag': 'ls_srv', 'status': 'Success', 'job_date': datetime.today().strftime('%Y-%m-%d'),
           'job_timestamp': datetime.today().strftime('%Y-%m-%d %H:%M')}
 dfLog = pd.DataFrame(logVar, index=[0])
-
-# shutil.move(f'{path}db_22.sqlite3', 'C:/Users/A248080/PycharmProjects/Data/Somans/db_22.sqlite3')
 
 try:
     myQuery = pd.read_csv(env_mixin.SOMANS_LS_OF_SVRS_DATA)
@@ -40,6 +39,22 @@ try:
             dfLog['status'] = 'Success'
             dfLog['job_output'] = msg2
             dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+            try:
+                os.rename(f'{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server.csv',
+                          f"{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                shutil.move(f"{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv",
+                            f"{env_mixin.SOMANS_ARCHIVE_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                msg3 = 'List_of_Servers archived Successful'
+                logger.info(msg1)
+                dfLog['status'] = 'Success'
+                dfLog['job_output'] = msg3
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+            except Exception as e3:
+                dfLog['status'] = 'Error'
+                dfLog['job_output'] = re.sub('\W+', ' ', str(e3))
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+                logger.error(e3)
+                raise SystemExit(e3)
         except Exception as e2:
             dfLog['status'] = 'Error'
             dfLog['job_output'] = re.sub('\W+', ' ', str(e2))
