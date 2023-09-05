@@ -27,6 +27,8 @@ try:
         dfLog['job_output'] = msg1
         dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
         try:
+            df['job_date'] = datetime.today().strftime('%Y-%m-%d')
+            df['job_timestamp'] = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
             df.to_sql(env_mixin.SOMANS_SFTWR_WKS_HIST, env_mixin.engine_idap, if_exists='append', index=False)
             msg2 = 'Workstation Software history data inserted Successful'
             logger.info(msg1)
