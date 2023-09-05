@@ -11,7 +11,7 @@ logVar = {'project_name': 'SOMANS', 'report_tag': 'bnch_wks_sft', 'status': 'Suc
 dfLog = pd.DataFrame(logVar, index=[0])
 
 try:
-    myQuery = pd.read_csv(env_mixin.SOMANS_BNCH_SFTWR_SVRS_DATA)
+    myQuery = pd.read_csv(env_mixin.SOMANS_BNCH_SFTWR_WKS_DATA)
     df = myQuery
     msg0 = 'Benchmark workstation software data fetched Successful'
     logger.info(msg0)
@@ -27,6 +27,8 @@ try:
         dfLog['job_output'] = msg1
         dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
         try:
+            df['job_date'] = datetime.today().strftime('%Y-%m-%d')
+            df['job_timestamp'] = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
             df.to_sql(env_mixin.SOMANS_BENCHMARK_WKS_HIST, env_mixin.engine_idap, if_exists='append', index=False)
             msg2 = 'Benchmark history workstation software data Successful'
             logger.info(msg1)
