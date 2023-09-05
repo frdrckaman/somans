@@ -27,7 +27,7 @@ try:
         dfLog['job_output'] = msg1
         dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
         try:
-            df.to_sql(env_mixin.SOMANS_SFTWR_SVRS_HIST, env_mixin.engine_idap, if_exists='append', index=False)
+            df.to_sql(env_mixin.SOMANS_SFTWR_SVRS_HIST,  env_mixin.engine_idap, if_exists='append', index=False)
             msg2 = 'Sever Software history data inserted Successful'
             logger.info(msg1)
             dfLog['status'] = 'Success'

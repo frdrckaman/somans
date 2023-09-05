@@ -12,7 +12,9 @@ dfLog = pd.DataFrame(logVar, index=[0])
 
 try:
     myQuery = pd.read_csv(env_mixin.SOMANS_LS_OF_SVRS_DATA)
-    df = myQuery
+    df = myQuery.rename(columns={'computer_ip_addess': 'computer_ip_address',
+                                 'distinguised_name_as_listed_in_active_directory': 'distinguised_name',
+                                 'username': 'user_name'})
     msg0 = 'List of server data fetched Successful'
     logger.info(msg0)
     dfLog['report_date'] = datetime.today().strftime('%Y-%m-%d')
@@ -27,6 +29,8 @@ try:
         dfLog['job_output'] = msg1
         dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
         try:
+            df['job_date'] = datetime.today().strftime('%Y-%m-%d')
+            df['job_timestamp'] = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
             df.to_sql(env_mixin.SOMANS_LS_OF_SVRS_HIST, env_mixin.engine_idap, if_exists='append', index=False)
             msg2 = 'List server history software data Successful'
             logger.info(msg1)
