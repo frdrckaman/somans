@@ -20,6 +20,10 @@ try:
     dfLog['job_output'] = msg0
     dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
     try:
+        # remove below command one sccm is fixed on frdrck wks
+        # start of command
+        df = df.drop(df[df.computer_name == '28003TANINF014L'].index)
+        # end of command
         df.to_sql(env_mixin.SOMANS_SFTWR_WKS, env_mixin.engine_idap, if_exists='append', index=False)
         msg1 = 'Workstation Software data inserted Successful'
         logger.info(msg1)
