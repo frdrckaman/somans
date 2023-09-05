@@ -1,4 +1,6 @@
 import re
+import os
+import shutil
 import pandas as pd
 from datetime import datetime
 import env_mixin
@@ -37,6 +39,22 @@ try:
             dfLog['status'] = 'Success'
             dfLog['job_output'] = msg2
             dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+            try:
+                os.rename(f'{env_mixin.SOMANS_SCCM_DIR}List_of_Workstations.csv',
+                          f"{env_mixin.SOMANS_SCCM_DIR}List_of_Workstations_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                shutil.move(f"{env_mixin.SOMANS_SCCM_DIR}List_of_Workstations_{datetime.today().strftime('%Y-%m-%d')}.csv",
+                            f"{env_mixin.SOMANS_ARCHIVE_DIR}List_of_Workstations_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                msg3 = 'List_of_Workstations archived Successful'
+                logger.info(msg1)
+                dfLog['status'] = 'Success'
+                dfLog['job_output'] = msg3
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+            except Exception as e3:
+                dfLog['status'] = 'Error'
+                dfLog['job_output'] = re.sub('\W+', ' ', str(e3))
+                dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
+                logger.error(e3)
+                raise SystemExit(e3)
         except Exception as e2:
             dfLog['status'] = 'Error'
             dfLog['job_output'] = re.sub('\W+', ' ', str(e2))

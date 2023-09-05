@@ -40,10 +40,10 @@ try:
             dfLog['job_output'] = msg2
             dfLog.to_sql(env_mixin.IDAP_LOG_TBL, env_mixin.engine_idap, if_exists='append', index=False)
             try:
-                os.rename(f'{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server.csv',
-                          f"{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv")
-                shutil.move(f"{env_mixin.SOMANS_SCCM_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv",
-                            f"{env_mixin.SOMANS_ARCHIVE_DIR}List_of_Applications_Server_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                os.rename(f'{env_mixin.SOMANS_SCCM_DIR}List_of_Servers.csv',
+                          f"{env_mixin.SOMANS_SCCM_DIR}List_of_Servers_{datetime.today().strftime('%Y-%m-%d')}.csv")
+                shutil.move(f"{env_mixin.SOMANS_SCCM_DIR}List_of_Servers_{datetime.today().strftime('%Y-%m-%d')}.csv",
+                            f"{env_mixin.SOMANS_ARCHIVE_DIR}List_of_Servers_{datetime.today().strftime('%Y-%m-%d')}.csv")
                 msg3 = 'List_of_Servers archived Successful'
                 logger.info(msg1)
                 dfLog['status'] = 'Success'
