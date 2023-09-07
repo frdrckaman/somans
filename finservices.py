@@ -8,7 +8,7 @@ import logservice
 
 
 def db():
-    return f"{env_mxin.FIN_SQLITE_DB}"
+    return f"{env_mixin.FIN_SQLITE_DB}"
 
 
 def create_connection():
@@ -26,30 +26,30 @@ def get_service(fpath):
 
 def node1_service_status(fpath):
     status = []
-    for fin in env_mxin.FIN_SERVICES.split(','):
+    for fin in env_mixin.FIN_SERVICES.split(','):
         status.append('UP') if fin in get_service(fpath) else status.append('DOWN')
     return status
 
 
 def node2_service_status(fpath):
     status = []
-    for fin in env_mxin.FIN_SERVICES.split(','):
+    for fin in env_mixin.FIN_SERVICES.split(','):
         status.append('UP') if fin in get_service(fpath) else status.append('DOWN')
     return status
 
 
 def update_node1():
-    stat = node1_service_status(env_mxin.FIN_SERVICE_FILE_NODE1)
+    stat = node1_service_status(env_mixin.FIN_SERVICE_FILE_NODE1)
     timestamp = str(datetime.now())
     stat.append(timestamp)
     stat.append(1)
     status = tuple(stat)
     conn = create_connection()
     cur = conn.cursor()
-    cur.execute(f"DELETE FROM {env_mxin.FIN_SQLITE_TABLE}")
-    cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mxin.FIN_SQLITE_TABLE}'")
-    sql_insert = f"INSERT INTO {env_mxin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
-    sql_insert_hist = f"INSERT INTO {env_mxin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    cur.execute(f"DELETE FROM {env_mixin.FIN_SQLITE_TABLE}")
+    cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SQLITE_TABLE}'")
+    sql_insert = f"INSERT INTO {env_mixin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
     cur.execute(sql_insert)
     cur.execute(sql_insert_hist)
     conn.commit()
@@ -57,15 +57,15 @@ def update_node1():
 
 
 def update_node2():
-    stat = node2_service_status(env_mxin.FIN_SERVICE_FILE_NODE1)
+    stat = node2_service_status(env_mixin.FIN_SERVICE_FILE_NODE1)
     timestamp = str(datetime.now())
     stat.append(timestamp)
     stat.append(2)
     status = tuple(stat)
     conn = create_connection()
     cur = conn.cursor()
-    sql_insert = f"INSERT INTO {env_mxin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
-    sql_insert_hist = f"INSERT INTO {env_mxin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    sql_insert = f"INSERT INTO {env_mixin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
+    sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES {status}"
     cur.execute(sql_insert)
     cur.execute(sql_insert_hist)
     conn.commit()
@@ -73,8 +73,8 @@ def update_node2():
 
 
 def main():
-    logfile = f'{env_mxin.FIN_SERVICES_LOGS}finservices.log'
-    logger = logservice.setup_logger(env_mxin.FIN_SERVICES_TAG, logfile)
+    logfile = f'{env_mixin.FIN_SERVICES_LOGS}finservices.log'
+    logger = logservice.setup_logger(env_mixin.FIN_SERVICES_TAG, logfile)
 
     try:
         update_node1()
