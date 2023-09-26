@@ -1,0 +1,299 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load static %}
+{% block title %}
+    <title> IDAP | APP </title>
+{% endblock %}
+{% block app_link %}
+    <body class="py-5 md:py-0">
+        <!-- BEGIN: Top Bar -->
+        <div class="top-bar-boxed top-bar-boxed--top-menu h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative md:fixed md:inset-x-0 md:top-0 sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700">
+            <div class="h-full flex items-center">
+                <!-- BEGIN: Logo -->
+                <a href="" class="logo -intro-x hidden md:flex xl:w-[180px] block">
+
+                    <span class="logo__text text-white text-lg ml-3"> IDAP </span>
+                </a>
+                <!-- END: Logo -->
+                <!-- BEGIN: Breadcrumb -->
+                <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
+                    <ol class="breadcrumb breadcrumb-light">
+                        <li class="breadcrumb-item"><a href="#">Application</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+                <!-- END: Breadcrumb -->
+                <!-- BEGIN: Search -->
+                <div class="intro-x relative mr-3 sm:mr-6">
+                    <div class="search hidden sm:block">
+                        <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
+                        <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
+                    </div>
+                    <a class="notification notification--light sm:hidden" href=""> <i data-lucide="search" class="notification__icon dark:text-slate-500"></i> </a>
+
+                </div>
+            </div>
+        </div>
+        <!-- BEGIN: Content -->
+        <div class="content">
+            <div class="tab-content mt-5">
+                <div id="profile" class="tab-pane active" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="grid grid-cols-12 gap-6">
+                        <!-- BEGIN: Latest Uploads -->
+                        <div class="intro-y box col-span-12 lg:col-span-4">
+                            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Latest Uploads
+                                </h2>
+                                <div class="dropdown ml-auto sm:hidden">
+                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                    <div class="dropdown-menu w-40">
+                                        <ul class="dropdown-content">
+                                            <li> <a href="javascript:;" class="dropdown-item">All Files</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-secondary hidden sm:flex">All Files</button>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Documentation</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file">
+                                        <a href="" class="w-12 file__icon file__icon--file">
+                                            <div class="file__icon__file-name text-xs">MP3</div>
+                                        </a>
+                                    </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Celine Dion - Ashes</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--empty-directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Resources</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">0 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="intro-y box col-span-12 lg:col-span-4">
+                            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Latest Uploads
+                                </h2>
+                                <div class="dropdown ml-auto sm:hidden">
+                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                    <div class="dropdown-menu w-40">
+                                        <ul class="dropdown-content">
+                                            <li> <a href="javascript:;" class="dropdown-item">All Files</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-secondary hidden sm:flex">All Files</button>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Documentation</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file">
+                                        <a href="" class="w-12 file__icon file__icon--file">
+                                            <div class="file__icon__file-name text-xs">MP3</div>
+                                        </a>
+                                    </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Celine Dion - Ashes</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--empty-directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Resources</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">0 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="intro-y box col-span-12 lg:col-span-4">
+                            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Latest Uploads
+                                </h2>
+                                <div class="dropdown ml-auto sm:hidden">
+                                    <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                    <div class="dropdown-menu w-40">
+                                        <ul class="dropdown-content">
+                                            <li> <a href="javascript:;" class="dropdown-item">All Files</a> </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-secondary hidden sm:flex">All Files</button>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Documentation</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file">
+                                        <a href="" class="w-12 file__icon file__icon--file">
+                                            <div class="file__icon__file-name text-xs">MP3</div>
+                                        </a>
+                                    </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Celine Dion - Ashes</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center mt-5">
+                                    <div class="file"> <a href="" class="w-12 file__icon file__icon--empty-directory"></a> </div>
+                                    <div class="ml-4">
+                                        <a class="font-medium" href="">Resources</a>
+                                        <div class="text-slate-500 text-xs mt-0.5">0 KB</div>
+                                    </div>
+                                    <div class="dropdown ml-auto">
+                                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false" data-tw-toggle="dropdown"> <i data-lucide="more-horizontal" class="w-5 h-5 text-slate-500"></i> </a>
+                                        <div class="dropdown-menu w-40">
+                                            <ul class="dropdown-content">
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="users" class="w-4 h-4 mr-2"></i> Share File </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="dropdown-item"> <i data-lucide="trash" class="w-4 h-4 mr-2"></i> Delete </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Latest Uploads -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- END: Content -->
+        <!-- BEGIN: JS Assets-->
+        <script src="{% static 'dist/js/app.js' %}"></script>
+        <!-- END: JS Assets-->
+    </body>
+{% endblock app_link %}
+{% block main_content %}{% endblock %}

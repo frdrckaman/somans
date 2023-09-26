@@ -16,6 +16,7 @@ media
 data/*.xlsx
 data/*.csv
 data/*.sqlite3
+data/*.txt
 
 data/finmonitor/*
 

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'simple_history',
     'import_export',
     # 'defender',
+    'idap_application.apps.AppConfig',
     'idap_finservices.apps.AppConfig',
     'idap_database.apps.AppConfig',
     'idap_logs.apps.AppConfig',
