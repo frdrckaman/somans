@@ -1,0 +1,21 @@
+<div class="intro-y box col-span-12 lg:col-span-4">
+    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+        <h2 class="font-medium text-base mr-auto">
+            {{ env_name }}
+        </h2>
+    </div>
+    <div class="p-5">
+        {% for app in uat_links %}
+            <div class="flex items-center mt-5">
+                <div class="file">
+                    <a href="{{ app.app_env }}" class="w-12 file__icon file__icon--file">
+                        <div class="file__icon__file-name text-xs"><div class="top-menu__icon"> <i data-lucide="globe"></i> </div></div>
+                    </a>
+                </div>
+                <div class="ml-4">
+                    <a class="font-medium" href="{{ app.app_link }}">{{ app.app_name }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
