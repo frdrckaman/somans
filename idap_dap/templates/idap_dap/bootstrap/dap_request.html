@@ -7,6 +7,11 @@
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 lg:col-span-2"></div>
         <div class="intro-y col-span-12 lg:col-span-8">
+            {% if request.GET.response == 'success' %}
+                <div class="alert alert-success-soft show flex items-center mb-2" role="alert"> <i data-lucide="thumbs-up" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+            {% elif request.GET.response == 'error' %}
+                <div class="alert alert-danger-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+            {% endif %}
             <!-- BEGIN: Horizontal Form -->
             <div class="intro-y box mt-5">
                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
@@ -14,7 +19,8 @@
                         Data Center Access Request Form
                     </h2>
                 </div>
-                <form method="post">
+                <form method="post" action="{% url 'idap-dap:da-request' %}">
+                    {% csrf_token %}
                     <div id="horizontal-form" class="p-5">
                         <div class="preview">
                             <label>Location</label>

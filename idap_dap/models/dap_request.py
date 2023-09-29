@@ -1,5 +1,6 @@
 import getpass
 from django.db import models
+from django.utils import timezone
 from simple_history.models import HistoricalRecords
 
 from idap_dap.choices import DC_LOCATION
@@ -67,6 +68,11 @@ class DataCenterAccessRequest(BaseUuidModel):
         verbose_name="Approval Comments",
         blank=True,
         null=True,
+    )
+
+    request_timestamp = models.DateTimeField(
+        verbose_name="Request Timestamp",
+        default=timezone.now,
     )
 
     history = HistoricalRecords()
