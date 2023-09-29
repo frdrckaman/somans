@@ -1,0 +1,191 @@
+{% extends 'somans_dashboard/bootstrap/base.html' %}
+{% load static %}
+{% block title %}
+    <title> IDAP | DA </title>
+{% endblock %}
+{% block content %}
+<div class="grid grid-cols-12 gap-6 mt-5">
+    <div class="intro-y col-span-12 lg:col-span-1"></div>
+    <div class="intro-y col-span-12 lg:col-span-12">
+        {% if request.GET.response == 'success' %}
+            <div class="alert alert-success-soft show flex items-center mb-2" role="alert"> <i data-lucide="thumbs-up" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% elif request.GET.response == 'error' %}
+            <div class="alert alert-danger-soft show flex items-center mb-2" role="alert"> <i data-lucide="alert-octagon" class="w-6 h-6 mr-2"></i> {{ request.GET.message }} </div>
+        {% endif %}
+        <!-- BEGIN: Striped Rows -->
+        <div class="intro-y box mt-5">
+            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
+                <h2 class="font-medium text-base mr-auto">
+                    Pending Data Center Access Request
+                </h2>
+            </div>
+            <div class="p-5" id="striped-rows-table">
+                <div class="preview">
+                    <div class="overflow-x-auto">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="whitespace-nowrap">#</th>
+                                <th class="whitespace-nowrap">Location</th>
+                                <th class="whitespace-nowrap">Visitor Name</th>
+                                <th class="whitespace-nowrap">Visitor Organisation</th>
+                                <th class="whitespace-nowrap">Start Datatime</th>
+                                <th class="whitespace-nowrap">End Datatime</th>
+                                <th class="whitespace-nowrap">Reasons</th>
+                                <th class="whitespace-nowrap">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for approval in approvals %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>On Premises</td>
+                                        <td>Fredrick</td>
+                                        <td>Stanbic</td>
+                                        <td>Sept. 29, 2023 12:47 p.m.</td>
+                                        <td>Sept. 29, 2023 13:47 p.m.</td>
+                                        <td>Check</td>
+                                        <td>
+                                            <div class="text-center">
+                                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#details{{ forloop.counter }}" class="btn btn-primary mr-1 mb-2">Details</a>
+                                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#approve{{ forloop.counter }}" class="btn btn-warning mr-1 mb-2">Approve</a>
+                                            </div>
+                                            <div id="details{{ forloop.counter }}" class="modal" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="intro-y box mt-5">
+                                                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                                                <h2 class="font-medium text-base mr-auto">
+                                                                    Data Center Access Request Form
+                                                                </h2>
+                                                            </div>
+                                                            <form method="post" action="">
+                                                                <div id="horizontal-form" class="p-5">
+                                                                    <div class="preview">
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="location" class="form-label sm:w-40">Location:</label>
+                                                                            {% if approval.location == 'on_premises' %}
+                                                                                <input id="location" type="text" name="location" class="form-control" value="On Premises" disabled>
+                                                                            {% else %}
+                                                                                <input id="location" type="text" name="location" class="form-control" value="On DR" disabled>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_name" class="form-label sm:w-40">Visitor Name:</label>
+                                                                            <input id="visitor_name" type="text" name="visitor_name" class="form-control" value="{{ approval.visitor_name }}" disabled>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_org" class="form-label sm:w-40">Visitor Organisation:</label>
+                                                                            <input id="visitor_org" type="text" name="visitor_org" class="form-control" value="{{ approval.visitor_org }}" disabled>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_phone" class="form-label sm:w-40">Visitor Phone Number:</label>
+                                                                            <input id="visitor_phone" type="text" name="visitor_phone" class="form-control" value="{{ approval.visitor_phone }}" disabled>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_email" class="form-label sm:w-40">Visitor Email Address:</label>
+                                                                            <input id="visitor_email" type="text" name="visitor_email" class="form-control" value="{{ approval.visitor_email }}" disabled>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_address" class="form-label sm:w-40">Visitor Address:</label>
+                                                                            <input id="visitor_address" type="text" name="visitor_address" class="form-control" value="{{ approval.visitor_address }}" disabled>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="start_date" class="form-label sm:w-40">Start Date:</label>
+                                                                            <div class="relative w-56">
+                                                                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                                                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                                                                </div>
+                                                                                <input id="start_date" type="text" name="start_date" class="form-control pl-12" value="{{ approval.start_date }}" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="start_time" class="form-label sm:w-40">Start Time:</label>
+                                                                            <div class="relative w-56">
+                                                                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                                                                    <i data-lucide="timer" class="w-4 h-4"></i>
+                                                                                </div>
+                                                                                <input id="start_time" type="text" name="start_time" class="form-control pl-12" value="{{ approval.start_time }}" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="end_date" class="form-label sm:w-40">End Date:</label>
+                                                                            <div class="relative w-56">
+                                                                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                                                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                                                                </div>
+                                                                                <input id="end_date" type="text" name="end_date" class="form-control pl-12" value="{{ approval.end_date }}" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="end_time" class="form-label sm:w-40">End Time:</label>
+                                                                            <div class="relative w-56">
+                                                                                <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                                                                    <i data-lucide="timer" class="w-4 h-4"></i>
+                                                                                </div>
+                                                                                <input id="end_time" type="text" name="end_time" class="form-control pl-12" value="{{ approval.end_time }}" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="visitor_reasons" class="form-label sm:w-40">Reasons:</label>
+                                                                            <textarea id="visitor_reasons" name="reason" class="form-control" rows="4" disabled>{{ approval.reason }}</textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="approve{{ forloop.counter }}" class="modal" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="intro-y box mt-5">
+                                                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                                                <h2 class="font-medium text-base mr-auto">
+                                                                    Data Center Access Approval Form
+                                                                </h2>
+                                                            </div>
+                                                            <form method="post" action="{% url 'idap-dap:da-approval' %}">
+                                                                {% csrf_token %}
+                                                                <div id="horizontal-form" class="p-5">
+                                                                    <div class="preview">
+                                                                        <label>Request Status:</label>
+                                                                        <div class="flex flex-col sm:flex-row mt-2">
+                                                                            <div class="form-check mr-2">
+                                                                                <input id="radio-switch-4" class="form-check-input" type="radio" name="approve" value="1" required>
+                                                                                <label class="form-check-label" for="radio-switch-4">Approve</label>
+                                                                            </div>
+                                                                            <div class="form-check mr-2 mt-2 sm:mt-0">
+                                                                                <input id="radio-switch-5" class="form-check-input" type="radio" name="approve" value="2" required>
+                                                                                <label class="form-check-label" for="radio-switch-5">Decline</label>
+                                                                            </div>
+                                                                        </div><br>
+                                                                        <div class="form-inline mt-5">
+                                                                            <label for="approval_comment" class="form-label sm:w-40">Comments:</label>
+                                                                            <textarea id="approval_comment" name="approval_comment" class="form-control" rows="4"></textarea>
+                                                                        </div>
+                                                                        <div class="sm:ml-20 sm:pl-5 mt-5">
+                                                                            <input type="hidden" name="id" value="{{ approval.id }}">
+                                                                            <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Striped Rows -->
+    </div>
+</div>
+{% endblock %}

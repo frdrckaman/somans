@@ -69,10 +69,13 @@ class DataCenterAccessRequest(BaseUuidModel):
         blank=True,
         null=True,
     )
-
     request_timestamp = models.DateTimeField(
         verbose_name="Request Timestamp",
         default=timezone.now,
+    )
+    status = models.IntegerField(
+        verbose_name="Status",
+        default=0
     )
 
     history = HistoricalRecords()
