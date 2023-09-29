@@ -1,6 +1,6 @@
-from django.apps import AppConfig
+from django.apps import AppConfig as DjangoAppConfig
 
 
-class IdapDapConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
-    name = "idap_dap"
+class AppConfig(DjangoAppConfig):
+    name = 'idap_dap'
+

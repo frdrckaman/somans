@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'import_export',
     # 'defender',
     'idap_application.apps.AppConfig',
+    'idap_dap.apps.AppConfig',
     'idap_finservices.apps.AppConfig',
     'idap_database.apps.AppConfig',
     'idap_logs.apps.AppConfig',
