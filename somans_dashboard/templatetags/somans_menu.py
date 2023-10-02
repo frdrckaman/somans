@@ -2,6 +2,7 @@ import getpass
 from django import template
 from django.conf import settings
 
+from idap_dap.models import DataCenterAccessRequest
 from somans_dashboard.models import ApproveSoftware
 
 register = template.Library()
@@ -38,11 +39,14 @@ def top_bar_menu(context, adm=False):
     admin_usr = str(settings.SOMANS_ADMIN).split(",")
     usr = str(context.get('user'))
     no_approve = ApproveSoftware.objects.filter(status=0).count() if usr in admin_usr else None
+    dca_request = DataCenterAccessRequest.objects.filter(status=0)
+    no_dca_request = dca_request.count() if dca_request else None
     return dict(
         title=title,
         frdrck=adm,
         username=context.get('user'),
         no_approve=no_approve,
+        no_dca_request=no_dca_request,
     )
 
 

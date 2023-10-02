@@ -23,6 +23,11 @@
                     <a href="{% url 'somans_dashboard:approve-sft-req' %}" class="btn btn-outline-danger w-1/2 sm:w-auto mr-2" style="color: #f8f8f8"> <i class="w-4 h-4 mr-2" style="color: #f8f8f8"> {{ no_approve }} </i> Approval Request </a>
                 </div>
             {% endif %}
+            {% if no_dca_request > 0 %}
+                <div class="intro-x relative mr-3 sm:mr-6">
+                    <a href="{% url 'idap-dap:dap-approval' %}" class="btn btn-outline-danger w-1/2 sm:w-auto mr-2" style="color: #f8f8f8"> <i class="w-4 h-4 mr-2" style="color: #f8f8f8"> {{ no_dca_request }} </i> DCA Request </a>
+                </div>
+            {% endif %}
             <!-- END: Search -->
             <!-- BEGIN: Notifications -->
 {#               <div class="intro-x dropdown mr-4 sm:mr-6">#}
