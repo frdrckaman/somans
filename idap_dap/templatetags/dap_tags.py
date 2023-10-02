@@ -9,7 +9,7 @@ register = template.Library()
     f"idap_dap/bootstrap/button/dc_access_approve_btn.html",
     takes_context=True,
 )
-def dca_approve_btn(context, count):
+def dca_approve_btn(context, count, rid):
     title = None
     admin_usr = str(settings.IDAP_ADMIN).split(",")
     usr = str(context.get('user'))
@@ -18,5 +18,6 @@ def dca_approve_btn(context, count):
         title=title,
         admin=admin,
         count=count,
+        rid=rid,
         username=context.get('user'),
     )

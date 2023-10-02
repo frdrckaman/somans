@@ -59,7 +59,7 @@
                                         <td>
                                             <div class="text-center">
                                                 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#details{{ forloop.counter }}" class="btn btn-default mr-1 mb-2">Details</a>
-                                                {% dca_approve_btn forloop.counter %}
+                                                {% dca_approve_btn forloop.counter approval.id %}
                                             </div>
                                             <div id="details{{ forloop.counter }}" class="modal" tabindex="-1" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">

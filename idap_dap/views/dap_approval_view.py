@@ -20,7 +20,8 @@ class DataCenterAccessApprovalView(TemplateView):
 def dc_approve_request(request, url=None):
     if request.method == 'POST':
         try:
-            DataCenterAccessRequest.objects.filter(pk=request.POST.get("id")).update(
+            print(request.POST.get("id"))
+            DataCenterAccessRequest.objects.filter(id=request.POST.get("id")).update(
                 approver=str(request.user),
                 approval_date=timezone.now(),
                 status=request.POST.get("approve"),
@@ -30,8 +31,8 @@ def dc_approve_request(request, url=None):
 
         except Exception as e:
             res = 'error'
-            # message = 'Error occurred while approving this request,please check your inputs and try again'
-            message = e
+            message = 'Error occurred while approving this request,please check your inputs and try again'
+            # message = e
 
         notification = res + '&message=' + message
         url = "?response=".join([reverse('idap-dap:dap-approval'), notification])
