@@ -30,7 +30,8 @@ def dc_approve_request(request, url=None):
 
         except Exception as e:
             res = 'error'
-            message = 'Error occurred while approving this request,please check your inputs and try again'
+            # message = 'Error occurred while approving this request,please check your inputs and try again'
+            message = e
 
         notification = res + '&message=' + message
         url = "?response=".join([reverse('idap-dap:dap-approval'), notification])
