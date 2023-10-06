@@ -1,5 +1,7 @@
 import json
+import pandas as pd
 
+from django.conf import settings
 from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
 
@@ -16,4 +18,9 @@ class GroupSoftwareList(IdapLoginMixin, SoftwareListboardView, TemplateView):
             group_software_list=group_software_list
         )
         return context
+
+    @property
+    def group_software_list(self):
+        df = pd.read_sql(f"select * from {settings.SOMANS_GRP_SFTWR}", settings.SOMANS_ENGINE)
+        return df.to_dict('records')
 
