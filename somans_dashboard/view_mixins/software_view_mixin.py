@@ -705,8 +705,8 @@ class SoftwareListboardView:
     @property
     def new_software_workstation_nw(self):
         # df = pd.read_sql_query(settings.SOMANS_NEW_APP_WKS, settings.SOMANS_ENGINE)
-        df = pd.read_sql_query(settings.SOMANS_NEW_APP_WKS1, settings.SOMANS_ENGINE)
-        df = df.dropna()
+        df = pd.read_sql(settings.SOMANS_NEW_APP_WKS1, settings.SOMANS_ENGINE)
+        df = df.dropna(how='all')
         return df
 
     @property
