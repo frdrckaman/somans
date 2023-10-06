@@ -952,7 +952,7 @@ class SoftwareListboardView:
         # df11 = df1.drop_duplicates(['computer_name'])
         return df1.to_dict('records')
 
-
+    # remove
     def get_server_workstation_app(self, name):
         # df1 = pd.read_sql(f"select * from (select * from software_server_new  union select * from software_workstation_new) a "
         #                   f"left join (select * from list_of_workstations union select a.*, null os_build_version, null user_email from list_of_servers a) b "

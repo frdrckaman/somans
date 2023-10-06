@@ -1,7 +1,8 @@
 import json
+import pandas as pd
 
 from django.views.generic.base import TemplateView
-
+from django.conf import settings
 from somans_dashboard.models import ApproveSoftware
 from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
 
@@ -20,4 +21,13 @@ class ApproveSoftwareSvrWksView(IdapLoginMixin, SoftwareListboardView, TemplateV
             svr_wks_sft_app=svr_wks_sft_app,
         )
         return context
+
+    def get_server_workstation_app(self, name):
+        df1 = pd.read_sql(
+            f"select * from (select * from {settings.SOMANS_SFTWR_SVRS}  union select * from {settings.SOMANS_SFTWR_WKS}) a "
+            f"left join (select * from {settings.SOMANS_LS_OF_WKS} union select a.*, null os_build_version, null user_email from {settings.SOMANS_LS_OF_SVRS} a) b "
+            f"on a.computer_name = b.computer_name where a.product_name = '{name}'",
+            settings.SOMANS_ENGINE)
+        # df11 = df1.drop_duplicates(['computer_name'])
+        return df1.to_dict('records')
 
