@@ -33,4 +33,6 @@ from .approve_software import ApproveSoftwareView
 from .approve_new_software import ApproveSoftwareSvrWksView
 from .theme_view import change_theme
 from .error_404_view import handle_not_found, handle_server_error
+from .welcome_view import WelcomeView
+
 
