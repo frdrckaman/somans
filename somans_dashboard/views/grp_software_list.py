@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateView
 from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
 
 
-class GroupSoftwareList(IdapLoginMixin, SoftwareListboardView, TemplateView):
+class GroupSoftwareList(IdapLoginMixin, TemplateView):
     template_name = f"somans_dashboard/bootstrap/grp_software_list.html"
 
     def get_context_data(self, **kwargs):
