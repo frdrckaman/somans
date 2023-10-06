@@ -2,11 +2,11 @@ import json
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.generic.base import TemplateView
-from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
+from somans_dashboard.view_mixins import IdapLoginMixin
 from somans_dashboard.models import ApproveSoftware
 
 
-class ApproveSoftwareView(IdapLoginMixin, SoftwareListboardView, TemplateView):
+class ApproveSoftwareView(IdapLoginMixin, TemplateView):
     template_name = f"somans_dashboard/bootstrap/approve_software.html"
 
     def get_context_data(self, **kwargs):
