@@ -49,9 +49,9 @@ class SoftwareListboardView:
         )
         return context
 
-    @method_decorator(login_required(login_url='somans_auth:login'))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    # @method_decorator(login_required(login_url='somans_auth:login'))
+    # def dispatch(self, *args, **kwargs):
+    #     return super().dispatch(*args, **kwargs)
 
     @property
     def get_server_all(self):

@@ -1,10 +1,10 @@
 import json
 
 from django.views.generic.base import TemplateView
-from somans_dashboard.view_mixins import SoftwareListboardView
+from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
 
 
-class RemovedSoftwareWorkstationView(SoftwareListboardView, TemplateView):
+class RemovedSoftwareWorkstationView(IdapLoginMixin, SoftwareListboardView, TemplateView):
     template_name = f"somans_dashboard/bootstrap/removed_sft_wks.html"
 
     def get_context_data(self, **kwargs):

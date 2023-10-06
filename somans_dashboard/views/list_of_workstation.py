@@ -1,10 +1,10 @@
 import json
 
 from django.views.generic.base import TemplateView
-from somans_dashboard.view_mixins import SoftwareListboardView
+from somans_dashboard.view_mixins import SoftwareListboardView, IdapLoginMixin
 
 
-class ListOfWorkstationView(SoftwareListboardView, TemplateView):
+class ListOfWorkstationView(IdapLoginMixin, SoftwareListboardView, TemplateView):
     template_name = f"somans_dashboard/bootstrap/list_of_workstation.html"
 
     def get_context_data(self, **kwargs):
