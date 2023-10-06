@@ -704,7 +704,9 @@ class SoftwareListboardView:
 
     @property
     def new_software_workstation_nw(self):
-        df = pd.read_sql_query(settings.SOMANS_NEW_APP_WKS, settings.SOMANS_ENGINE)
+        # df = pd.read_sql_query(settings.SOMANS_NEW_APP_WKS, settings.SOMANS_ENGINE)
+        df = pd.read_sql_query(settings.SOMANS_NEW_APP_WKS1, settings.SOMANS_ENGINE)
+        df = df.dropna()
         return df
 
     @property
@@ -762,6 +764,7 @@ class SoftwareListboardView:
         df2 = self.new_software_workstation_nw
         df22 = df2.drop_duplicates('product_name')
         return len(df22)
+        # return len(df2)
 
     @property
     def software_ls_nt_inst_server(self):
