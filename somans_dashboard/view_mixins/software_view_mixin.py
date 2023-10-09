@@ -927,12 +927,12 @@ class SoftwareListboardView:
         df = pd.read_sql(f"select * from {settings.SOMANS_APPRV_SFTWR} where status = 1", settings.SOMANS_ENGINE)
         return df
 
-    # @property
-    # def group_software_list(self):
-    #     # df = pd.read_sql(f"select * from group_software_list", settings.SOMANS_ENGINE)
-    #     df = pd.read_sql(f"select * from {settings.SOMANS_GRP_SFTWR}", settings.SOMANS_ENGINE)
-    #     # df.drop_duplicates('product_name')
-    #     return df.to_dict('records')
+    @property
+    def group_software_list(self):
+        # df = pd.read_sql(f"select * from group_software_list", settings.SOMANS_ENGINE)
+        df = pd.read_sql(f"select * from {settings.SOMANS_GRP_SFTWR}", settings.SOMANS_ENGINE)
+        # df.drop_duplicates('product_name')
+        return df.to_dict('records')
 
     @property
     def get_server_benchmark(self):
