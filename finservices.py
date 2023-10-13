@@ -61,7 +61,7 @@ def update_node1():
 
 
 def update_node2():
-    stat = node2_service_status(env_mixin.FIN_SERVICE_FILE_NODE1)
+    stat = node2_service_status(env_mixin.FIN_SERVICE_FILE_NODE2)
     timestamp = str(datetime.now())
     stat.append(timestamp)
     stat.append(2)
@@ -79,9 +79,6 @@ def update_node2():
 def main():
     logfile = f'{env_mixin.FIN_SERVICES_LOGS}finservices.log'
     logger = logservice.setup_logger(env_mixin.FIN_SERVICES_TAG, logfile)
-
-    print(env_mixin.FIN_SERVICE_FILE_NODE1)
-    print(get_service(env_mixin.FIN_SERVICE_FILE_NODE1))
 
     try:
         update_node1()
