@@ -2,67 +2,73 @@
 {% load idap_fins %}
 {% load static %}
 {% block content %}
-<div class="grid grid-cols-12 gap-6">
-    <div class="col-span-12 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto mt-3">
-        <div class="intro-x flex items-center h-10">
-            <h2 class="text-lg font-medium truncate mr-auto"></h2>
-            <button data-carousel="important-notes" data-target="prev" class="tiny-slider-navigator btn px-2 border-gray-400 text-gray-700 dark:text-gray-300 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
-            <button data-carousel="important-notes" data-target="next" class="tiny-slider-navigator btn px-2 border-gray-400 text-gray-700 dark:text-gray-300 mr-2"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
-        </div>
-        <div class="mt-5 intro-x">
-            <div class="box zoom-in">
-                <div class="tiny-slider" id="important-notes">
-                    <div class="p-5">
-                        <div class="col-span-12 mt-8">
-                            <div class="intro-y flex items-center h-10">
-                                <h2 class="text-lg font-medium truncate mr-5">
-                                    Finacle Services NODE 1
-                                </h2>
-                                {% FinStatusTime1 %}
-                            </div>
-                            <div class="grid grid-cols-12 gap-6 mt-5">
-                                {% for name in fin_service_name %}
-                                    <div class="col-span-12 sm:col-span-6 xl:col-span-2 intro-y">
-                                        <div class="report-box zoom-in">
-                                            <div class="box p-5">
-                                                <div class="flex">
-                                                    {% FinStatusIcon1 forloop.counter %}
+    <script>
+        window.setTimeout( function() {
+            window.location.reload();
+        }, 30000);
+    </script>
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto mt-3">
+            <div class="intro-x flex items-center h-10">
+                <h2 class="text-lg font-medium truncate mr-auto"></h2>
+                <button data-carousel="important-notes" data-target="prev" class="tiny-slider-navigator btn px-2 border-gray-400 text-gray-700 dark:text-gray-300 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
+                <button data-carousel="important-notes" data-target="next" class="tiny-slider-navigator btn px-2 border-gray-400 text-gray-700 dark:text-gray-300 mr-2"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
+            </div>
+            <div class="mt-5 intro-x">
+                <div class="box zoom-in">
+                    <div class="tiny-slider" id="important-notes">
+                        <div class="p-5">
+                            <div class="col-span-12 mt-8">
+                                <div class="intro-y flex items-center h-10">
+                                    <h2 class="text-lg font-medium truncate mr-5">
+                                        Finacle Services NODE 1
+                                    </h2>
+                                    {% FinStatusTime1 %}
+                                </div>
+                                <div class="grid grid-cols-12 gap-6 mt-5">
+                                    {% for name in fin_service_name %}
+                                        <div class="col-span-12 sm:col-span-6 xl:col-span-2 intro-y">
+                                            <div class="report-box zoom-in">
+                                                <div class="box p-5">
+                                                    <div class="flex">
+                                                        {% FinStatusIcon1 forloop.counter %}
+                                                    </div>
+                                                    <div class="text-3xl font-medium leading-8 mt-6">
+                                                        <a href="#">{{ name }}</a>
+                                                    </div>
+                                                    <div class="text-base text-slate-500 mt-1"></div>
                                                 </div>
-                                                <div class="text-3xl font-medium leading-8 mt-6">
-                                                    <a href="#">{{ name }}</a>
-                                                </div>
-                                                <div class="text-base text-slate-500 mt-1"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="col-span-12 mt-8">
-                            <div class="intro-y flex items-center h-10">
-                                <h2 class="text-lg font-medium truncate mr-5">
-                                    Finacle Services NODE 2
-                                </h2>
-                                {% FinStatusTime2 %}
-                            </div>
-                            <div class="grid grid-cols-12 gap-6 mt-5">
-                                {% for name in fin_service_name %}
-                                    <div class="col-span-12 sm:col-span-6 xl:col-span-2 intro-y">
-                                        <div class="report-box zoom-in">
-                                            <div class="box p-5">
-                                                <div class="flex">
-                                                    {% FinStatusIcon2 forloop.counter %}
+                        <div class="p-5">
+                            <div class="col-span-12 mt-8">
+                                <div class="intro-y flex items-center h-10">
+                                    <h2 class="text-lg font-medium truncate mr-5">
+                                        Finacle Services NODE 2
+                                    </h2>
+                                    {% FinStatusTime2 %}
+                                </div>
+                                <div class="grid grid-cols-12 gap-6 mt-5">
+                                    {% for name in fin_service_name %}
+                                        <div class="col-span-12 sm:col-span-6 xl:col-span-2 intro-y">
+                                            <div class="report-box zoom-in">
+                                                <div class="box p-5">
+                                                    <div class="flex">
+                                                        {% FinStatusIcon2 forloop.counter %}
+                                                    </div>
+                                                    <div class="text-3xl font-medium leading-8 mt-6">
+                                                        <a href="#">{{ name }}</a>
+                                                    </div>
+                                                    <div class="text-base text-slate-500 mt-1"></div>
                                                 </div>
-                                                <div class="text-3xl font-medium leading-8 mt-6">
-                                                    <a href="#">{{ name }}</a>
-                                                </div>
-                                                <div class="text-base text-slate-500 mt-1"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,5 +76,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
