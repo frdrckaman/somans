@@ -7,3 +7,8 @@ class FinServicesTimer(BaseUuidModel):
     last_run = models.DateTimeField(
         verbose_name='Last Run',
     )
+
+class FinServicesTimerNew(models.Model):
+    last_run = models.DateTimeField(
+        verbose_name='Last Run',
+    )

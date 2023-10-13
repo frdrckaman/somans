@@ -44,16 +44,19 @@ def node2_service_status(fpath):
     return status
 
 def time_diff():
-    myQuery = 'select top 1 from idap_finservices_finservicestimer order by last_run desc'
+    myQuery = "select top 1 * from idap_finservices_finservicestimernew order by last_run desc"
     last_run = pd.read_sql_query(myQuery, env_mixin.engine_idap)
 
-    if last_run:
+    if not last_run.empty:
+        print('frd')
         minutes_diff = (datetime.now() - last_run).total_seconds() / 60
         time_diff = int(minutes_diff)
     else:
-        lr = {'last_run': datetime.now()}
-        l_r = pd.DataFrame(lr, index=[0])
-        pd.read_sql_query(l_r, env_mixin.engine_idap)
+        print('aman')
+        # lr = {'last_run': datetime.now()}
+        # l_r = pd.DataFrame(lr, index=[0])
+        # last_run['last_run'] = datetime.now()
+        pd.read_sql_query(last_run, env_mixin.engine_idap)
         time_diff = 0
     return time_diff
 
