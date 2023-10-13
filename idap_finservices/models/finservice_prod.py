@@ -82,6 +82,14 @@ class FinServicesProd(models.Model):
         verbose_name='Eabgst-TZ',
         max_length=6
     )
+    Trswift_TZ = models.CharField(
+        verbose_name='Trswift-TZ',
+        max_length=6
+    )
+    Uplpsmsg_TZ = models.CharField(
+        verbose_name='Uplpsmsg-TZ',
+        max_length=6
+    )
     fin_timestamp = models.CharField(
         verbose_name='Timestamp',
         max_length=45
