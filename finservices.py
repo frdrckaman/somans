@@ -80,6 +80,8 @@ def main():
     logfile = f'{env_mixin.FIN_SERVICES_LOGS}finservices.log'
     logger = logservice.setup_logger(env_mixin.FIN_SERVICES_TAG, logfile)
 
+    print(node2_service_status(env_mixin.FIN_SERVICE_FILE_NODE1))
+
     try:
         update_node1()
         logger.info("Node 1 Finacle Services fetched Successful")
