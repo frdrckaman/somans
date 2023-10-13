@@ -73,10 +73,12 @@ def update_node1():
     conn.execute(f"DBCC CHECKIDENT ('{env_mixin.FIN_SERVICE_TABLE}', RESEED, 0)")
     # conn.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SERVICE_TABLE}'")
     sql_insert = f"INSERT INTO {env_mixin.FIN_SERVICE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
-    if time_diff() >= 5:
-        print(time_diff())
-        # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
-        # conn.execute(sql_insert_hist)
+    # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
+    # conn.execute(sql_insert_hist)
+    # if time_diff() >= 5:
+    #     print(time_diff())
+    #     # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
+    #     # conn.execute(sql_insert_hist)
     conn.execute(sql_insert)
     conn.commit()
     conn.close()
@@ -91,10 +93,12 @@ def update_node2():
     conn = create_connection()
     # cur = conn.cursor()
     sql_insert = f"INSERT INTO {env_mixin.FIN_SERVICE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
-    if time_diff() >= 5:
-        time_diff()
-        # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
-        # conn.execute(sql_insert_hist)
+    # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
+    # conn.execute(sql_insert_hist)
+    # if time_diff() >= 5:
+    #     time_diff()
+    #     # sql_insert_hist = f"INSERT INTO {env_mixin.FIN_TABLE_HIST} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp,node) VALUES {status}"
+    #     # conn.execute(sql_insert_hist)
     conn.execute(sql_insert)
 
     conn.commit()
