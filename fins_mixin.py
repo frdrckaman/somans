@@ -97,8 +97,8 @@ def create_connection():
 #     fin_status = fin_services_status()
 #     conn = create_connection()
 #     cur = conn.cursor()
-#     cur.execute(f"DELETE FROM {env_mixin.FIN_SQLITE_TABLE}")
-#     cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SQLITE_TABLE}'")
+#     cur.execute(f"DELETE FROM {env_mixin.FIN_SERVICE_TABLE}")
+#     cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SERVICE_TABLE}'")
 #     sql_insert = f"INSERT INTO fins_dashboard_finservices (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,Trswift_TZ,Uplpsmsg_TZ,fin_timestamp) VALUES ('{fin_status[0]}', '{fin_status[1]}', '{fin_status[2]}', '{fin_status[3]}', '{fin_status[4]}', '{fin_status[5]}', '{fin_status[6]}', '{fin_status[7]}', '{fin_status[8]}', '{fin_status[9]}', '{fin_status[10]}', '{fin_status[11]}', '{fin_status[12]}', '{fin_status[13]}',' {fin_status[14]}', '{fin_status[15]}', '{fin_status[16]}', '{fin_status[17]}', '{fin_status[18]}', '{fin_status[19]}', '{fin_status[20]}', '{fin_status[21]}', '{show_service_time}')"
 #     cur.execute(sql_insert)
 #     conn.commit()
@@ -112,9 +112,9 @@ def run_job_node1():
     fin_status = fin_services_status_node1()
     conn = create_connection()
     cur = conn.cursor()
-    cur.execute(f"DELETE FROM {env_mixin.FIN_SQLITE_TABLE}")
-    cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SQLITE_TABLE}'")
-    sql_insert = f"INSERT INTO {env_mixin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES ('{fin_status[0]}', '{fin_status[1]}', '{fin_status[2]}', '{fin_status[3]}', '{fin_status[4]}', '{fin_status[5]}', '{fin_status[6]}', '{fin_status[7]}', '{fin_status[8]}', '{fin_status[9]}', '{fin_status[10]}', '{fin_status[11]}', '{fin_status[12]}', '{fin_status[13]}','{fin_status[14]}', '{fin_status[15]}', '{fin_status[16]}', '{fin_status[17]}', '{fin_status[18]}', '{fin_status[19]}', '{show_service_time}', 1)"
+    cur.execute(f"DELETE FROM {env_mixin.FIN_SERVICE_TABLE}")
+    cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SERVICE_TABLE}'")
+    sql_insert = f"INSERT INTO {env_mixin.FIN_SERVICE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES ('{fin_status[0]}', '{fin_status[1]}', '{fin_status[2]}', '{fin_status[3]}', '{fin_status[4]}', '{fin_status[5]}', '{fin_status[6]}', '{fin_status[7]}', '{fin_status[8]}', '{fin_status[9]}', '{fin_status[10]}', '{fin_status[11]}', '{fin_status[12]}', '{fin_status[13]}','{fin_status[14]}', '{fin_status[15]}', '{fin_status[16]}', '{fin_status[17]}', '{fin_status[18]}', '{fin_status[19]}', '{show_service_time}', 1)"
     cur.execute(sql_insert)
     conn.commit()
     conn.close()
@@ -128,9 +128,9 @@ def run_job_node2():
     fin_status = fin_services_status_node2()
     conn = create_connection()
     cur = conn.cursor()
-    # cur.execute(f"DELETE FROM {env_mixin.FIN_SQLITE_TABLE}")
-    # cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SQLITE_TABLE}'")
-    sql_insert = f"INSERT INTO {env_mixin.FIN_SQLITE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES ('{fin_status[0]}', '{fin_status[1]}', '{fin_status[2]}', '{fin_status[3]}', '{fin_status[4]}', '{fin_status[5]}', '{fin_status[6]}', '{fin_status[7]}', '{fin_status[8]}', '{fin_status[9]}', '{fin_status[10]}', '{fin_status[11]}', '{fin_status[12]}', '{fin_status[13]}','{fin_status[14]}', '{fin_status[15]}', '{fin_status[16]}', '{fin_status[17]}', '{fin_status[18]}', '{fin_status[19]}', '{show_service_time}', 2)"
+    # cur.execute(f"DELETE FROM {env_mixin.FIN_SERVICE_TABLE}")
+    # cur.execute(f"UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = '{env_mixin.FIN_SERVICE_TABLE}'")
+    sql_insert = f"INSERT INTO {env_mixin.FIN_SERVICE_TABLE} (ConfigService, FINRPT_finlstclnt,FINRPT_comnclnt,CBC,Finlistval,Coresession,Referral,Uniser_TZ,MQMSwiftIn_TZ,MQMSwiftOut_TZ,MQMRtgsIn_TZ,MQMRtgsOut_TZ,MQMRead_TZ,Dispatcher_TZ,Binagent_TZ,Swiftsrv_TZ,Pmssrv_TZ,Genlimo_TZ,Aabsrv_TZ,Eabgst_TZ,fin_timestamp,node) VALUES ('{fin_status[0]}', '{fin_status[1]}', '{fin_status[2]}', '{fin_status[3]}', '{fin_status[4]}', '{fin_status[5]}', '{fin_status[6]}', '{fin_status[7]}', '{fin_status[8]}', '{fin_status[9]}', '{fin_status[10]}', '{fin_status[11]}', '{fin_status[12]}', '{fin_status[13]}','{fin_status[14]}', '{fin_status[15]}', '{fin_status[16]}', '{fin_status[17]}', '{fin_status[18]}', '{fin_status[19]}', '{show_service_time}', 2)"
     cur.execute(sql_insert)
     conn.commit()
     conn.close()
