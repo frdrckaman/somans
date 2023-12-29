@@ -135,13 +135,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'somans.wsgi.application'
 
-connection_string_idap = f"DRIVER={IDAP_DB_DRIVER};SERVER={IDAP_CLUSTER},{IDAP_DB_PORT};DATABASE={IDAP_DB};ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID={IDAP_USER};PWD={IDAP_PWD}"
-connection_url_idap = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string_idap})
-engine_idap = create_engine(connection_url_idap)
-
-connection_string_rss = f"DRIVER={RSS_ODBC_DRIVER};SERVER={RSVR_CLUSTER};DATABASE={RSS_DB};ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID={RSS_USERNAME};PWD={RSS_PASSWORD}"
-connection_url_rss = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string_rss})
-engine_rss = create_engine(connection_url_rss)
+# connection_string_idap = f"DRIVER={IDAP_DB_DRIVER};SERVER={IDAP_CLUSTER},{IDAP_DB_PORT};DATABASE={IDAP_DB};ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID={IDAP_USER};PWD={IDAP_PWD}"
+# connection_url_idap = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string_idap})
+# engine_idap = create_engine(connection_url_idap)
+#
+# connection_string_rss = f"DRIVER={RSS_ODBC_DRIVER};SERVER={RSVR_CLUSTER};DATABASE={RSS_DB};ENCRYPT=yes;TrustServerCertificate=Yes;MultiSubnetFailover=Yes;UID={RSS_USERNAME};PWD={RSS_PASSWORD}"
+# connection_url_rss = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string_rss})
+# engine_rss = create_engine(connection_url_rss)
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
